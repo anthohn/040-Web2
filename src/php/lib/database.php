@@ -70,4 +70,22 @@
         return $results;
     }
 
+    //Fonction qui récupere toutes les catégorie
+    public function getCategorys(){
+        $query = 'SELECT * FROM t_category';
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Fonction qui récupere les éditeurs
+    public function getEditors(){
+        $query = 'SELECT * FROM t_editor';
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
 }    

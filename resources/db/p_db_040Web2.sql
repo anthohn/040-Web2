@@ -60,9 +60,20 @@ CREATE TABLE t_write(
     PRIMARY KEY (idxBook, idxAuthor)
 );
 
+INSERT INTO t_editor (ediName) VALUES
+('Maison d''édition Gallimard'),
+("Les Éditions Flammarion"),
+('Les éditions Milan'),
+('Les éditions Baudelaire'),
+('Hachette'),
+('Maison d''édition Le léopard masqué'),
+('Les éditions de Minuit'),
+('Maison d''éditon Privat'
+);
+
 INSERT INTO t_category (catName) VALUES
 ('Bande dessinée'),
-("Roman d'amour"),
+('Roman d''amour'),
 ('Roman Policier'),
 ('Fantastique'),
 ('Science-fiction'
