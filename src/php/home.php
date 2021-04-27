@@ -15,9 +15,11 @@ $fiveBooks = $db->LastFiveBooks(); ?>
         <p><?= $fiveBook['booPublicationYear'] ?></p>
         <p><?= $fiveBook['booScoreAverage'] ?></p>
         <p><?= $fiveBook['catName'] ?></p>
+        <a href="details.php?idBook=<?= $fiveBook['idBook'];?>">Lien vers le livre</a>
     </div>
     <?php endforeach ?>
 </div>
+
 
 
 
