@@ -1,0 +1,27 @@
+.MainBookblock{
+	text-align: center;
+	display: flex;
+	/* flex-direction:column; */
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.bookBlock{
+    width: 200px;
+	border-radius: 10px;
+	height: 270px;
+	margin: 50px 20px 0 20px;
+	flex-basis: 260px;
+	background-color: darkgrey;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-left: 5%;
+      width: 90%;
+    background-color: white;
+    border-top: 2px solid rgb(51, 51, 51);    
+    text-align: center;
+  }
