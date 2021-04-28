@@ -23,7 +23,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout")
 {
 	session_unset();
 	session_destroy();
-	header("connexion:home.php");
+	header("Location:connexion.php");
 }
 
 if(isset($_POST["forminscription"]))
