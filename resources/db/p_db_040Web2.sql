@@ -61,30 +61,38 @@ CREATE TABLE t_write(
 );
 
 INSERT INTO t_editor (ediName) VALUES
-('Maison d''édition Gallimard'),
-("Les Éditions Flammarion"),
-('Les éditions Milan'),
-('Les éditions Baudelaire'),
-('Hachette'),
-('Maison d''édition Le léopard masqué'),
-('Les éditions de Minuit'),
-('Maison d''éditon Privat'
+    ('Maison d''édition Gallimard'),
+    ("Les Éditions Flammarion"),
+    ('Les éditions Milan'),
+    ('Les éditions Baudelaire'),
+    ('Hachette'),
+    ('Maison d''édition Le léopard masqué'),
+    ('Les éditions de Minuit'),
+    ('Maison d''éditon Privat'
 );
 
 INSERT INTO t_category (catName) VALUES
-('Bande dessinée'),
-('Roman d''amour'),
-('Roman Policier'),
-('Fantastique'),
-('Science-fiction'
+    ('Bande dessinée'),
+    ('Roman d''amour'),
+    ('Roman Policier'),
+    ('Fantastique'),
+    ('Science-fiction'
 );
-
 
 INSERT INTO t_book (booTitle, booPages, booExtract, booSumary, booPublicationYear, idxCategory) VALUES
-('Livre 1', 345, 'Extrait du livre 1', 'Résumé du livre 1', '2003-04-30', 1 ),
-('Livre 2', 456, 'Extrait du livre 2', 'Résumé du livre 2', '2015-07-30', 2 ),
-('Livre 3', 123, 'Extrait du livre 3', 'Résumé du livre 3', '1996-09-30', 4 ),
-('Livre 4', 789, 'Extrait du livre 4', 'Résumé du livre 4', '1992-12-30', 2 ),
-('Livre 5', 120, 'Extrait du livre 5', 'Résumé du livre 5', '1998-02-10', 3 
+    ('Livre 1', 345, 'Extrait du livre 1', 'Résumé du livre 1', '2003-04-30', 1 ),
+    ('Livre 2', 456, 'Extrait du livre 2', 'Résumé du livre 2', '2015-07-30', 2 ),
+    ('Livre 3', 123, 'Extrait du livre 3', 'Résumé du livre 3', '1996-09-30', 4 ),
+    ('Livre 4', 789, 'Extrait du livre 4', 'Résumé du livre 4', '1992-12-30', 2 ),
+    ('Livre 5', 120, 'Extrait du livre 5', 'Résumé du livre 5', '1998-02-10', 3 
 );
+
+/*https://forum.phpfrance.com/php-debutant/inserer-date-inscription-t259102.html*/
+
+INSERT INTO t_user (useLogin, usePassword, useIsAdmin, useInscriptionDate, useSuggestBook, useAppreciationNumber) VALUES 
+    ('admin', "$2y$10$ebINd1FQ518pmgmdagSBzeoSS3Ps5NEucIASl0DVnqJt4jD9oXV1a", 1, '2021-04-28', 0, 0),
+    ('anthohn', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 0, '2021-04-28', 0, 0),
+    ('julcartier', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 0, '2021-04-28', 0, 0),
+    ('yousayeh', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 0, '2021-04-28', 0, 0
+); 
 

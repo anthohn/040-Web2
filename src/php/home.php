@@ -46,4 +46,8 @@ $fiveBooks = $db->LastFiveBooks(); ?>
         <?php endforeach ?>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ac2926793b3e9130890efc6530cdb91844ed47b
 <?= require ('template/footer.php'); ?>

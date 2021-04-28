@@ -180,6 +180,7 @@ ul {
 /*Main*/
 
 main {
+<<<<<<< HEAD
   margin: 0 0 0 270px;
 }
 
@@ -213,6 +214,9 @@ main {
 
 .explicationText p {
   color: #434343;
+=======
+  margin: 0 0 0 300px;
+>>>>>>> 6ac2926793b3e9130890efc6530cdb91844ed47b
 }
 
 .mainBookblock{
@@ -270,5 +274,18 @@ footer{
   border-top: 2px solid rgb(51, 51, 51);    
   text-align: center;
   background-color: #f4f4f4;
+<<<<<<< HEAD
   display: none;
 }
+=======
+}
+
+#errorMessage{
+  color: red;
+}
+
+#validationMessage{
+color: green;
+}
+
+>>>>>>> 6ac2926793b3e9130890efc6530cdb91844ed47b
