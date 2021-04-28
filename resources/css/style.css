@@ -1,3 +1,155 @@
+/*Global changement*/
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  background-color: #f4f4f4;
+}
+
+li {
+  list-style-type: none;
+}
+
+/*Header*/
+
+.headerContainer {
+  width: 100%;
+  height: 100px;
+  background-color: #ffffff;
+  display: flex;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.logo {
+  width: 250px;
+  margin: 35px;
+  text-align: center;
+}
+
+.logo a {
+  color: #34B67A;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.separeLigne {
+  border: 1px solid #f4f4f4;
+  height: 80px;
+  margin: 8px 0 0 0;
+}
+
+.rest {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.CreateLinkContainer, .loginLinkContainer {
+  margin: 36px 10px 0 0;
+}
+
+.CreateLinkContainer a {
+  border: 1px solid #34B67A;
+  border-radius: 25px;
+  font-size: 20px;
+  color: #34B67A;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.loginLinkContainer a {
+  border: 1px solid #34B67A;
+  border-radius: 25px;
+  font-size: 20px;
+  background-color: #34B67A;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+/*Navigation Bar*/
+
+.toggleButton {
+  display: none;
+}
+
+.leftnav {
+  width: 270px;
+}
+
+.navBar {
+  height: 100%;
+  position: absolute;
+  background-color: #ffffff;
+}
+
+.navBarLinks li a {
+  text-decoration: none;
+  color: #141414;
+  font-size: 20px;
+  /* border-radius: 25px;
+  border: 1px solid #f4f4f4;
+  background-color: #f4f4f4; */
+  padding: 10px;
+}
+
+.navBarLinks li {
+  margin: 0 0 0 0;
+  width: 180px;
+  border-radius: 25px;
+  border: 1px solid #f4f4f4;
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: center;
+}
+
+.navBarLinks {
+  padding: 0 25px;
+}
+
+#addBook {
+  border: 1px solid #34B67A;
+  background-color: #34B67A;
+  margin: 200px 0 0 0;
+}
+
+#listBook {
+  margin: 20px 0 0 0;
+}
+
+#homeLinkContainer {
+  margin: 20px 0 0 0;
+}
+
+#addBook a {
+  color: #ffffff;
+}
+
+ul {
+  margin: 0;
+}
+
+.homeIcon {
+  color: #141414;
+}
+
+.listIcon {
+  color: #141414;
+}
+
+.addIcon {
+  color: #ffffff;
+}
+
+/*Main*/
+
+main {
+  margin: 0 0 0 300px;
+}
+
 .MainBookblock{
 	text-align: center;
 	display: flex;
@@ -7,7 +159,7 @@
 }
 
 .bookBlock{
-    width: 200px;
+  width: 200px;
 	border-radius: 10px;
 	height: 270px;
 	margin: 50px 20px 0 20px;
@@ -16,12 +168,13 @@
 }
 
 footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    margin-left: 5%;
-      width: 90%;
-    background-color: white;
-    border-top: 2px solid rgb(51, 51, 51);    
-    text-align: center;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin-left: 5%;
+  width: 90%;
+  background-color: white;
+  border-top: 2px solid rgb(51, 51, 51);    
+  text-align: center;
+  background-color: #f4f4f4;
+}
