@@ -19,18 +19,6 @@ $fiveBooks = $db->LastFiveBooks(); ?>
         </div>
     <?php endforeach ?>
 </div>
-<<<<<<< HEAD
-=======
 <a href="addbook.php">ajout de livre</a>
 
-
-
-
-
-
-
-
-
-
->>>>>>> 23dc380dd870cd3851ef1478d7fea5ef16e45c9f
 <?= require ('template/footer.php'); ?>
