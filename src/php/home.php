@@ -18,6 +18,8 @@ $fiveBooks = $db->LastFiveBooks(); ?>
     </div>
     <?php endforeach ?>
 </div>
+<a href="addbook.php">ajout de livre</a>
+
 
 
 
