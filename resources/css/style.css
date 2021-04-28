@@ -47,7 +47,7 @@ li {
   width: 100%;
 }
 
-.CreateLinkContainer, .loginLinkContainer {
+.CreateLinkContainer, .loginLinkContainer, .disconnectLinkContainer {
   margin: 36px 10px 0 0;
 }
 
@@ -69,6 +69,17 @@ li {
   text-decoration: none;
   padding: 10px;
 }
+
+.disconnectLinkContainer a{
+  border: 1px solid #70461c;
+  border-radius: 25px;
+  font-size: 20px;
+  background-color: #b67e34;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px;
+}
+
 
 /*Navigation Bar*/
 
@@ -187,3 +198,6 @@ footer{
 color: green;
 }
 
+.notlog a{
+  text-decoration: none;
+}

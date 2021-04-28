@@ -84,7 +84,12 @@ INSERT INTO t_book (booTitle, booPages, booExtract, booSumary, booPublicationYea
     ('Livre 2', 456, 'Extrait du livre 2', 'Résumé du livre 2', '2015-07-30', 2 ),
     ('Livre 3', 123, 'Extrait du livre 3', 'Résumé du livre 3', '1996-09-30', 4 ),
     ('Livre 4', 789, 'Extrait du livre 4', 'Résumé du livre 4', '1992-12-30', 2 ),
-    ('Livre 5', 120, 'Extrait du livre 5', 'Résumé du livre 5', '1998-02-10', 3 
+    ('Livre 5', 120, 'Extrait du livre 5', 'Résumé du livre 5', '1998-02-10', 3 ),
+    ('Livre 6', 789, 'Extrait du livre 6', 'Résumé du livre 6', '1992-12-30', 2 ),
+    ('Livre 7', 789, 'Extrait du livre 7', 'Résumé du livre 7', '1992-12-30', 2 ),
+    ('Livre 8', 789, 'Extrait du livre 8', 'Résumé du livre 8', '1992-12-30', 2 ),
+    ('Livre 9', 789, 'Extrait du livre 9', 'Résumé du livre 9', '1992-12-30', 2 ),
+    ('Livre 10', 789, 'Extrait du livre 10', 'Résumé du livre 10', '1992-12-30', 2
 );
 
 /*https://forum.phpfrance.com/php-debutant/inserer-date-inscription-t259102.html*/

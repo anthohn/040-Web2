@@ -1,6 +1,8 @@
 <?php 
 $title = 'Ajout d\'un livre';
 require ('template/header.php');
+if(isLogged()):
+
 $categorys = $db->getCategorys(); 
 $editors = $db->getEditors();
 ?>
@@ -92,4 +94,10 @@ $editors = $db->getEditors();
     ?>
     <a href="home.php">retour</a>
 </div>
+
+<?php else : ?>
+    <h1 class='notlogadd'>Vous devez être connecter pour pouvoir ajouter un livre</h1>
+<?php endif; ?>
+
+
 <?php require ('template/footer.php'); ?>

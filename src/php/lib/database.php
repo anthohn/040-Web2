@@ -45,6 +45,31 @@
         $req->closeCursor(); 
     }
 
+    //Fonction qui récupere tous les livres
+    public function books(){
+        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Fonction qui récupere un livre grace à son ID
+    public function getBook($id){
+        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idBook = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $id,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
     //Fonction qui récupere les 5 derniers ouvrage de la table t_books
     public function LastFiveBooks(){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory ORDER BY idBook DESC LIMIT 5';
@@ -124,22 +149,6 @@
             )
         );
         $results = $this->queryPrepareExecute($query, $binds);
-    }
-    
-    //Fonction qui récupere un livre grace à son ID
-    public function getBook($id){
-        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idBook = :id';
-        $binds = array(
-            0 => array(
-                'field' => ':id',
-                'value' => $id,
-                'type' => PDO::PARAM_INT
-            )    
-        );
-        $reqExecuted = $this->queryPrepareExecute($query, $binds);
-        $results = $this->formatData($reqExecuted);
-        $this->unsetData($reqExecuted);
-        return $results;
     }
 
     public function getUsers(){
