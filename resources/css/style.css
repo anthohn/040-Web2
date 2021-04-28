@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Global changement*/
 html, body {
   margin: 0;
@@ -148,6 +149,10 @@ ul {
 
 main {
   margin: 0 0 0 300px;
+=======
+main{
+  /* margin-left: 300px; */
+>>>>>>> 23dc380dd870cd3851ef1478d7fea5ef16e45c9f
 }
 
 .MainBookblock{
@@ -176,5 +181,16 @@ footer{
   background-color: white;
   border-top: 2px solid rgb(51, 51, 51);    
   text-align: center;
+<<<<<<< HEAD
   background-color: #f4f4f4;
+=======
+}
+
+#errorMessage{
+  color: red;
+}
+
+#validationMessage{
+color: green;
+>>>>>>> 23dc380dd870cd3851ef1478d7fea5ef16e45c9f
 }
