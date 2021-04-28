@@ -88,44 +88,6 @@
         return $results;
     }
 
-    //ajout d'un livre dans la bdd
-    public function addBook($title, $category, $pages , $extract, $resume, $date){
-        $query = "INSERT INTO t_book (booTitle, booCategory, booPages, booExtract, booResume, booDate) VALUES (:title, :category, :pages, :extract, :resume, :date)";
-        $binds = array(
-            0 => array(
-                'field' => ':title',
-                'value' => $title,
-                'type' => PDO::PARAM_STR
-            ),  
-            1 => array(
-                'field' => ':category',
-                'value' => $category,
-                'type' => PDO::PARAM_STR
-            ),
-            2 => array(
-                'field' => ':pages',
-                'value' => $pages,
-                'type' => PDO::PARAM_INT
-            ),
-            3 => array(
-                'field' => ':extract',
-                'value' => $extract,
-                'type' => PDO::PARAM_STR
-            ),
-            4 => array(
-                'field' => ':resume',
-                'value' => $resume,
-                'type' => PDO::PARAM_STR
-            ),
-            5 => array(
-                'field' => ':date',
-                'value' => $date,
-                'type' => PDO::PARAM_STR
-            )
-        );
-        $results = $this->queryPrepareExecute($query, $binds);
-    }
-    
     //Fonction qui récupere un livre grace à son ID
     public function getBook($id){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idBook = :id';
