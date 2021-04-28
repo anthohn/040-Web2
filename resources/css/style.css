@@ -24,9 +24,9 @@ li {
 }
 
 .logo {
-  width: 250px;
-  margin: 35px;
+  margin: auto;
   text-align: center;
+  width: 270px;
 }
 
 .logo a {
@@ -35,10 +35,16 @@ li {
   font-size: 30px;
 }
 
+.logo a:hover {
+  color: #007051;
+  transition: all 0.3s ease-out;
+}
+
 .separeLigne {
   border: 1px solid #f4f4f4;
   height: 80px;
-  margin: 8px 0 0 0;
+  margin: 8px 0 0 270px;
+  position: absolute;
 }
 
 .rest {
@@ -80,6 +86,17 @@ li {
   padding: 10px;
 }
 
+.CreateLinkContainer a:hover {
+  border: 1px solid #007051;
+  color: #007051;
+  transition: all 0.3s ease-out;
+}
+
+.loginLinkContainer a:hover {
+  border: 1px solid #007051;
+  background-color: #007051;
+  transition: all 0.3s ease-out;
+}
 
 /*Navigation Bar*/
 
@@ -101,9 +118,6 @@ li {
   text-decoration: none;
   color: #141414;
   font-size: 20px;
-  /* border-radius: 25px;
-  border: 1px solid #f4f4f4;
-  background-color: #f4f4f4; */
   padding: 10px;
 }
 
@@ -121,18 +135,36 @@ li {
   padding: 0 25px;
 }
 
-#addBook {
-  border: 1px solid #34B67A;
-  background-color: #34B67A;
-  margin: 200px 0 0 0;
+#homeLinkContainer {
+  margin: 20px 0 0 0;
+}
+
+#homeLinkContainer:hover {
+  border: 1px solid #A9A9A9;
+  background-color: #A9A9A9;
+  transition: all 0.3s ease-out;
 }
 
 #listBook {
   margin: 20px 0 0 0;
 }
 
-#homeLinkContainer {
-  margin: 20px 0 0 0;
+#listBook:hover {
+  border: 1px solid #A9A9A9;
+  background-color: #A9A9A9;
+  transition: all 0.3s ease-out;
+}
+
+#addBook {
+  border: 1px solid #34B67A;
+  background-color: #34B67A;
+  margin: 200px 0 0 0;
+}
+
+#addBook:hover {
+  border: 1px solid #007051;
+  background-color: #007051;
+  transition: all 0.3s ease-out;
 }
 
 #addBook a {
@@ -161,21 +193,49 @@ main {
   margin: 0 0 0 300px;
 }
 
-.MainBookblock{
+.mainBookblock{
 	text-align: center;
 	display: flex;
-	/* flex-direction:column; */
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 }
 
 .bookBlock{
-  width: 200px;
-	border-radius: 10px;
-	height: 270px;
 	margin: 50px 20px 0 20px;
 	flex-basis: 260px;
-	background-color: darkgrey;
+}
+
+.bookImage img {
+  box-shadow: 0px 2px 4px 0px #a9a9a9;
+}
+
+.bookImage img:hover {
+  transform: scale(1.03);
+  transition: all .3s ease-in-out;
+}
+
+.bookInfo {
+  text-align: left;
+  margin: 0 0 0 5px;
+  color: #434343;
+}
+
+.bookInfo p {
+  margin: 0;
+}
+
+#bookTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#bookAuthor {
+  font-size: 15px;
+}
+
+#bookAvg {
+  font-size: 15px;
+  color: #34B67A;
 }
 
 footer{
@@ -188,7 +248,9 @@ footer{
   border-top: 2px solid rgb(51, 51, 51);    
   text-align: center;
   background-color: #f4f4f4;
+  display: none;
 }
+
 
 #errorMessage{
   color: red;
@@ -201,3 +263,4 @@ color: green;
 .notlog a{
   text-decoration: none;
 }
+
