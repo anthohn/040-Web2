@@ -1,12 +1,8 @@
 <?php 
 $title = 'Details du livre';
 require ('template/header.php');
-
 $id = $_GET["idBook"];
 $book = $db->getBook($id); ?>
-
-
-
 
 <h1>*Détails :*</h1>
 
@@ -23,11 +19,5 @@ $book = $db->getBook($id); ?>
         </div>
     <?php endforeach ?>
 </div>
-
-
-
-
-
-
 
 <?= require ('template/footer.php'); ?>

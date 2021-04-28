@@ -142,4 +142,12 @@
         return $results;
     }
 
+    public function getUsers(){
+        $query = "SELECT * FROM t_user";
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
 }    
