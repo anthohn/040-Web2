@@ -19,14 +19,7 @@ $fiveBooks = $db->LastFiveBooks(); ?>
                 écrire, qui serait le premier véritable support livresque. Les mots biblos et liber ont d'ailleurs pour premier sens écorce intérieure d'un arbre. En chinois, l'idéogramme 
                 du livre est à l'image de tablettes de bambou. On a trouvé également des tablettes de bois sur l'île de Pâques.On trouve ensuite des tablettes d'argile utilisées en 
                 Mésopotamie au IIIe millénaire av. J.‑C. Le calame, un morceau de roseau de section triangulaire, sert à imprimer des caractères dans l'argile encore molle. C'est l'écriture
-                des Assyriens et des Sumériens, en forme de coins, d'où le nom d'écriture cunéiforme. Les tablettes étaient cuites pour être solidifiées. À Ninive, 22 000 tablettes ont été
-                retrouvées, datant du viie siècle av. J.-C. ; c'est la bibliothèque des rois d'Assyrie, qui disposaient d'ateliers de copistes et de lieux de conservation. Cela suppose une
-                organisation autour du livre, une réflexion sur la conservation, le classement, etc.La soie, en Chine, fut aussi un support de l'écriture. On écrivait à l'aide de pinceaux. 
-                Bien d'autres supports furent utilisés : os, bronze, poterie, écaille de tortue, etc. En Inde, par exemple, on utilisa des feuilles de palmier séchées. Tous les matériaux qui 
-                permettent de conserver et de transmettre un texte sont donc susceptibles de devenir des livres. Dans ce cas, le corps humain pourrait être aussi considéré comme un livre, 
-                avec le tatouage, et, si l'on admet que la mémoire humaine se développe ou se transforme avec l'apparition de l'écriture, il n'est peut-être pas absurde de penser que cette 
-                faculté fait de l'homme un livre vivant2. Il est important de rappeler que pendant des siècles, de nombreux pans de la production textuelle et donc du savoir, passeront par 
-                l'oralité et la mémorisation : ainsi, sans parler du védisme, l'Iliade fut transmise par des aèdes.
+                des Assyriens et des Sumériens, en forme de coins, d'où le nom d'écriture cunéiforme. Les tablettes étaient cuites pour être solidifiées.
             </p>
         </div>
     </div>
@@ -35,7 +28,7 @@ $fiveBooks = $db->LastFiveBooks(); ?>
         <?php foreach ($fiveBooks as $fiveBook) : ?>
             <div class="bookBlock">
                 <div class="bookImage">
-                    <a href="details.php?idBook=<?= $fiveBook['idBook'];?>"><img src="../../resources/images/books/petit-pays.jpg" alt="première de couverture"/></a>
+                    <a href="details.php?idBook=<?= $fiveBook['idBook'];?>"><img src="../../resources/images/books/<?= $fiveBook['idBook'];?>.jpg" alt="première de couverture"/></a>
                 </div>
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $fiveBook['booTitle'] ?></p> 
@@ -46,4 +39,4 @@ $fiveBooks = $db->LastFiveBooks(); ?>
         <?php endforeach ?>
     </div>
 </div>
-<?= require ('template/footer.php'); ?>
+<?php require ('template/footer.php'); ?>

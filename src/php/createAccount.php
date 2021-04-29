@@ -44,4 +44,4 @@ require ('template/header.php');
     <?php endif; ?>
 </div>
 
-<?= require ('template/footer.php'); ?>
+<?php require ('template/footer.php'); ?>

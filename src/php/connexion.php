@@ -3,10 +3,7 @@ $title = 'Connexion';
 require ('template/header.php');
 ?>
 
-
-
-<!-- welp -->
-<div class="login-container">
+<div class="loginContainer">
     <?php if(!isLogged()): ?>
         <form method="post" action="connexion.php">
         <!-- J'aimerais faire un tableau pour le login mais j'ai une vieille erreur inconnu au battaillon -->
@@ -16,10 +13,6 @@ require ('template/header.php');
                             <input type="password" placeholder="Mot de passe" name="psw" id="psw">
                             <button type="submit" name="forminscription">Se Connecter</button>
         </form>
-    <?php else: ?>
-            <div class="notlog">
-                <a href="connexion.php?auth=logout">Se deconnecter</a>
-            </div>
     <?php endif; ?>
 </div>
 
@@ -59,4 +52,4 @@ if(isset($_POST["forminscription"]))
 }
 ?>
 
-<?= require ('template/footer.php'); ?>
+<?php require ('template/footer.php'); ?>

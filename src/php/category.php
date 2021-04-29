@@ -19,4 +19,4 @@ $CategoryBooks = $db->CategoryBooks($idCategory); ?>
     <?php endforeach ?>			
 </div>
 
-<?= require ('template/footer.php'); ?>
+<?php require ('template/footer.php'); ?>
