@@ -3,13 +3,18 @@ $title = 'Connexion';
 require ('template/header.php');
 ?>
 
-<!-- <h1>*du site*</h1> -->
+
+
+<!-- welp -->
 <div class="login-container">
     <?php if(!isLogged()): ?>
         <form method="post" action="connexion.php">
-            <input type="text" placeholder="Nom d'utilisateur" name="login" id="login">
-            <input type="password" placeholder="Mot de passe" name="psw" id="psw">
-            <button type="submit" name="forminscription">Se Connecter</button>
+        <!-- J'aimerais faire un tableau pour le login mais j'ai une vieille erreur inconnu au battaillon -->
+                            <label for="login">Login :</label>
+                            <input type="text" placeholder="Nom d'utilisateur" name="login" id="login">
+                            <label for="psw">Mot de passe :</label>
+                            <input type="password" placeholder="Mot de passe" name="psw" id="psw">
+                            <button type="submit" name="forminscription">Se Connecter</button>
         </form>
     <?php else: ?>
             <div class="notlog">
@@ -30,7 +35,7 @@ if(isset($_POST["forminscription"]))
 {
     if(!empty($_POST["login"]) || (!empty($_POST["psw"])))
     {	
-        echo 'tesWt';
+        // echo 'tesWt';
         $users = $db->getUsers();
         foreach($users as $user)
         {

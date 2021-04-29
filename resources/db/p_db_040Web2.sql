@@ -46,7 +46,7 @@ CREATE TABLE t_user(
     idUser INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     useLogin VARCHAR(50) NOT NULL,
     usePassword VARCHAR(255) NOT NULL,
-    useIsAdmin BOOLEAN NOT NULL,
+    useIsAdmin BOOLEAN NOT NULL DEFAULT 0,
     useInscriptionDate DATE NOT NULL,
     useSuggestBook INT UNSIGNED NOT NULL DEFAULT 0,
     useAppreciationNumber INT UNSIGNED NOT NULL DEFAULT 0

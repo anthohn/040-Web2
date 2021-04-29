@@ -151,6 +151,7 @@
         $results = $this->queryPrepareExecute($query, $binds);
     }
 
+    //récupere tous les utilisateur
     public function getUsers(){
         $query = "SELECT * FROM t_user";
         $reqExecuted = $this->querySimpleExecute($query);
@@ -158,5 +159,46 @@
         $this->unsetData($reqExecuted);
         return $results;
     }
+
+    //ajout d'un utilisateur dans la bdd pas du tout fonctionel pour le moment
+    public function addUser($title, $category, $pages , $extract, $resume, $date){
+        $query = "INSERT INTO t_book (booTitle, booCategory, booPages, booExtract, booResume, booDate) VALUES (:title, :category, :pages, :extract, :resume, :date)";
+        $binds = array(
+            0 => array(
+                'field' => ':title',
+                'value' => $title,
+                'type' => PDO::PARAM_STR
+            ),  
+            1 => array(
+                'field' => ':category',
+                'value' => $category,
+                'type' => PDO::PARAM_STR
+            ),
+            2 => array(
+                'field' => ':pages',
+                'value' => $pages,
+                'type' => PDO::PARAM_INT
+            ),
+            3 => array(
+                'field' => ':extract',
+                'value' => $extract,
+                'type' => PDO::PARAM_STR
+            ),
+            4 => array(
+                'field' => ':resume',
+                'value' => $resume,
+                'type' => PDO::PARAM_STR
+            ),
+            5 => array(
+                'field' => ':date',
+                'value' => $date,
+                'type' => PDO::PARAM_STR
+            )
+        );
+        $results = $this->queryPrepareExecute($query, $binds);
+    }
+
+
+
 
 }    
