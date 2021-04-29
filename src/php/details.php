@@ -20,4 +20,4 @@ $book = $db->getBook($id); ?>
     <?php endforeach ?>
 </div>
 
-<?= require ('template/footer.php'); ?>
+<?php require ('template/footer.php'); ?>

@@ -41,7 +41,7 @@ li {
 }
 
 .separeLigne {
-  border: 1px solid #f4f4f4;
+  border-left: 2px solid #f4f4f4;
   height: 80px;
   margin: 8px 0 0 270px;
   position: absolute;
@@ -77,10 +77,10 @@ li {
 }
 
 .disconnectLinkContainer a{
-  border: 1px solid #70461c;
+  border: 1px solid #34B67A;
   border-radius: 25px;
   font-size: 20px;
-  background-color: #b67e34;
+  background-color: #34B67A;
   color: #ffffff;
   text-decoration: none;
   padding: 10px;
@@ -92,7 +92,7 @@ li {
   transition: all 0.3s ease-out;
 }
 
-.loginLinkContainer a:hover {
+.loginLinkContainer a:hover, .disconnectLinkContainer a:hover {
   border: 1px solid #007051;
   background-color: #007051;
   transition: all 0.3s ease-out;
@@ -190,7 +190,39 @@ ul {
 /*Main*/
 
 main {
-  margin: 0 0 0 300px;
+  margin: 0 0 0 270px;
+}
+
+.content {
+  margin: 30px 50px 0 50px;
+}
+
+.contentTitle {
+  margin: 0 0 0 20px;
+  color: #434343;
+  font-size: 35px;
+}
+
+.explicationContainer {
+  margin: 0 0 0 20px;
+}
+
+.explicationTitle {
+  margin: 50px 0 0 0;
+}
+
+.explicationTitle h1 {
+  color: #434343;
+  font-size: 30px;
+}
+
+.explicationText {
+  text-align: justify;
+  font-size: 20px;
+}
+
+.explicationText p {
+  color: #434343;
 }
 
 .mainBookblock{
@@ -251,6 +283,7 @@ footer{
   display: none;
 }
 
+/*Login*/
 
 #errorMessage{
   color: red;
@@ -263,4 +296,3 @@ color: green;
 .notlog a{
   text-decoration: none;
 }
-
