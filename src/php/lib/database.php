@@ -7,18 +7,27 @@
 
  class Database {
     // Variable de classe
+    private $host;
+    private $username;
+    private $password;
+    private $database;
     private $connector;
 
-
     //connexion à la bdd en faisant essayant puis si erreur récupere le message et affiche le message d'erreur 
-    public function __construct(){
-    try{
-        $this->connector = new PDO('mysql:host=localhost;dbname=p_db_040_Web2;charset=utf8', 'dbUser040', '.Etml-');
+    public function __construct($host = null, $username = null, $password = null, $database = null){
+        if($host != null){
+            $this->host = $host;
+            $this->username = $username;
+            $this->password = $password;
+            $this->database = $database;
         }
-        catch(PDOException $e)
-        {
-            die('<h1>Impossible de se connecter à la base de données</h1> erreur :'. $e->getMessage()); 
-        }
+            try{
+            $this->connector = new PDO('mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8', $this->username, $this->password);
+            }
+            catch(PDOException $e)
+            {
+                die('<h1>Impossible de se connecter à la base de données</h1> erreur :'. $e->getMessage()); 
+            }
     }
 
     private function querySimpleExecute($query){

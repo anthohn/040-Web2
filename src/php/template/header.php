@@ -1,8 +1,9 @@
 <?php 
 session_start();
-require "lib/util.php";
+require ('lib/util.php');
 require ('lib/database.php');
-$db = new Database();
+require ('config/dbconfig.cfg');
+$db = new Database(Config::$host, Config::$username, Config::$password, Config::$database);
 ?>
 
 <!DOCTYPE html>
