@@ -1,11 +1,11 @@
 <?php 
 $title = 'Tous les livres';
 require ('template/header.php');
-$books = $db->books();
+$books = $db->getBooks();
 $categorys = $db->getCategorys();
 ?>
 <?php 
-	$books = $db->books();
+	$books = $db->getBooks();
 
 	if(isset($_GET['search']) && !empty($_GET['search'])) {
 		$search = htmlspecialchars($_GET['search']);
@@ -37,20 +37,42 @@ $categorys = $db->getCategorys();
             }
         ?>
     </div>
-    <form method='POST'>
-        <div class='selectCategory input'>
-            <select name='Category' id='Category'>
-                <option value='0'>Category</option>
-                <?php foreach($categorys as $category) : ?>
-                    <option value='<?= $category['idCategory']; ?>'><?= $category['catName']; ?></option>
+    <div class="selectCategory">
+        <form method='POST' >
+            <div class='selectCategory input'>
+                <select name='Category' id='Category'>
+                    <option value='0'>Category</option>
+                    <?php foreach($categorys as $category) : ?>
+                        <option value='<?= $category['idCategory']; ?>'><?= $category['catName']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <input class='confirm'type='submit' name='submit' value='Valider'>   
+        </form>
+        
+        <?php if(isset($_POST['submit'])) : ?>
+            <?php $idCategory = $_POST['Category']; 
+            $categorys = $db->CategoryBooks($idCategory);
+            echo $idCategory ?>
+                <div class="mainBookblock">
+                <?php foreach ($categorys as $category) : ?>
+                <!-- <h3>Livres dans la catégorie : <?= $category['catName']; ?></h3> -->
+                   
+                    <div class='bookBlock'>
+                        <div class='bookImage'>
+                            <a href="details.php?idBook=<?= $category['idBook'];?>"><img src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
+                        </div>
+                        <div class="bookInfo">
+                            <p id="bookTitle"><?= $category['booTitle'] ?></p> 
+                            <p id="bookAuthor">Auteur</p> 
+                            <p id="bookAvg"><?= $category['booScoreAverage'] ?> / 5</p>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
-            </select>
-        </div>
-    <input type='submit' name='submit' value='Valider'>   
-    </form>
+            </div>    
+        <?php endif; ?>
+    </div>
 
-    
-    
     <div class='mainBookblock'>
         <?php foreach ($books as $book) : ?>
             <div class='bookBlock'>
@@ -64,7 +86,7 @@ $categorys = $db->getCategorys();
                 </div>
             </div>
         <?php endforeach ?>
-    </div>
+    </div>       
 </div>
 
   

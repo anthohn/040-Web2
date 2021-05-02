@@ -55,7 +55,7 @@
     }
 
     //Fonction qui récupere tous les livres
-    public function books(){
+    public function getBooks(){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
