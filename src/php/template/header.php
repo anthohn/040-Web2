@@ -40,6 +40,7 @@ $db = new Database(Config::$host, Config::$username, Config::$password, Config::
                 <?php else: ?>
                     <div class="rest">
                         <div class="disconnectLinkContainer">
+                            <?= 'Bonjour ' . $_SESSION['username']; ?>
                             <a href="connexion.php?auth=logout">Se deconnecter</a>
                         </div>
                     </div>    
