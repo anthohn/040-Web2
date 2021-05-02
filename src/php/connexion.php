@@ -17,6 +17,7 @@ require ('template/header.php');
 </div>
 
 <?php
+// Lors de la déconnexion de l'utilisateur la session se désactive puis se détruit avant de recharger la page
 if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout") 
 {
 	session_unset();
@@ -41,7 +42,13 @@ if(isset($_POST["forminscription"]))
                     $_SESSION['isAdmin'] = $user['useIsAdmin'];
                     header("Location:connexion.php");
                 }
+                
             }
+            // bug car le text s'affiche 3 fois..
+            // else {
+            //     echo 'Mot de passe incorrect ';
+            // }
+            
         }
     }
     else

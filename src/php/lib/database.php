@@ -160,7 +160,7 @@
         return $results;
     }
 
-    //ajout d'un utilisateur dans la bdd pas du tout fonctionel pour le moment
+    //ajout d'un utilisateur dans la bdd ''''''''''''''''''pas du tout fonctionel pour le moment''''''''''''''''''
     public function addUser($title, $category, $pages , $extract, $resume, $date){
         $query = "INSERT INTO t_book (booTitle, booCategory, booPages, booExtract, booResume, booDate) VALUES (:title, :category, :pages, :extract, :resume, :date)";
         $binds = array(
