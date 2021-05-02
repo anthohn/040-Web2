@@ -33,7 +33,7 @@ $fiveBooks = $db->LastFiveBooks(); ?>
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $fiveBook['booTitle'] ?></p> 
                     <p id="bookAuthor">Auteur</p> 
-                    <p id="bookAvg"><?= $fiveBook['booScoreAverage'] ?></p>
+                    <p id="bookAvg"><?= $fiveBook['booScoreAverage'] ?> / 5</p>
                 </div>
             </div>
         <?php endforeach ?>

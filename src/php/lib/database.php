@@ -65,7 +65,7 @@
 
     //Fonction qui récupere un livre grace à son ID
     public function getBook($id){
-        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idBook = :id';
+        $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor WHERE idBook = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',
@@ -88,7 +88,7 @@
         return $results;
     }
 
-    //Fonction qui récupere les ouvrages de la table t_books par categorie avec un binds
+    //Fonction qui récupere les ouvrages de la table t_books par categorie
     public function CategoryBooks($idCategory){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idCategory  = :idCategory';
         $binds = array(
@@ -206,6 +206,17 @@
         );
         $results = $this->queryPrepareExecute($query, $binds);
     }
+
+    //va chercher les livres selon ce qui est entré par l'utilisateur 
+    public function getSearchedBooks($search){
+        $query = 'SELECT * FROM t_book WHERE booTitle LIKE "%'.$search.'%"';
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
 
 
 

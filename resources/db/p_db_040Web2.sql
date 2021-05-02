@@ -79,18 +79,46 @@ INSERT INTO t_category (catName) VALUES
     ('Science-fiction'
 );
 
-INSERT INTO t_book (booTitle, booPages, booExtract, booSumary, booPublicationYear, idxCategory) VALUES
-    ('Livre 1', 345, 'Extrait du livre 1', 'Résumé du livre 1', '2003-04-30', 1 ),
-    ('Livre 2', 456, 'Extrait du livre 2', 'Résumé du livre 2', '2015-07-30', 2 ),
-    ('Livre 3', 123, 'Extrait du livre 3', 'Résumé du livre 3', '1996-09-30', 4 ),
-    ('Livre 4', 789, 'Extrait du livre 4', 'Résumé du livre 4', '1992-12-30', 2 ),
-    ('Livre 5', 120, 'Extrait du livre 5', 'Résumé du livre 5', '1998-02-10', 3 ),
-    ('Livre 6', 789, 'Extrait du livre 6', 'Résumé du livre 6', '1992-12-30', 2 ),
-    ('Livre 7', 789, 'Extrait du livre 7', 'Résumé du livre 7', '1992-12-30', 2 ),
-    ('Livre 8', 789, 'Extrait du livre 8', 'Résumé du livre 8', '1992-12-30', 2 ),
-    ('Livre 9', 789, 'Extrait du livre 9', 'Résumé du livre 9', '1992-12-30', 2 ),
-    ('Livre 10', 789, 'Extrait du livre 10', 'Résumé du livre 10', '1992-12-30', 2
+INSERT INTO t_author (autFirstname, autLastname, autBirthday, idxEditor) VALUES
+    ('Nom auteur 1', 'Prénom auteur 1', '2003-04-30' , 1),
+    ('Nom auteur 2', 'Prénom auteur 2', '2003-04-30' , 6),
+    ('Nom auteur 3', 'Prénom auteur 3', '2003-04-30' , 2),
+    ('Nom auteur 4', 'Prénom auteur 4', '2003-04-30' , 5),
+    ('Nom auteur 5', 'Prénom auteur 5', '2003-04-30' , 1),
+    ('Nom auteur 6', 'Prénom auteur 6', '2003-04-30' , 2),
+    ('Nom auteur 7', 'Prénom auteur 7', '2003-04-30' , 3),
+    ('Nom auteur 8', 'Prénom auteur 8', '2003-04-30' , 4),
+    ('Nom auteur 9', 'Prénom auteur 9', '2003-04-30' , 5),
+    ('Nom auteur 10', 'Prénom auteur 10', '2003-04-30' , 2
 );
+
+
+INSERT INTO t_book (booTitle, booPages, booExtract, booSumary, booPublicationYear, idxCategory) VALUES
+    ('Livre 1', 345, 'Extrait du livre 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2003-04-30', 1 ),
+    ('Livre 2', 456, 'Extrait du livre 2', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2015-07-30', 2 ),
+    ('Livre 3', 123, 'Extrait du livre 3', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1996-09-30', 4 ),
+    ('Livre 4', 789, 'Extrait du livre 4', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2 ),
+    ('Livre 5', 120, 'Extrait du livre 5', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1998-02-10', 3 ),
+    ('Livre 6', 789, 'Extrait du livre 6', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2 ),
+    ('Livre 7', 789, 'Extrait du livre 7', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2 ),
+    ('Livre 8', 789, 'Extrait du livre 8', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2 ),
+    ('Livre 9', 789, 'Extrait du livre 9', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2 ),
+    ('Livre 10', 789, 'Extrait du livre 10', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '1992-12-30', 2
+);
+
+INSERT INTO t_write (idxBook, idxAuthor) VALUES
+    (1, 10),
+    (2, 9),
+    (3, 8),
+    (4, 7),
+    (5, 6),
+    (6, 5),
+    (7, 4),
+    (8, 3),
+    (9, 2),
+    (10, 1
+);
+
 
 /*https://forum.phpfrance.com/php-debutant/inserer-date-inscription-t259102.html*/
 

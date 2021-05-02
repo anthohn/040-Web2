@@ -283,6 +283,30 @@ footer{
   display: none;
 }
 
+/**************Detail**************/
+
+.MainDetailBookBlock{
+  padding: 5px 0 0 65px;
+}
+.MainDetailBookBlock h1{
+  color :#141414;
+}
+.bookDetailBlock img{
+  margin: 0 20px 0 0;
+  float: left;
+  display:block;
+}
+
+
+.bookContent p, .bookContent h2 , .bookContent h3, .bookContent h4{
+  color :#141414;
+  width: 1000px;
+}
+
+/* .bookDetailBlock{
+
+} */
+
 /*Login*/
 
 #errorMessage{
@@ -295,4 +319,62 @@ color: green;
 
 .notlog a{
   text-decoration: none;
+}
+
+/*********************search bar****************************/
+
+
+.searchBar {
+	margin: auto;
+	position: relative;
+	max-width: 100%;
+  height: 50px;
+	padding: 10px 60px 0 292px;
+}
+
+.searchBarInputContainer {
+	flex-wrap: nowrap;
+	display: flex;
+	flex-direction: row;
+	width: 20%;
+	height: 100%;
+	background-color: white;
+	border-radius: 10px;
+  margin: 20px;
+}
+
+.searchIcon {
+	height: 50px;
+	margin: auto;
+}
+
+.icon {
+	background-color: transparent;
+	height: 95%;
+	border: 0;
+	outline: none;
+}
+
+#icon {
+	margin: 5px 0 0 0;
+}
+
+.icon:hover {
+	cursor: pointer;
+}
+
+#search {
+	width: 90%;
+	height: 40px;
+	font-size: 25px;
+	border: 0;
+	background-color: white;
+	outline:none;
+}
+
+.searchBarInput {
+	width: 100%;
+	margin: auto;
+	/* background-color: white; */
+	border-radius: 10px;
 }
