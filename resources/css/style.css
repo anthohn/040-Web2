@@ -8,7 +8,7 @@
   --green-color: #007051;
   --navBlack-color: #141414;
   --darkGrey-color: #A9A9A9;
-  --redAlert-color: red;
+  --redAlert-color: #ff2626;
   --greenAlert-color: green;
   --greyTitle-color: #434343;
   --selectColor-color: #e2e2e2;
@@ -167,13 +167,13 @@ li {
 }
 
 .activeLink {
-  border: 1px solid #A9A9A9 !important;
-  background-color: #A9A9A9 !important;
+  border: 1px solid var(--darkGrey-color) !important;
+  background-color: var(--darkGrey-color) !important;
 }
 
 .activeLinkAdd {
-  border: 1px solid #007051 !important;
-  background-color: #007051 !important;
+  border: 1px solid var(--green-color) !important;
+  background-color: var(--green-color) !important;
 }
 
 #homeLinkContainer {
@@ -509,10 +509,63 @@ input.confirm:hover {
   transition: all .2s ease-in-out;
 }
 
-/**Ajout d'un livre**/
+.allBooksTitle{
+  margin: 20px 0 0 20px;
+  color: #434343;
+  font-size: 35px;
+}
 
-.tableContainer {
+.formcontent{
+	display: flex;
+  justify-content: center;
+  
+}
+
+.formcontent form {
+  text-align: center;
+  margin: 100px 0 0 0;
+  height: 500px;
+  width: 400px;
+  background-color: var(--backGrey-color);
+  border: 3px solid var(--lightGreen-color);
+  border-radius: 25px;
+}
+
+.formcontent table{
   margin: 0 0 0 20px;
+
+}
+
+.formcontent form table tr td{
+  font-size: 25px;
+}
+
+.formcontent form button{
+  font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: var(--lightGreen-color);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.formcontent form button:hover{
+  background-color:var(--green-color);
+}
+
+.formcontent form table tr td svg{
+  margin: 10px 0 0 0;
+  position: absolute;
+}
+
+.formcontent form table tr input{
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--darkGrey-color);
+  width: 270px;
+  margin: 10px 0 0 50px;
+  padding: 7px;
 }
 
 .halfFormContainer {
@@ -534,3 +587,45 @@ input.confirm:hover {
 .hzLine {
   margin: 60px 0 0 0;
 }
+
+.formcontent form h2{
+  color: var(--greyTitle-color);
+  font-size: 30px;
+  margin: 20px 10px 0 40px;
+  float: left;
+  padding: 10px 10px 100px 0;
+}
+
+.formcontent button{
+  margin: 30px 0 0 0;
+}
+
+.formcontent p{
+  color: var(--greyTitle-color);
+  margin: 90px 0 0 0;
+}
+
+.formcontent a{
+  color: var(--lightGreen-color);
+}
+
+.formcontent a:hover{
+  color: var(--green-color);
+}
+
+.errorLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.errorLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--redAlert-color);
+}
+
+
