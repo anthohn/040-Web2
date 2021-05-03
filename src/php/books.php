@@ -26,20 +26,7 @@ $categorys = $db->getCategorys();
         </div>
     </form>
 
-    <div class="result">
-        <?php 
-            if(isset($_GET['search']) && !empty($_GET['search'])) {
-                if(count($books) > 0) {
-                    foreach($books as $book) {    
-                    }
-                    echo "<h2>Résultat pour : $search</h2>";
-                }
-                else {
-                    echo "<h2>Aucun résultat pour : $search</h2>";
-                }
-            }
-        ?>
-    </div>
+
         
     <div class="selectCategory">
         <form method='POST' class="searchForm">
