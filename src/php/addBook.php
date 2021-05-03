@@ -16,14 +16,14 @@ $authors = $db->getAuthor();
                     <!-- Titre -->
                     <div class="inputName input">
                         <label for="title">Titre</label>
-                        <input type="text" id="title" name="title">
+                        <input type="text" id="title" name="title" placeholder="Titre du livre">
                     </div>
 
                     <!-- Category  -->
                     <div class="selectCategory input">
                         <label for="Category">Categorie</label>
                         <select name="Category" id="Category">
-                            <option value="0">Category </option>
+                            <option value="0">Séléctionnez</option>
                             <?php foreach($categorys as $category) : ?>
                                 <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]; ?></option>
                             <?php endforeach; ?>
@@ -35,13 +35,13 @@ $authors = $db->getAuthor();
                     <!-- Nombre de pages  -->
                     <div class="inputNumberPages input">
                         <label for="pages">Nombre de pages</label>
-                        <input type="text" id="pages" name="pages">
+                        <input type="number" id="pages" name="pages" placeholder="Nombre de pages">
                     </div>
 
                     <!-- Extrait (Lien relatif vers un fichier pdf d'une page de l'ouvrage -> cdc)  -->
                     <div class="extract input">
-                        <label for="extract">Extrait</label>
-                        <textarea id="extract" name="extract"></textarea>
+                        <label for="extract">Lien de l'extrait</label>
+                        <input type="text" id="extract" name="extract" placeholder="Lien de l'extrait">
                     </div>
                 </div>
             </div>
@@ -52,14 +52,14 @@ $authors = $db->getAuthor();
                 <div>
                     <!-- Résumé  -->
                     <div class="resume input">
-                        <label for="extract">Résumé</label>
-                        <textarea id="resume" name="resume"></textarea>
+                        <label for="resume">Résumé</label>
+                        <textarea id="resume" name="resume" placeholder="Résumé du livre"></textarea>
                     </div>
 
                     <!-- Année d'édition -->
                     <div class="inputDate input">
                         <label for="date">Année d'édition</label>
-                        <input type="date" name="date">
+                        <input type="date" name="date" id="date">
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@ $authors = $db->getAuthor();
                     <!-- Boutton Ajouter -->
                     <div class="button">
                         <div class="btnAdding">
-                            <input type="submit" id="btnSubmit" name="btnSubmit" value="Ajouter" />
+                        <input type="submit" id="btnSubmit" name="btnSubmit" value="Ajouter" />
                     </div>
 
                     <!-- Boutton pour supprimer ce qui est acctuellement entré -->
