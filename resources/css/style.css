@@ -413,3 +413,9 @@ input.confirm:hover{
   background-color: #007051;
   transition: all 0.3s ease-out;
 }
+
+#note{
+  width: 110px;
+  padding: 5px;
+  margin: 0 10px 0 10px;
+}

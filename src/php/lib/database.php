@@ -158,6 +158,9 @@
             )
         );
         $results = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
     }
 
     //récupere tous les utilisateur
@@ -205,6 +208,9 @@
             )
         );
         $results = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
     }
 
     //va chercher les livres selon ce qui est entré par l'utilisateur 
@@ -213,6 +219,27 @@
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
 
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //ajout d'un vote dans la bdd
+    public function addVoteBook($idBook, $note){
+        $query = 'INSERT INTO t_book (booScoreAverage) WHERE idBook = :id  VALUES (:note)';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idBook,
+                'type' => PDO::PARAM_INT
+            ),
+            1 => array(
+                'field' => ':note',
+                'value' => $note,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $results = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
     }

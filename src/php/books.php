@@ -47,7 +47,7 @@ $categorys = $db->getCategorys();
                     <?php endforeach; ?>
                 </select>
             </div>
-            <input class='confirm'type='submit' name='submit' value='Valider'>   
+            <input class='confirm'type='submit' name='submit' value='Valider'>
         </form>
         
         <?php if(isset($_POST['submit'])) : ?>
