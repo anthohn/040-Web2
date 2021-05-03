@@ -215,7 +215,7 @@
 
     //va chercher les livres selon ce qui est entré par l'utilisateur 
     public function getSearchedBooks($search){
-        $query = 'SELECT * FROM t_book WHERE booTitle LIKE "%'.$search.'%"';
+        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE booTitle LIKE "%'.$search.'%"';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
 

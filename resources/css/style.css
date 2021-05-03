@@ -9,7 +9,7 @@
   --green-color: #007051;
   --navBlack-color: #141414;
   --darkGrey-color: #A9A9A9;
-  --redAlert-color: red;
+  --redAlert-color: #ff2626;
   --greenAlert-color: green;
   --greyTitle-color: #434343;
   --selectColor-color: #e2e2e2;
@@ -544,3 +544,20 @@ input.confirm:hover{
 .formcontent a:hover{
   color: var(--green-color);
 }
+
+.errorLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.errorLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--redAlert-color);
+}
+
+

@@ -73,8 +73,9 @@ if(isset($_POST["forminscription"]))
     }
     else
     {
-        $erreur = "Veuillez renseignez tous les champs !";
-        echo $erreur;
+        echo '<div class="errorLoginContainer">
+                <h3 class="errorLogin">Veuillez renseignez tous les champs !</h3>
+              </div>';
     }
 }
 ?>
