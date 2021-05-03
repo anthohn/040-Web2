@@ -60,7 +60,7 @@ if(isset($_POST["forminscription"]))
                 {
                     $_SESSION['username'] = $user['useLogin'];
                     $_SESSION['isAdmin'] = $user['useIsAdmin'];
-                    header("Location:connexion.php");
+                    header("Location:home.php");
                 }
                 
             }
