@@ -23,22 +23,9 @@ $categorys = $db->getCategorys();
             </div>
         </div>
     </form>
-    <div class="result">
-        <?php 
-            if(isset($_GET['search']) && !empty($_GET['search'])) {
-                if(count($books) > 0) {
-                    foreach($books as $book) {    
-                    }
-                    echo "<h2>Résultat pour : $search</h2>";
-                }
-                else {
-                    echo "<h2>Aucun résultat pour : $search</h2>";
-                }
-            }
-        ?>
-    </div>
+    
     <div class="selectCategory">
-        <form method='POST' >
+        <form method='POST' class="searchForm">
             <div class='selectCategory input'>
                 <select name='Category' id='Category'>
                     <option value='0'>Category</option>
@@ -47,13 +34,26 @@ $categorys = $db->getCategorys();
                     <?php endforeach; ?>
                 </select>
             </div>
-            <input class='confirm'type='submit' name='submit' value='Valider'>
+            <input class='confirm' type='submit' name='submit' value='Valider'>
         </form>
-        
+        <div class="result">
+            <?php 
+                if(isset($_GET['search']) && !empty($_GET['search'])) {
+                    if(count($books) > 0) {
+                        foreach($books as $book) {    
+                        }
+                        echo "<h2>Résultat pour : $search</h2>";
+                    }
+                    else {
+                        echo "<h2>Aucun résultat pour : $search</h2>";
+                    }
+                }
+            ?>
+        </div>
+
         <?php if(isset($_POST['submit'])) : ?>
             <?php $idCategory = $_POST['Category']; 
-            $categorys = $db->CategoryBooks($idCategory);
-            echo $idCategory ?>
+                  $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblock">
                 <?php foreach ($categorys as $category) : ?>
                 <!-- <h3>Livres dans la catégorie : <?= $category['catName']; ?></h3> -->

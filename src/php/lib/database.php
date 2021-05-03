@@ -244,6 +244,16 @@
         return $results;
     }
 
+    // Liste les auteurs
+    public function getAuthor(){
+        $query = 'SELECT * FROM t_author';
+        $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
 
 
 

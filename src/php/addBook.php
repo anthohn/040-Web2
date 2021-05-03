@@ -4,68 +4,93 @@ require ('template/header.php');
 if(isLogged()):
 
 $categorys = $db->getCategorys(); 
+$authors = $db->getAuthor();
 ?>
 
 <div class="content">
     <h1 class="contentTitle">Ajout d'un livre</h1>
     <div class="tableContainer">
         <form method="POST" action="addBook.php">
+            <div class="halfFormContainer">
+                <div class="iptNameCategory">
+                    <!-- Titre -->
+                    <div class="inputName input">
+                        <label for="title">Titre</label>
+                        <input type="text" id="title" name="title">
+                    </div>
 
-            <!-- Titre -->
-            <div class="inputName input">
-                <label for="title">Titre :</label>
-                <input type="text" id="title" name="title">
+                    <!-- Category  -->
+                    <div class="selectCategory input">
+                        <label for="Category">Categorie</label>
+                        <select name="Category" id="Category">
+                            <option value="0">Category </option>
+                            <?php foreach($categorys as $category) : ?>
+                                <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="iptPagesExtract">
+                    <!-- Nombre de pages  -->
+                    <div class="inputNumberPages input">
+                        <label for="pages">Nombre de pages</label>
+                        <input type="text" id="pages" name="pages">
+                    </div>
+
+                    <!-- Extrait (Lien relatif vers un fichier pdf d'une page de l'ouvrage -> cdc)  -->
+                    <div class="extract input">
+                        <label for="extract">Extrait</label>
+                        <textarea id="extract" name="extract"></textarea>
+                    </div>
+                </div>
             </div>
 
-            <!-- Category  -->
-            <div class="selectCategory input">
-                <select name="Category" id="Category">
-                    <option value="0">Category </option>
-                    <?php foreach($categorys as $category) : ?>
-                        <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <hr class="hzLine">
 
-            <!-- Nombre de pages  -->
-            <div class="inputNumberPages input">
-                <label for="pages">Nombre de pages :</label>
-                <input type="text" id="pages" name="pages">
-            </div>
+            <div class="halfFormContainer">
+                <div>
+                    <!-- Résumé  -->
+                    <div class="resume input">
+                        <label for="extract">Résumé</label>
+                        <textarea id="resume" name="resume"></textarea>
+                    </div>
 
-            <!-- Extrait (Lien relatif vers un fichier pdf d'une page de l'ouvrage -> cdc)  -->
-            <div class="extract input">
-                <label for="extract">Extrait :</label>
-                <textarea id="extract" name="extract"></textarea>
-            </div>
+                    <!-- Année d'édition -->
+                    <div class="inputDate input">
+                        <label for="date">Année d'édition</label>
+                        <input type="date" name="date">
+                    </div>
+                </div>
 
-            <!-- Résumé  -->
-            <div class="resume input">
-                <label for="extract">Résumé :</label>
-                <textarea id="resume" name="resume"></textarea>
-            </div>
+                <div>
+                    <!-- Année d'édition -->
+                    <div class="inputAuthor input">
+                        <label for="author">Auteur</label>
+                        <select name="author" id="author">
+                            <option value="0">Auteur </option>
+                            <?php foreach($authors as $author) : ?>
+                                <option value="<?= $author["idAuthor"]; ?>"><?= $author["autFirstname"] . ' ' . $author["autLastname"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <!-- Image de couverture -->
+                    <div class="inputImg input">
+                        <label for="img">image de couverture</label>
+                        <input type="file" name="printscreen" id="printscreen" />
+                    </div>
+                
+                    <!-- Boutton Ajouter -->
+                    <div class="button">
+                        <div class="btnAdding">
+                            <input type="submit" id="btnSubmit" name="btnSubmit" value="Ajouter" />
+                    </div>
 
-            <!-- Année d'édition -->
-            <div class="inputDate input">
-                <label for="date">Année d'édition :</label>
-                <input type="date" name="date">
-            </div>
-
-            <!-- Image de couverture -->
-            <div class="inputImg input">
-                <label for="img">image de couverture :</label>
-                <input type="file" name="printscreen" id="printscreen" />
-            </div>
-        
-        <!-- Boutton Ajouter -->
-            <div class="button">
-                <div class="btnAdding">
-                    <input type="submit" id="btnSubmit" name="btnSubmit" value="Ajouter" />
-            </div>
-
-            <!-- Boutton pour supprimer ce qui est acctuellement entré -->
-            <div class="btnDeleting">
-                <button type="reset" id="btnDelete" name="btnDelete">Effacer</button>
+                    <!-- Boutton pour supprimer ce qui est acctuellement entré -->
+                    <div class="btnDeleting">
+                        <button type="reset" id="btnDelete" name="btnDelete">Effacer</button>
+                    </div>
+                </div>
             </div>
         </form>
         <?php 
@@ -75,17 +100,12 @@ $categorys = $db->getCategorys();
                     echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
                 }
                 else {
-                    $DB->addArtist($_POST['name'], $_POST['date'],  $_POST['country']);
+                    //$DB->addArtist($_POST['name'], $_POST['date'],  $_POST['country']);
                     echo '<h1 id="validationMessage">L\'artiste à bien été ajouté.</h1>';
                 }
             }
         ?>
             <!-- </div> -->
-
-            <!-- Boutton pour supprimer ce qui est acctuellement entré -->
-            <div class="btnDeleting">
-                <button type="reset" id="btnDelete" name="btnDelete">Effacer</button>
-            </div>
         </form>
         <?php 
             if(isset($_POST['btnSubmit'])) {
@@ -99,7 +119,6 @@ $categorys = $db->getCategorys();
                 }
             }
         ?>
-        <a href="home.php">retour</a>
     </div>
 </div>
 

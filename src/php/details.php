@@ -16,8 +16,8 @@ $book = $db->getBook($id); ?>
                 <h3><?= $books['autFirstname'] ?></h3>
                 <h4>Résumé : </h4> 
                 <p><?= $books['booSumary'] ?></p> 
-                <p><?= $books['catName'] ?> - <?= $books['booPages'] ?> pages</p> 
-                <p><?= $books['ediName'] ?> <?= $books['booPublicationYear'] ?></p> 
+                <p id="catPages"><?= $books['catName'] ?> - <?= $books['booPages'] ?> pages</p> 
+                <p id="editorPubliYear"><?= $books['ediName'] ?> <?= $books['booPublicationYear'] ?></p> 
                 <form method='POST' >
                     <p>Moyenne d'appréciation : <?= $books['booScoreAverage'] ?>
                         <select name='note' id='note'>
@@ -32,10 +32,11 @@ $book = $db->getBook($id); ?>
                             <option value='4.5'>4.5</option>
                             <option value='5'>5</option>
                         </select>
-                        <input class='confirm'type='submit' name='submit' value='Ajouter'>
-                </form>     
-                </p>  
-                <a href="#">Lien vers l'extrait</a>               
+                        <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'>
+                    
+                </form>  
+                </p> 
+                <a id="extractLink" href="#">Lien vers l'extrait</a>               
             </div>
         </div>
         <?php if(isset($_POST['submit']) && $_POST['note'] != 0) : ?>

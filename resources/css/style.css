@@ -1,6 +1,5 @@
-/*Global changement*/
-
 /*Variables CSS - Couleur*/
+
 :root
 {
   --back-color: #ffffff;
@@ -14,6 +13,8 @@
   --greyTitle-color: #434343;
   --selectColor-color: #e2e2e2;
 }
+
+/*Global changement*/
 
 html, body {
   margin: 0;
@@ -328,9 +329,11 @@ footer{
 .MainDetailBookBlock{
   padding: 5px 0 0 65px;
 }
+
 .MainDetailBookBlock h1{
-  color :var(--navBlack-color);
+  color :var(--greyTitle-color);
 }
+
 .bookDetailBlock img{
   margin: 0 20px 0 0;
   float: left;
@@ -339,13 +342,39 @@ footer{
 
 
 .bookContent p, .bookContent h2 , .bookContent h3, .bookContent h4{
-  color :var(--navBlack-color);
+  color :var(--greyTitle-color);
   width: 1000px;
 }
 
-/* .bookDetailBlock{
+.bookContent p {
+  margin: 10px 0 0 0;
+  font-size: 16.7px;
+}
 
-} */
+.bookContent h4 {
+  margin: 10px 0 0 0;
+}
+
+p#catPages {
+  margin: 20px 0 0 0;
+}
+
+p#editorPubliYear {
+  margin: 20px 0 0 0;
+}
+
+#note{
+  width: 110px;
+  padding: 5px;
+  margin: 0 10px 0 10px;
+  height: 35px;
+}
+
+#submit {
+  width: 110px;
+  padding: 5px;
+  height: 36px;
+}
 
 /*Login*/
 
@@ -376,11 +405,12 @@ color: var(--greenAlert-color);
 	flex-wrap: nowrap;
 	display: flex;
 	flex-direction: row;
-	width: 300px;
+	width: 400px;
 	height: 100%;
 	background-color: var(--back-color);
 	border-radius: 10px;
   margin: 20px;
+  border: 1px solid var(--darkGrey-color);
 }
 
 .searchIcon {
@@ -415,8 +445,15 @@ color: var(--greenAlert-color);
 .searchBarInput {
 	width: 100%;
 	margin: auto;
-	/* background-color: var(--back-color);; */
 	border-radius: 10px;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.result {
+  color: var(--greyTitle-color);
 }
 
 .selectCategory.input{
@@ -427,41 +464,73 @@ color: var(--greenAlert-color);
   padding: 20px;
 }
 
-select{
+.selectCategory select{
   margin: 0 0 5px 0;
   font-size: 15px;
-  width: 175px;
+  width: 200px;
   padding: 7px 20px;
-  /* border: none; */
+  border: 1px solid var(--darkGrey-color);
   border-radius: 4px;
-  background-color: var(--selectColor);
+  background-color: var(--back-color);
+  height: 40px;
+  font-size: 20px;
+  color: var(--greyTitle-color);
 }
 
-input.confirm{
+/* select{
+  margin: 0 0 5px 0;
   font-size: 15px;
+  width: 200px;
+  padding: 7px 20px;
+  border: 1px solid var(--darkGrey-color);
+  border-radius: 4px;
+  background-color: var(--back-color);
+  height: 40px;
+  font-size: 20px;
+  color: var(--greyTitle-color);
+} */
+
+input.confirm{
+  font-size: 20px;
   background-color: var(--lightGreen-color);
   border: none;
   color: var(--back-color);
   padding: 7px 32px;
   text-decoration: none;
-  margin: 4px 2px;
+  margin: 0 0 0 10px;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 10px;
+  height: 40px;
 }
 
-input.confirm:hover{
+input.confirm:hover {
   background-color: var(--green-color);
-  transition: all 0.3s ease-out;
-}
-
-#note{
-  width: 110px;
-  padding: 5px;
-  margin: 0 10px 0 10px;
+  color: var(--back-color);
+  transition: all .2s ease-in-out;
 }
 
 /**Ajout d'un livre**/
 
 .tableContainer {
   margin: 0 0 0 20px;
+}
+
+.halfFormContainer {
+  display: flex;
+  margin: 50px 0 0 0;
+  max-width: 70%;
+  justify-content: space-between;
+}
+
+.inputAuthor, .selectCategory, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectCategory, .extract, .inputDate, .inputImg {
+  margin: 20px 0 0 0;
+}
+
+.hzLine {
+  margin: 60px 0 0 0;
 }
