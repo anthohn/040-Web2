@@ -419,3 +419,88 @@ input.confirm:hover{
   padding: 5px;
   margin: 0 10px 0 10px;
 }
+
+.allBooksTitle{
+  margin: 20px 0 0 20px;
+  color: #434343;
+  font-size: 35px;
+}
+
+.formcontent{
+	display: flex;
+  justify-content: center;
+  
+}
+
+.formcontent form {
+  text-align: center;
+  margin: 100px 0 0 0;
+  height: 500px;
+  width: 400px;
+  background-color: #f4f4f4;
+  border: 3px solid #34B67A;
+  border-radius: 25px;
+}
+
+.formcontent table{
+  margin: 0 0 0 20px;
+
+}
+
+.formcontent form table tr td{
+  font-size: 25px;
+}
+
+.formcontent form button{
+  font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: #34B67A;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.formcontent form button:hover{
+  background-color:#007051;
+}
+
+.formcontent form table tr td svg{
+  margin: 10px 0 0 0;
+  position: absolute;
+}
+
+.formcontent form table tr input{
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #9c9c9c;
+  width: 270px;
+  margin: 10px 0 0 50px;
+  padding: 7px;
+}
+
+
+.formcontent form h2{
+  color: #434343;
+  font-size: 30px;
+  margin: 20px 10px 0 40px;
+  float: left;
+  padding: 10px 10px 100px 0;
+}
+
+.formcontent button{
+  margin: 30px 0 0 0;
+}
+
+.formcontent p{
+  color: #434343;
+  margin: 90px 0 0 0;
+}
+
+.formcontent a{
+  color: #34B67A;
+}
+
+.formcontent a:hover{
+  color: #007051;
+}

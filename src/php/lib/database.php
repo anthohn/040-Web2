@@ -56,7 +56,7 @@
 
     //Fonction qui récupere tous les livres
     public function getBooks(){
-        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
+        $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
@@ -90,7 +90,7 @@
 
     //Fonction qui récupere les ouvrages de la table t_books par categorie
     public function CategoryBooks($idCategory){
-        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory WHERE idCategory  = :idCategory';
+        $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE idCategory  = :idCategory';
         $binds = array(
             0 => array(
                 'field' => ':idCategory',

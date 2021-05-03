@@ -13,6 +13,8 @@ $categorys = $db->getCategorys();
 	}
 ?> 
 <div class="content">
+    <h1 class="allBooksTitle" >Liste</h1>
+
     <form method="GET">
         <div class="searchBarInputContainer">
             <div class="searchIcon">
@@ -23,6 +25,7 @@ $categorys = $db->getCategorys();
             </div>
         </div>
     </form>
+
     <div class="result">
         <?php 
             if(isset($_GET['search']) && !empty($_GET['search'])) {
@@ -37,6 +40,7 @@ $categorys = $db->getCategorys();
             }
         ?>
     </div>
+        
     <div class="selectCategory">
         <form method='POST' >
             <div class='selectCategory input'>
@@ -57,14 +61,14 @@ $categorys = $db->getCategorys();
                 <div class="mainBookblock">
                 <?php foreach ($categorys as $category) : ?>
                 <!-- <h3>Livres dans la catégorie : <?= $category['catName']; ?></h3> -->
-                   
+                
                     <div class='bookBlock'>
                         <div class='bookImage'>
                             <a href="details.php?idBook=<?= $category['idBook'];?>"><img src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
                         </div>
                         <div class="bookInfo">
                             <p id="bookTitle"><?= $category['booTitle'] ?></p> 
-                            <p id="bookAuthor">Auteur</p> 
+                            <p id="bookAuthor"><?= $category['autFirstname'] ?></p> 
                             <p id="bookAvg"><?= $category['booScoreAverage'] ?> / 5</p>
                         </div>
                     </div>
@@ -81,7 +85,7 @@ $categorys = $db->getCategorys();
                 </div>
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
-                    <p id="bookAuthor">Auteur</p> 
+                    <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
                     <p id="bookAvg"><?= $book['booScoreAverage'] ?> / 5</p>
                 </div>
             </div>
