@@ -34,35 +34,32 @@ require ('template/header.php');
 <?php endif; ?>
 
 <?php
-// Lors de la déconnexion de l'utilisateur la session se désactive puis se détruit avant de recharger la page
-// if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout") 
-// {
-// 	session_unset();
-// 	session_destroy();
-// 	header("Location:connexion.php");
-// }
 
 if(isset($_POST["forminscription"]))
 {
     if(!empty($_POST["login"]) && (!empty($_POST["psw"])))
     {	
-        // echo 'tesWt';
         $users = $db->getUsers();
         foreach($users as $user)
         {
+     
 
             if($user['useLogin'] == $_POST['login'])
             {
                 if(password_verify($_POST['psw'], $user['usePassword']))
                 {
+                    $_SESSION['idUser'] = $user['idUSer'];
                     $_SESSION['username'] = $user['useLogin'];
-                    $_SESSION['isAdmin'] = $user['useIsAdmin'];
+                    $_SESSION['useInscriptionDate'] = $user['useInscriptionDate'];
+                    $_SESSION['useSuggestBook'] = $user['useSuggestBook'];
+                    $_SESSION['useAppreciationNumber'] = $user['useAppreciationNumber'];
+                    $_SESSION['useIsAdmin'] = $user['useIsAdmin'];
                     header("Location:home.php");
                 }                
             }  
             else{
                 echo '<div class="errorLoginContainer"><h3 class="errorLogin">Nom d\'utilisateur ou mot de passe incorect</h3></div>'; 
-                break;
+                // break;
             }          
         }
     }
