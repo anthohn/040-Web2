@@ -504,32 +504,12 @@ color: var(--greenAlert-color);
   margin: 0;
 }
 
-.selectCategory select{
-  /* margin: 0 0 5px 0;
-  font-size: 15px;
-  width: 200px;
-  padding: 7px 20px;
-  border: 1px solid var(--darkGrey-color);
-  border-radius: 4px;
-  background-color: var(--back-color);
-  height: 40px;
-  color: var(--greyTitle-color); */
+.selectCategory select {
   font-size: 18px;
-  margin: 5px 0 0 0;
-}
-
-/* select {
-  margin: 0 0 5px 0;
-  font-size: 15px;
-  width: 200px;
-  padding: 7px 20px;
-  border: 1px solid var(--darkGrey-color);
-  border-radius: 4px;
-  background-color: var(--back-color);
+  margin: 0;
   height: 40px;
-  font-size: 20px;
-  color: var(--greyTitle-color);
-} */
+  border-radius: 5px;
+}
 
 input.confirm{
   font-size: 20px;
@@ -616,30 +596,10 @@ input.confirm:hover {
   justify-content: space-between;
 }
 
-.inputAuthor, .selectCategory, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
-  display: flex;
-  flex-direction: column;
-  font-size: 25px;
-}
-
-#title, #Category, #pages, #extract, #resume, #date, #author, #printscreen {
-  border-radius: 5px;
-  border: 1px solid var(--greyTitle-color);
-  font-size: 20px;
-  margin: 10px 0 0 0;
-}
-
-#title, #pages, #extract, #date, #printscreen {
-  height: 30px;
-}
-
-.selectCategory, .extract, .inputDate, .inputImg {
-  margin: 40px 0 0 0;
-}
-
 .hzLine {
   margin: 60px 0 0 0;
 }
+
 
 .formcontent form h2{
   color: var(--greyTitle-color);

@@ -13,8 +13,7 @@ $categorys = $db->getCategorys();
 	}
 ?> 
 <div class="content">
-    <h1 class="allBooksTitle" >Liste</h1>
-
+    <h1 class="allBooksTitle" >Liste de tout les livres</h1>
     <form method="GET">
         <div class="searchBarInputContainer">
             <div class="searchIcon">
@@ -26,13 +25,11 @@ $categorys = $db->getCategorys();
         </div>
     </form>
 
-
-        
     <div class="selectCategory">
         <form method='POST' class="searchForm">
             <div class='selectCategory input' id="selectBookList">
-                <select name='Category' id='Category'>
-                    <option value='0'>Category</option>
+                <select name='category' id='category'>
+                    <option value='0'>Séléctionnez</option>
                     <?php foreach($categorys as $category) : ?>
                         <option value='<?= $category['idCategory']; ?>'><?= $category['catName']; ?></option>
                     <?php endforeach; ?>
@@ -56,16 +53,18 @@ $categorys = $db->getCategorys();
         </div>
 
         <?php if(isset($_POST['submit'])) : ?>
-            <?php $idCategory = $_POST['Category']; 
+            <?php $idCategory = $_POST['category']; 
                   $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblock">
                 <?= $categorys[0]['catName']; ?>
                 <?php foreach ($categorys as $category) : ?>
-                
-                
                     <div class='bookBlock'>
+                            
                         <div class='bookImage'>
-                            <a href="details.php?idBook=<?= $category['idBook'];?>"><img src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
+                            <a href="details.php?idBook=<?= $category['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
+                        </div>
+                        <div class="middle">
+                            <div class="zoom"><a href="details.php?idBook=<?= $category['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
                         </div>
                         <div class="bookInfo">
                             <p id="bookTitle"><?= $category['booTitle'] ?></p> 
@@ -96,7 +95,5 @@ $categorys = $db->getCategorys();
         <?php endforeach ?>
     </div>       
 </div>
-
-  
 
 <?php require ('template/footer.php'); ?>
