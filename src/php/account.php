@@ -1,12 +1,23 @@
 <?php 
 $title = 'Connexion';
 require ('template/header.php');
+
+
+
+
+//Déconnexion de l'utilisateur en détruisant sa session puis une redirection sur la page d'accueil
+if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout") 
+{
+	session_unset();
+	session_destroy();
+	header("Location:home.php");
+}
 ?>
 
-<?php if(!isLogged()): ?>
-    <div class="connexionFormcontent">
+<?php if(isLogged()): ?>
+    <div class="accountFormcontent">
         <form method="post">
-            <h2>Se connecter</h2>
+            <h2>Compte</h2>
             <table>
                 <tr>
                     <td>
@@ -14,7 +25,7 @@ require ('template/header.php');
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
-                        <input type="text" placeholder="Nom d'utilisateur" name="login" id="login">
+                        <input type="text" placeholder="<?= $_SESSION['username']; ?>" name="login" id="login">
                     </td>
                 </tr>
                 <tr>
@@ -27,50 +38,11 @@ require ('template/header.php');
                     </td>
                 </tr>                       
             </table>
-            <button type="submit" name="forminscription">Connexion</button>
-            <p>Pas de compte ?<a href="#">Créez-en un</a></p>
+            <button><a href="account.php?auth=logout">Déconnexion</a></button>
         </form>
     </div>   
 <?php endif; ?>
 
-<?php
-// Lors de la déconnexion de l'utilisateur la session se désactive puis se détruit avant de recharger la page
-// if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout") 
-// {
-// 	session_unset();
-// 	session_destroy();
-// 	header("Location:connexion.php");
-// }
 
-if(isset($_POST["forminscription"]))
-{
-    if(!empty($_POST["login"]) && (!empty($_POST["psw"])))
-    {	
-        // echo 'tesWt';
-        $users = $db->getUsers();
-        foreach($users as $user)
-        {
-
-            if($user['useLogin'] == $_POST['login'])
-            {
-                if(password_verify($_POST['psw'], $user['usePassword']))
-                {
-                    $_SESSION['username'] = $user['useLogin'];
-                    $_SESSION['isAdmin'] = $user['useIsAdmin'];
-                    header("Location:home.php");
-                }                
-            }  
-            else{
-                echo '<div class="errorLoginContainer"><h3 class="errorLogin">Nom d\'utilisateur ou mot de passe incorect</h3></div>'; 
-                break;
-            }          
-        }
-    }
-    else
-    {
-        echo '<div class="errorLoginContainer"><h3 class="errorLogin">Veuillez renseignez tous les champs !</h3></div>';
-    }
-}
-?>
 
 <?php require ('template/footer.php'); ?>
