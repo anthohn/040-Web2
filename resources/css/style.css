@@ -276,6 +276,42 @@ main {
 .bookBlock{
 	margin: 50px 20px 0 20px;
 	flex-basis: 260px;
+  position: relative;
+}
+
+.middle {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.zoom {
+	padding: 16px 32px;
+	cursor: pointer;
+}
+
+.bookBlock:hover .imageBook {
+	opacity: 0.3;
+}
+
+.bookBlock:hover .middle {
+	opacity: 1;
+}
+
+.imageBook {
+	opacity: 1;
+	display: block;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.zoomIcon {
+	color: #434343;
 }
 
 .bookImage img {
@@ -464,8 +500,12 @@ color: var(--greenAlert-color);
   padding: 20px;
 }
 
+#selectBookList {
+  margin: 0;
+}
+
 .selectCategory select{
-  margin: 0 0 5px 0;
+  /* margin: 0 0 5px 0;
   font-size: 15px;
   width: 200px;
   padding: 7px 20px;
@@ -473,11 +513,12 @@ color: var(--greenAlert-color);
   border-radius: 4px;
   background-color: var(--back-color);
   height: 40px;
-  font-size: 20px;
-  color: var(--greyTitle-color);
+  color: var(--greyTitle-color); */
+  font-size: 18px;
+  margin: 5px 0 0 0;
 }
 
-/* select{
+/* select {
   margin: 0 0 5px 0;
   font-size: 15px;
   width: 200px;
@@ -578,10 +619,22 @@ input.confirm:hover {
 .inputAuthor, .selectCategory, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
   display: flex;
   flex-direction: column;
+  font-size: 25px;
+}
+
+#title, #Category, #pages, #extract, #resume, #date, #author, #printscreen {
+  border-radius: 5px;
+  border: 1px solid var(--greyTitle-color);
+  font-size: 20px;
+  margin: 10px 0 0 0;
+}
+
+#title, #pages, #extract, #date, #printscreen {
+  height: 30px;
 }
 
 .selectCategory, .extract, .inputDate, .inputImg {
-  margin: 20px 0 0 0;
+  margin: 40px 0 0 0;
 }
 
 .hzLine {
@@ -591,7 +644,7 @@ input.confirm:hover {
 .formcontent form h2{
   color: var(--greyTitle-color);
   font-size: 30px;
-  margin: 20px 10px 0 40px;
+  margin: 20px 10px 0 20px;
   float: left;
   padding: 10px 10px 100px 0;
 }
@@ -626,6 +679,11 @@ input.confirm:hover {
   border-radius: 25px;
   text-align: center;
   background-color: var(--redAlert-color);
+}
+
+.tableContainer {
+  margin: 0 0 0 20px;
+  color: var(--greyTitle-color);
 }
 
 
