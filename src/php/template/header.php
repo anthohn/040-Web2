@@ -35,18 +35,18 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
                             <a href="createAccount.php" >Créer un compte</a>
                         </div>
                         <div class="loginLinkContainer">
-                            <a href="connexion.php" >Se Connecter</a>
+                            <a href="connexion.php" >Se connecter</a>
                         </div>
                     </div>    
-                <?php else: ?>
+                <?php elseif(isLogged()) :?>
                     <div class="rest">
                         <div class="disconnectLinkContainer">
-                            <?php echo'<p>Bonjour ' . $_SESSION['username']. '</p>'; ?>
-                            <a href="connexion.php?auth=logout">Se deconnecter</a>
+                            <?php /*echo'<p>Bonjour ' . $_SESSION['username']. '</p>'; */?>
+                            <a href="account.php">Mon compte</a>
                         </div>
                     </div>    
                 <?php endif; ?>
-                    
+                <!-- ?auth=logout -->
             </div>
         </header>
         <?php if($activePage != 'connexion.php') : ?>
