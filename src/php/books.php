@@ -1,5 +1,5 @@
 <?php 
-$title = 'Tous les livres';
+$title = 'Tous les livros';
 require ('template/header.php');
 $books = $db->getBooks();
 $categorys = $db->getCategorys();
@@ -13,7 +13,7 @@ $categorys = $db->getCategorys();
 	}
 ?> 
 <div class="content">
-    <h1 class="allBooksTitle" >Liste de tout les livres</h1>
+    <h1 class="allBooksTitle" >Liste de tous les livres</h1>
     <form method="GET">
         <div class="searchBarInputContainer">
             <div class="searchIcon">

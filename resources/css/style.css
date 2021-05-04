@@ -734,55 +734,79 @@ input.confirm:hover {
   background-color: var(--redAlert-color);
 }
 
+
+/***********************ADD BOOKS******************************/
+
 .tableContainer {
   margin: 0 0 0 20px;
   color: var(--greyTitle-color);
 }
 
-/*****************************************************/
-
-
-
-
-
-
-
-
-
 .halfFormContainer {
   display: flex;
   margin: 50px 0 0 0;
-  max-width: 70%;
+  max-width: 50%;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-.inputAuthor, .selectCategory, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
+.inputAuthor, .selectCategoryAdd, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
   display: flex;
   flex-direction: column;
   font-size: 25px;
+  margin: 20px 0 0 0;
 }
 
 #title, #Category, #pages, #extract, #resume, #date, #author, #printscreen {
   border-radius: 5px;
-  border: 1px solid var(--greyTitle-color);
+  border: 1px solid var(--darkGrey-color);
   font-size: 20px;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
+  padding: 5px;
+  width: 330px;
 }
 
-#title, #pages, #extract, #date, #printscreen {
-  height: 30px;
+#resume {
+  max-width: 330px;
+  max-height: 330px;
+  height: 100px;
 }
 
-.selectCategory, .extract, .inputDate, .inputImg {
-  margin: 40px 0 0 0;
+#author {
+  height: 42px;
+}
+
+#author, #Category {
+  width: 340px;
+  font-size: 18px;
+  padding: 6px;
+}
+
+.iptExtractCategory, .imgResumeBtn {
+  margin-left: 70px;
+}
+
+#secondHalf {
+  margin-top: 40px;
+}
+
+.authorYearDateImgContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.halfFormContentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btnAndResume {
+  display: flex;
+  flex-direction: column;
 }
 
 .hzLine {
   margin: 60px 0 0 0;
 }
-
-
-
-
-
-
