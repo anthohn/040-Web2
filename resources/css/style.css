@@ -556,13 +556,18 @@ input.confirm:hover {
   font-size: 35px;
 }
 
-.formcontent{
+
+
+/**********************CONNEXION**********************/
+
+
+.connexionFormcontent{
 	display: flex;
   justify-content: center;
   
 }
 
-.formcontent form {
+.connexionFormcontent form {
   text-align: center;
   margin: 100px 0 0 0;
   height: 500px;
@@ -572,16 +577,23 @@ input.confirm:hover {
   border-radius: 25px;
 }
 
-.formcontent table{
-  margin: 0 0 0 20px;
-
+.connexionFormcontent form h2{
+  color: var(--greyTitle-color);
+  font-size: 30px;
+  margin: 20px 10px 0 20px;
+  float: left;
+  padding: 10px 10px 100px 0;
 }
 
-.formcontent form table tr td{
+.connexionFormcontent table{
+  margin: 0 0 0 20px;
+}
+
+.connexionFormcontent form table tr td{
   font-size: 25px;
 }
 
-.formcontent form button{
+.connexionFormcontent form button{
   font-size: 20px;
   border: none;
   padding: 10px 20px;
@@ -591,16 +603,16 @@ input.confirm:hover {
   cursor: pointer;
 }
 
-.formcontent form button:hover{
+.connexionFormcontent form button:hover{
   background-color:var(--green-color);
 }
 
-.formcontent form table tr td svg{
+.connexionFormcontent form table tr td svg{
   margin: 10px 0 0 0;
   position: absolute;
 }
 
-.formcontent form table tr input{
+.connexionFormcontent form table tr input{
   font-size: 18px;
   border-radius: 10px;
   border: 1px solid var(--darkGrey-color);
@@ -608,6 +620,154 @@ input.confirm:hover {
   margin: 10px 0 0 50px;
   padding: 7px;
 }
+
+.connexionFormcontent button{
+  margin: 30px 0 0 0;
+}
+
+.connexionFormcontent p{
+  color: var(--greyTitle-color);
+  margin: 90px 0 0 0;
+}
+
+.connexionFormcontent a{
+  color: var(--lightGreen-color);
+}
+
+.connexionFormcontent a:hover{
+  color: var(--green-color);
+}
+
+.errorLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.errorLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--redAlert-color);
+}
+
+.tableContainer {
+  margin: 0 0 0 20px;
+  color: var(--greyTitle-color);
+}
+
+/******************ACCOUNT**********************/
+
+
+.accountFormcontent{
+	display: flex;
+  justify-content: center;
+  
+}
+
+.accountFormcontent form {
+  text-align: center;
+  margin: 100px 0 0 0;
+  height: 500px;
+  width: 400px;
+  background-color: var(--backGrey-color);
+  border: 3px solid var(--lightGreen-color);
+  border-radius: 25px;
+}
+
+.accountFormcontent form h2{
+  color: var(--greyTitle-color);
+  font-size: 30px;
+  margin: 20px 10px 0 20px;
+  float: left;
+  padding: 10px 10px 100px 0;
+}
+
+.accountFormcontent table{
+  margin: 0 0 0 20px;
+
+}
+
+.accountFormcontent form table tr td{
+  font-size: 25px;
+}
+
+.accountFormcontent form button{
+  font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: var(--lightGreen-color);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.accountFormcontent form button:hover{
+  background-color:var(--green-color);
+}
+
+.accountFormcontent form table tr td svg{
+  margin: 10px 0 0 0;
+  position: absolute;
+}
+
+.accountFormcontent form table tr input{
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--darkGrey-color);
+  width: 270px;
+  margin: 10px 0 0 50px;
+  padding: 7px;
+}
+
+.accountFormcontent button{
+  margin: 30px 0 0 0;
+}
+
+.accountFormcontent p{
+  color: var(--greyTitle-color);
+  margin: 90px 0 0 0;
+}
+
+.accountFormcontent a{
+  color: var(--lightGreen-color);
+}
+
+.accountFormcontent a:hover{
+  color: var(--green-color);
+}
+
+.errorLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.errorLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--redAlert-color);
+}
+
+.tableContainer {
+  margin: 0 0 0 20px;
+  color: var(--greyTitle-color);
+}
+
+/*****************************************************/
+
+
+
+
+
+
+
+
 
 .halfFormContainer {
   display: flex;
@@ -641,49 +801,8 @@ input.confirm:hover {
   margin: 60px 0 0 0;
 }
 
-.formcontent form h2{
-  color: var(--greyTitle-color);
-  font-size: 30px;
-  margin: 20px 10px 0 20px;
-  float: left;
-  padding: 10px 10px 100px 0;
-}
 
-.formcontent button{
-  margin: 30px 0 0 0;
-}
 
-.formcontent p{
-  color: var(--greyTitle-color);
-  margin: 90px 0 0 0;
-}
 
-.formcontent a{
-  color: var(--lightGreen-color);
-}
-
-.formcontent a:hover{
-  color: var(--green-color);
-}
-
-.errorLoginContainer{
-  margin: 10px 0 0 0;
-  width: 100%;
-}
-
-.errorLogin{
-  margin: auto;
-  width: 380px;
-  padding: 10px;
-  color: var(--back-color);
-  border-radius: 25px;
-  text-align: center;
-  background-color: var(--redAlert-color);
-}
-
-.tableContainer {
-  margin: 0 0 0 20px;
-  color: var(--greyTitle-color);
-}
 
 
