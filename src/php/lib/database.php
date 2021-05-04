@@ -213,6 +213,22 @@
         return $results;
     }
 
+    // Suppression d'untilisateur
+    public function deleteUser($idUser){
+        $query = "DELETE FROM t_user WHERE idUser = :id";
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
     //va chercher les livres selon ce qui est entré par l'utilisateur 
     public function getSearchedBooks($search){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE booTitle LIKE "%'.$search.'%"';
