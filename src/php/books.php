@@ -59,8 +59,9 @@ $categorys = $db->getCategorys();
             <?php $idCategory = $_POST['Category']; 
                   $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblock">
+                <?= $categorys[0]['catName']; ?>
                 <?php foreach ($categorys as $category) : ?>
-                <?= $category['catName']; ?>
+                
                 
                     <div class='bookBlock'>
                         <div class='bookImage'>
