@@ -13,7 +13,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout")
 }
 
 //Déconnexion de l'utilisateur en détruisant sa session puis une redirection sur la page d'accueil
-if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "destroy") 
+if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "deleteAccount") 
 {
     $idUser = $_SESSION['idUser'];
     print_r($idUser);
@@ -51,8 +51,8 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "destroy")
             </tr>
             <tr>
                 <td>
-                    <div class="disconnect">
-                        <a href="account.php?auth=destroy">Supprimer mon compte</a>
+                    <div class="deleteAccount">
+                        <a href="account.php?auth=deleteAccount" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')">Supprimer mon compte</a>
                     </div>  
                 </td>
             </tr>  

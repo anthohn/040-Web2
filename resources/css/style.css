@@ -727,7 +727,7 @@ input.confirm:hover {
   background-color: var(--green-color);
 }
 
-.accountFormcontent .disconnect a{
+.accountFormcontent .deleteAccount a{
   font-size: 15px;
   border-radius: 25px;
   color: var(--lightGreen-color);
@@ -736,7 +736,7 @@ input.confirm:hover {
   padding: 12px 15px 10px 15px;
 }
 
-.accountFormcontent .disconnect a:hover{
+.accountFormcontent .deleteAccount a:hover{
   transition: all 0.3s ease-out;
   color: var(--green-color);
 }
