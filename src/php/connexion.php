@@ -3,6 +3,43 @@ $title = 'Connexion';
 require ('template/header.php');
 ?>
 
+<?php
+
+if(isset($_POST["connexion"]))
+{
+    if(!empty($_POST["login"]) && (!empty($_POST["psw"])))
+    {	
+        $users = $db->getUsers();
+        foreach($users as $user)
+        {
+     
+
+            if($user['useLogin'] == $_POST['login'])
+            {
+                if(password_verify($_POST['psw'], $user['usePassword']))
+                {
+                    $_SESSION['idUser'] = $user['idUser'];
+                    $_SESSION['username'] = $user['useLogin'];
+                    $_SESSION['useInscriptionDate'] = $user['useInscriptionDate'];
+                    $_SESSION['useSuggestBook'] = $user['useSuggestBook'];
+                    $_SESSION['useAppreciationNumber'] = $user['useAppreciationNumber'];
+                    $_SESSION['useIsAdmin'] = $user['useIsAdmin'];
+                    header("Location:home.php");
+                }                
+            }  
+            else{
+                $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Nom d\'utilisateur ou mot de passe incorect</h4></div>'; 
+                // break;
+            }          
+        }
+    }
+    else
+    {
+        $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez renseignez tous les champs !</h4></div>';
+    }
+}
+?>
+
 <?php if(!isLogged()): ?>
     <div class="connexionFormcontent">
         <form method="post">
@@ -27,47 +64,18 @@ require ('template/header.php');
                     </td>
                 </tr>                       
             </table>
-            <button type="submit" name="forminscription">Connexion</button>
-            <p>Pas de compte ?<a href="#">Créez-en un</a></p>
+            <button type="submit" name="connexion">Connexion</button>
+            <p>Pas de compte ?<a href="createAccount.php">Créez-en un</a></p>
         </form>
     </div>   
 <?php endif; ?>
 
 <?php
-
-if(isset($_POST["forminscription"]))
+if(isset($error))
 {
-    if(!empty($_POST["login"]) && (!empty($_POST["psw"])))
-    {	
-        $users = $db->getUsers();
-        foreach($users as $user)
-        {
-     
-
-            if($user['useLogin'] == $_POST['login'])
-            {
-                if(password_verify($_POST['psw'], $user['usePassword']))
-                {
-                    $_SESSION['idUser'] = $user['idUser'];
-                    $_SESSION['username'] = $user['useLogin'];
-                    $_SESSION['useInscriptionDate'] = $user['useInscriptionDate'];
-                    $_SESSION['useSuggestBook'] = $user['useSuggestBook'];
-                    $_SESSION['useAppreciationNumber'] = $user['useAppreciationNumber'];
-                    $_SESSION['useIsAdmin'] = $user['useIsAdmin'];
-                    header("Location:home.php");
-                }                
-            }  
-            else{
-                echo '<div class="errorLoginContainer"><h3 class="errorLogin">Nom d\'utilisateur ou mot de passe incorect</h3></div>'; 
-                // break;
-            }          
-        }
-    }
-    else
-    {
-        echo '<div class="errorLoginContainer"><h3 class="errorLogin">Veuillez renseignez tous les champs !</h3></div>';
-    }
+    echo $error;
 }
 ?>
+
 
 <?php require ('template/footer.php'); ?>

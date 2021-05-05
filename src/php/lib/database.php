@@ -157,7 +157,7 @@
                 'type' => PDO::PARAM_STR
             )
         );
-        $results = $this->queryPrepareExecute($query, $binds);
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
@@ -173,41 +173,21 @@
     }
 
     //ajout d'un utilisateur dans la bdd ''''''''''''''''''pas du tout fonctionel pour le moment''''''''''''''''''
-    public function addUser($title, $category, $pages , $extract, $resume, $date){
-        $query = "INSERT INTO t_book (booTitle, booCategory, booPages, booExtract, booResume, booDate) VALUES (:title, :category, :pages, :extract, :resume, :date)";
+    public function addUser($login, $psw){
+        $query = "INSERT INTO t_user (useLogin, usePassword, useInscriptionDate) VALUES (:useLogin, :usePassword, now())";
         $binds = array(
             0 => array(
-                'field' => ':title',
-                'value' => $title,
+                'field' => ':useLogin',
+                'value' => $login,
                 'type' => PDO::PARAM_STR
             ),  
             1 => array(
-                'field' => ':category',
-                'value' => $category,
-                'type' => PDO::PARAM_STR
-            ),
-            2 => array(
-                'field' => ':pages',
-                'value' => $pages,
-                'type' => PDO::PARAM_INT
-            ),
-            3 => array(
-                'field' => ':extract',
-                'value' => $extract,
-                'type' => PDO::PARAM_STR
-            ),
-            4 => array(
-                'field' => ':resume',
-                'value' => $resume,
-                'type' => PDO::PARAM_STR
-            ),
-            5 => array(
-                'field' => ':date',
-                'value' => $date,
+                'field' => ':usePassword',
+                'value' => $psw,
                 'type' => PDO::PARAM_STR
             )
         );
-        $results = $this->queryPrepareExecute($query, $binds);
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
@@ -269,9 +249,4 @@
         $this->unsetData($reqExecuted);
         return $results;
     }
-
-
-
-
-
 }    

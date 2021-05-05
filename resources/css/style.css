@@ -9,7 +9,7 @@
   --navBlack-color: #141414;
   --darkGrey-color: #cccccc;
   --redAlert-color: #ff2626;
-  --greenAlert-color: green;
+  --greenAlert-color: #29c95e;
   --greyTitle-color: #434343;
   --selectColor-color: #e2e2e2;
 }
@@ -536,6 +536,122 @@ input.confirm:hover {
   font-size: 35px;
 }
 
+/**********************CreateAccount**********************/
+
+
+.newAccountFormcontent{
+	display: flex;
+  justify-content: center;
+  
+}
+
+.newAccountFormcontent form {
+  text-align: center;
+  margin: 100px 0 0 0;
+  height: 550px;
+  width: 400px;
+  background-color: var(--backGrey-color);
+  border: 3px solid var(--lightGreen-color);
+  border-radius: 25px;
+}
+
+.newAccountFormcontent form h2{
+  color: var(--greyTitle-color);
+  font-size: 30px;
+  margin: 20px 10px 0 20px;
+  float: left;
+  padding: 10px 10px 100px 0;
+}
+
+.newAccountFormcontent table{
+  margin: 0 0 0 20px;
+}
+
+.newAccountFormcontent form table tr td{
+  font-size: 25px;
+}
+
+.newAccountFormcontent form button{
+  font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: var(--lightGreen-color);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.newAccountFormcontent form button:hover{
+  background-color:var(--green-color);
+}
+
+.newAccountFormcontent form table tr td svg{
+  margin: 10px 0 0 0;
+  position: absolute;
+}
+
+.newAccountFormcontent form table tr input{
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--darkGrey-color);
+  width: 270px;
+  margin: 10px 0 0 50px;
+  padding: 7px;
+}
+
+.newAccountFormcontent button{
+  margin: 30px 0 0 0;
+}
+
+.newAccountFormcontent p{
+  color: var(--greyTitle-color);
+  margin: 90px 0 0 0;
+}
+
+.newAccountFormcontent a{
+  color: var(--lightGreen-color);
+}
+
+.newAccountFormcontent a:hover{
+  color: var(--green-color);
+}
+
+.errorLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.errorLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--redAlert-color);
+}
+
+.succesLoginContainer{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+.succesLogin{
+  margin: auto;
+  width: 380px;
+  padding: 10px;
+  color: var(--back-color);
+  border-radius: 25px;
+  text-align: center;
+  background-color: var(--greenAlert-color);
+}
+
+.tableContainer {
+  margin: 0 0 0 20px;
+  color: var(--greyTitle-color);
+}
+
+
 
 
 /**********************CONNEXION**********************/
@@ -755,6 +871,32 @@ input.confirm:hover {
   text-align: center;
   background-color: var(--redAlert-color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /***********************ADD BOOKS******************************/
