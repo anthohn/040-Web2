@@ -48,7 +48,7 @@ if(isset($_POST["forminscription"]))
             {
                 if(password_verify($_POST['psw'], $user['usePassword']))
                 {
-                    $_SESSION['idUser'] = $user['idUSer'];
+                    $_SESSION['idUser'] = $user['idUser'];
                     $_SESSION['username'] = $user['useLogin'];
                     $_SESSION['useInscriptionDate'] = $user['useInscriptionDate'];
                     $_SESSION['useSuggestBook'] = $user['useSuggestBook'];

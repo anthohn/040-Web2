@@ -123,7 +123,7 @@ INSERT INTO t_write (idxBook, idxAuthor) VALUES
 /*https://forum.phpfrance.com/php-debutant/inserer-date-inscription-t259102.html*/
 
 INSERT INTO t_user (useLogin, usePassword, useIsAdmin, useInscriptionDate, useSuggestBook, useAppreciationNumber) VALUES 
-    ('admin', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 1, '2021-04-28', 0, 0),
+    ('admin', '$2y$10$yu3SnAKYYtUfASDTsYt6Nu3OicImJmAqzl/HswCyD4biBrbmssJjS', 1, '2021-04-28', 0, 0),
     ('anthohn', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 1, '2021-04-28', 0, 0),
     ('julcartier', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 0, '2021-04-28', 0, 0),
     ('yousayeh', '$2y$10$/nJCUqu0g8LO4uIDoCDIE.GLvXJUGomTiiCak6e7MyjPunXIGhdPq', 0, '2021-04-28', 0, 0
