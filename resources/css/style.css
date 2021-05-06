@@ -974,3 +974,10 @@ input.confirm:hover {
 .hzLine {
   margin: 60px 0 0 0;
 }
+
+.error404{
+  color:#141414;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
