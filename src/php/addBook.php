@@ -133,7 +133,9 @@ $authors = $db->getAuthor();
 </div>
 
 <?php else : ?>
-    <h1 class='notlogadd'>Vous devez être connecté pour pouvoir ajouter un livre.</h1>
+<div class="notLog">
+    <h2>Connectez-vous pour pouvoir ajouter un livre.</h2>
+</div>
 <?php endif; ?>
 
 <?php require ('template/footer.php'); ?>

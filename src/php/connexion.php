@@ -11,6 +11,8 @@ if(isset($_POST["connexion"]))
     {	
         $users = $db->getUsers();
         foreach($users as $user)
+        // print_r($user['idUser']);
+        // die();
         {
      
 

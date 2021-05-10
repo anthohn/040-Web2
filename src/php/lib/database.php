@@ -172,7 +172,7 @@
         return $results;
     }
 
-    //ajout d'un utilisateur dans la bdd ''''''''''''''''''pas du tout fonctionel pour le moment''''''''''''''''''
+    //ajout d'un utilisateur dans la bdd 
     public function addUser($login, $psw){
         $query = "INSERT INTO t_user (useLogin, usePassword, useInscriptionDate) VALUES (:useLogin, :usePassword, now())";
         $binds = array(
@@ -220,21 +220,58 @@
     }
 
     //ajout d'un vote dans la bdd
-    public function addVoteBook($idBook, $note){
-        $query = 'INSERT INTO t_book (booScoreAverage) WHERE idBook = :id  VALUES (:note)';
+    public function addVoteBook($idBook, $idUser, $note){
+        $query = 'INSERT INTO t_vote (idxBook, idxUser, votNote) VALUES (:idxBook, :idxUser, :votNote)';
+        $binds = array(
+            0 => array(
+                'field' => ':idxBook',
+                'value' => $idBook,
+                'type' => PDO::PARAM_INT
+            ),
+            1 => array(
+                'field' => ':idxUser',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            ),
+            2 => array(
+                'field' => ':votNote',
+                'value' => $note,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Récuperer la moyenne des livres
+    public function getNotesBook($idBook){
+        $query = 'SELECT FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_vote WHERE idxBook = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',
                 'value' => $idBook,
                 'type' => PDO::PARAM_INT
-            ),
-            1 => array(
-                'field' => ':note',
-                'value' => $note,
-                'type' => PDO::PARAM_INT
-            )
+            )    
         );
-        $results = $this->queryPrepareExecute($query, $binds);
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    // Incrémente de 1 un utilisateur lors de son vote
+    public function addAppreciationUser($idUser){
+        $query = 'UPDATE t_user SET useAppreciationNumber = useAppreciationNumber + 1  WHERE idUser = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;

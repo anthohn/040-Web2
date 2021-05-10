@@ -1,25 +1,50 @@
 <?php 
 $title = 'Details du livre';
 require ('template/header.php');
-$id = $_GET["idBook"];
-$book = $db->getBook($id); ?>
+$idBook = $_GET["idBook"];
+$books = $db->getBook($idBook); 
+$bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
 
+if(isLogged()) {
+    $idUser = $_SESSION['idUser'];
+}
+
+?>
+
+<?php if(isset($_POST['submit']))
+{
+    if(isLogged()) {
+        $note = $_POST['note'];
+        if( $_POST["note"] != 0)
+        {
+            $db->addVoteBook($idBook, $idUser, $note);
+            $db->addAppreciationUser($idUser);
+        }
+        else{
+            $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez sélectionner la note</h4></div>';
+        }
+    }
+    else {
+        $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Connectez-vous pour pouvoir noter un livre !</h4></div>';
+    }
+}
+?>
 
 
 <div class="MainDetailBookBlock">
     <h1>Appréciation / Détail</h1>
-    <?php foreach($book as $books): ?>
+    <?php foreach($books as $book): ?>
         <div class="bookDetailBlock">
-            <img src="../../resources/images/books/<?= $books['idBook'];?>.jpg" alt="première de couverture"/></a>
+            <img src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
             <div class="bookContent">
-                <h2><?= $books['booTitle'] ?></h2>
-                <h3><?= $books['autFirstname'] ?></h3>
+                <h2><?= $book['booTitle'] ?></h2>
+                <h3><?= $book['autFirstname'] ?></h3>
                 <h4>Résumé : </h4> 
-                <p><?= $books['booSumary'] ?></p> 
-                <p id="catPages"><?= $books['catName'] ?> - <?= $books['booPages'] ?> pages</p> 
-                <p id="editorPubliYear"><?= $books['ediName'] ?> <?= $books['booPublicationYear'] ?></p> 
-                <form method='POST' >
-                    <p>Moyenne d'appréciation : <?= $books['booScoreAverage'] ?>
+                <p><?= $book['booSumary'] ?></p> 
+                <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
+                <p id="editorPubliYear"><?= $book['ediName'] ?> <?= $book['booPublicationYear'] ?></p>
+                <form method='POST'>
+                    <p>Moyenne d'appréciation : <span id="bookAvg"><?= $bddNotes ?></span> / 5
                         <select name='note' id='note'>
                             <option value='0'>Votre note</option>
                             <option value='1'>1</option>
@@ -32,22 +57,21 @@ $book = $db->getBook($id); ?>
                             <option value='4.5'>4.5</option>
                             <option value='5'>5</option>
                         </select>
-                        <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'>
-                    
-                </form>  
-                </p> 
+                        <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
+                    </p>                    
+                </form>                
                 <a id="extractLink" href="#">Lien vers l'extrait</a>               
             </div>
         </div>
-        <?php if(isset($_POST['submit']) && $_POST['note'] != 0) : ?>
-    <?php $note = $_POST['note']; 
-    $idbook = $books['idBook']; 
-    print_r($idbook);
-    $note = $db->addVoteBook($idbook, $note)
-      ?>  
-<?php endif; ?>
     <?php endforeach ?>
 </div>
+
+<?php
+if(isset($error))
+{
+    echo $error;
+}
+?>
 
 
 

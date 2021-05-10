@@ -60,9 +60,18 @@ CREATE TABLE t_write(
     PRIMARY KEY (idxBook, idxAuthor)
 );
 
+CREATE TABLE t_vote(
+    idxBook INT NOT NULL,
+    idxUser INT NOT NULL,
+    votNote INT NOT NULL,
+    CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook),
+    CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser),
+    PRIMARY KEY (idxUser, idxBook)
+);
+
 INSERT INTO t_editor (ediName) VALUES
     ('Maison d''édition Gallimard'),
-    ("Les Éditions Flammarion"),
+    ('Les Éditions Flammarion'),
     ('Les éditions Milan'),
     ('Les éditions Baudelaire'),
     ('Hachette'),

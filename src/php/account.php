@@ -16,7 +16,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout")
 if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "deleteAccount") 
 {
     $idUser = $_SESSION['idUser'];
-    print_r($idUser);
+    // print_r($idUser);
     $db->deleteUser($idUser);
 	session_unset();
 	session_destroy();

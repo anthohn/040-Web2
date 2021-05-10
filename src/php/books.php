@@ -54,7 +54,7 @@ $categorys = $db->getCategorys();
 
         <?php if(isset($_POST['submit'])) : ?>
             <?php $idCategory = $_POST['category']; 
-                  $categorys = $db->CategoryBooks($idCategory); ?>
+                $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblock">
                 <?= $categorys[0]['catName']; ?>
                 <?php foreach ($categorys as $category) : ?>
@@ -90,7 +90,7 @@ $categorys = $db->getCategorys();
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
                     <p id="bookAvg"><?= $book['booScoreAverage'] ?> / 5</p>
-                </div>
+                </div>  
             </div>
         <?php endforeach ?>
     </div>       
