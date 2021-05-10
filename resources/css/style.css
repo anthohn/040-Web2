@@ -24,6 +24,7 @@ html, body {
 
 html {
   background-color: var(--backGrey-color);
+  height: 12000px;
 }
 
 li {
@@ -872,33 +873,6 @@ input.confirm:hover {
   background-color: var(--redAlert-color);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /***********************ADD BOOKS******************************/
 
 .tableContainer {
@@ -906,34 +880,45 @@ input.confirm:hover {
   color: var(--greyTitle-color);
 }
 
+.tableContainer form {
+  border: 1px solid var(--back-color);
+  background-color: var(--back-color);
+  border-radius: 10px;
+  /* width: 1200px; */
+  width: 700px;
+  margin: 20px 0 0 0;
+  /* margin: auto; */
+  padding: 0 0 25px 0;
+}
+
 .halfFormContainer {
-  display: flex;
-  margin: 50px 0 0 0;
-  max-width: 50%;
-  flex-direction: row;
-  justify-content: space-between;
+  margin: 0 0 0 170px;
 }
 
 .inputAuthor, .selectCategoryAdd, .inputName,  .inputNumberPages, .extract, .resume, .inputImg, .inputDate {
   display: flex;
   flex-direction: column;
   font-size: 25px;
-  margin: 20px 0 0 0;
+  margin: 30px 0 0 0;
 }
 
 #title, #Category, #pages, #extract, #resume, #date, #author, #printscreen {
   border-radius: 5px;
-  border: 1px solid var(--darkGrey-color);
+  border: 1px solid var(--backGrey-color);
+  /* border: none; */
   font-size: 20px;
   margin: 5px 0 0 0;
   padding: 5px;
-  width: 330px;
+  width: 350px;
+  background-color: var(--backGrey-color);
+  color: grey;
 }
 
 #resume {
-  max-width: 330px;
-  max-height: 330px;
-  height: 100px;
+  max-width: 350px;
+  min-width: 350px;
+  max-height: 900px;
+  height: 200px;
 }
 
 #author {
@@ -941,35 +926,162 @@ input.confirm:hover {
 }
 
 #author, #Category {
-  width: 340px;
+  width: 360px;
   font-size: 18px;
   padding: 6px;
 }
 
-.iptExtractCategory, .imgResumeBtn {
-  margin-left: 70px;
+#fileChosen {
+  font-size: 20px;
+  margin: 4px 0 0 20px;
+}
+
+.uploadContent {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0 0 0;
+}
+
+label {
+  cursor: pointer;
 }
 
 #secondHalf {
   margin-top: 40px;
 }
 
-.authorYearDateImgContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.halfFormContentContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
 .btnAndResume {
   display: flex;
   flex-direction: column;
 }
+
+.button {
+  display: flex;
+  margin: 20px 0 0 0;
+  flex-direction: column;
+}
+
+.btnAdding button, .btnDeleting button {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 360px;
+}
+
+.btnAdding button {
+  border: 1px solid var(--lightGreen-color);
+  background-color: var(--lightGreen-color);
+  color: var(--back-color);
+}
+
+.btnAdding button:hover {
+  border: 1px solid var(--green-color);
+  background-color: var(--green-color);
+  transition: all 0.3s ease-out;
+}
+
+.btnDeleting button {
+  margin: 10px 0 0 0;
+  border: 1px solid var(--lightGreen-color);
+  color: var(--lightGreen-color);
+  background-color: transparent;
+}
+
+.btnDeleting button:hover {
+  border: 1px solid var(--green-color);
+  color: var(--green-color);
+  transition: all 0.3s ease-out;
+} 
+
+/* #btnSubmit {
+  font-family: 'Ubuntu', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170px;
+  height: 40px;
+  line-height: 1;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 3px solid #8C82FC;
+  background: #fff;
+  color: #8C82FC;
+  border-radius: 40px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all .35s;
+} */
+
+.success svg{
+  width: 20px;
+  height: 20px;
+  fill: yellowgreen;
+  transform-origin: 50% 50%;
+  transform: translateY(-50%) rotate(0deg) scale(0);
+  transition: all .35s;
+}
+
+#btnSubmit span {
+  opacity: 1;
+  visibility: visible;
+  transition: all .35s;
+}
+
+.success{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .35s;
+}
+
+#btnSubmit.is_active{
+  width: 40px;
+  height: 40px;
+}
+
+#btnSubmit.is_active .success{
+  opacity: 1;
+  visibility: visible;
+}
+
+#btnSubmit.is_active .success svg{
+  margin-top: 50%;
+  transform: translateY(-50%) rotate(720deg) scale(1);
+}
+
+#btnSubmit.is_active span{
+  opacity: 0;
+  visibility: hidden;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .hzLine {
   margin: 60px 0 0 0;
@@ -981,3 +1093,4 @@ input.confirm:hover {
   flex-direction: column;
   align-items: center;
 }
+
