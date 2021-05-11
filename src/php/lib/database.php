@@ -123,8 +123,8 @@
     }
 
     //ajout d'un livre dans la bdd
-    public function addBook($title, $category, $pages , $extract, $resume, $date){
-        $query = "INSERT INTO t_book (booTitle, booCategory, booPages, booExtract, booResume, booDate) VALUES (:title, :category, :pages, :extract, :resume, :date)";
+    public function addBook($title, $pages, $extract , $summary, $publicationYear, $category){
+        $query = "INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category)";
         $binds = array(
             0 => array(
                 'field' => ':title',
@@ -132,29 +132,45 @@
                 'type' => PDO::PARAM_STR
             ),  
             1 => array(
-                'field' => ':category',
-                'value' => $category,
-                'type' => PDO::PARAM_STR
-            ),
-            2 => array(
                 'field' => ':pages',
                 'value' => $pages,
                 'type' => PDO::PARAM_INT
             ),
-            3 => array(
+            2 => array(
                 'field' => ':extract',
                 'value' => $extract,
                 'type' => PDO::PARAM_STR
             ),
+            3 => array(
+                'field' => ':summary',
+                'value' => $summary,
+                'type' => PDO::PARAM_STR
+            ),
             4 => array(
-                'field' => ':resume',
-                'value' => $resume,
+                'field' => ':publicationYear',
+                'value' => $publicationYear,
                 'type' => PDO::PARAM_STR
             ),
             5 => array(
-                'field' => ':date',
-                'value' => $date,
-                'type' => PDO::PARAM_STR
+                'field' => ':category',
+                'value' => $category,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //ajout d'un "write" dans la bdd
+    public function addWrite($idxAuthor){
+        $query = "INSERT INTO t_write (idxBook, idxAuthor) VALUES (LAST_INSERT_ID(), :idxAuthor)";
+        $binds = array(  
+            0 => array(
+                'field' => ':idxAuthor',
+                'value' => $idxAuthor,
+                'type' => PDO::PARAM_INT
             )
         );
         $reqExecuted = $this->queryPrepareExecute($query, $binds);

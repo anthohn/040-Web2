@@ -925,7 +925,7 @@ input.confirm:hover {
   padding: 5px;
   width: 350px;
   background-color: var(--backGrey-color);
-  color: grey;
+  color: var(--navBlack-color);
 }
 
 #resume {
@@ -948,12 +948,26 @@ input.confirm:hover {
 #fileChosen {
   font-size: 20px;
   margin: 4px 0 0 20px;
+  color: var(--navBlack-color);
 }
 
 .uploadContent {
   display: flex;
   flex-direction: row;
   margin: 5px 0 0 0;
+  border: 1px solid var(--backGrey-color);
+  background-color: var(--backGrey-color);
+  width: 340px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.uploadContent svg {
+  color: var(--navBlack-color);
+}
+
+.uploadContent svg:hover {
+  color: var(--greyTitle-color);
 }
 
 label {
@@ -962,6 +976,10 @@ label {
 
 #secondHalf {
   margin-top: 40px;
+}
+
+::placeholder {
+  color: var(--navBlack-color);
 }
 
 .btnAndResume {
@@ -975,7 +993,7 @@ label {
   flex-direction: column;
 }
 
-.btnAdding button, .btnDeleting button {
+.btnAdding input, .btnDeleting button {
   padding: 10px;
   font-size: 20px;
   border-radius: 25px;
@@ -983,13 +1001,13 @@ label {
   width: 360px;
 }
 
-.btnAdding button {
+.btnAdding input {
   border: 1px solid var(--lightGreen-color);
   background-color: var(--lightGreen-color);
   color: var(--back-color);
 }
 
-.btnAdding button:hover {
+.btnAdding input:hover {
   border: 1px solid var(--green-color);
   background-color: var(--green-color);
   transition: all 0.3s ease-out;
@@ -1006,96 +1024,7 @@ label {
   border: 1px solid var(--green-color);
   color: var(--green-color);
   transition: all 0.3s ease-out;
-} 
-
-/* #btnSubmit {
-  font-family: 'Ubuntu', sans-serif;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 170px;
-  height: 40px;
-  line-height: 1;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  border: 3px solid #8C82FC;
-  background: #fff;
-  color: #8C82FC;
-  border-radius: 40px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all .35s;
-} */
-
-.success svg{
-  width: 20px;
-  height: 20px;
-  fill: yellowgreen;
-  transform-origin: 50% 50%;
-  transform: translateY(-50%) rotate(0deg) scale(0);
-  transition: all .35s;
 }
-
-#btnSubmit span {
-  opacity: 1;
-  visibility: visible;
-  transition: all .35s;
-}
-
-.success{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  border-radius: 50%;
-  z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .35s;
-}
-
-#btnSubmit.is_active{
-  width: 40px;
-  height: 40px;
-}
-
-#btnSubmit.is_active .success{
-  opacity: 1;
-  visibility: visible;
-}
-
-#btnSubmit.is_active .success svg{
-  margin-top: 50%;
-  transform: translateY(-50%) rotate(720deg) scale(1);
-}
-
-#btnSubmit.is_active span{
-  opacity: 0;
-  visibility: hidden;
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .hzLine {
   margin: 60px 0 0 0;
