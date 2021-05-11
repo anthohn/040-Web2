@@ -5,6 +5,10 @@
  * Description : 
  */
 
+
+ /**
+ * Class Database to connect on the database
+ */
  class Database {
     // Variable de classe
     private $host;
