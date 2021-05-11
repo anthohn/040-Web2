@@ -171,7 +171,7 @@
 
     //récupere tous les utilisateur
     public function getUsers(){
-        $query = "SELECT * FROM t_user";
+        $query = "SELECT idUser, useLogin, useInscriptionDate, useSuggestBook, useAppreciationNumber, usePassword FROM t_user";
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
@@ -192,6 +192,22 @@
                 'value' => $psw,
                 'type' => PDO::PARAM_STR
             )
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Récuperer les infos d'UN utilisateur
+    public function getOneUser($idUser){
+        $query = 'SELECT idUser, useLogin, useInscriptionDate, useSuggestBook, useAppreciationNumber FROM t_user WHERE idUser = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            )    
         );
         $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
@@ -227,6 +243,9 @@
 
     //ajout d'un vote dans la bdd
     public function addVoteBook($idBook, $idUser, $note){
+        //Probleme au niveau de la note (s'arrondie seule ??)
+        // print_r($note);
+        // die();
         $query = 'INSERT INTO t_vote (idxBook, idxUser, votNote) VALUES (:idxBook, :idxUser, :votNote)';
         $binds = array(
             0 => array(
@@ -251,9 +270,25 @@
         return $results;
     }
 
+    //Incrémente de 1 le nombre de vote d'un livre
+    public function addAppreciationBook($idBook){
+        $query = 'UPDATE t_book SET booNoteCount = booNoteCount + 1  WHERE idBook = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idBook,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
     //Récuperer la moyenne des livres
     public function getNotesBook($idBook){
-        $query = 'SELECT FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_vote WHERE idxBook = :id';
+        $query = 'SELECT FORMAT(AVG(votNote) , 2) AS "votNote" FROM t_vote WHERE idxBook = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',

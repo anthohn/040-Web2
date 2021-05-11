@@ -14,8 +14,6 @@ if(isset($_POST["connexion"]))
         // print_r($user['idUser']);
         // die();
         {
-     
-
             if($user['useLogin'] == $_POST['login'])
             {
                 if(password_verify($_POST['psw'], $user['usePassword']))
@@ -29,9 +27,9 @@ if(isset($_POST["connexion"]))
                     header('Location:home.php');
                 }                
             }  
-            else{
+            else
+            {
                 $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Nom d\'utilisateur ou mot de passe incorect</h4></div>'; 
-                // break;
             }          
         }
     }

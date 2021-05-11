@@ -370,6 +370,10 @@ main {
 }
 
 .imageBook {
+  min-height: 370px;
+  max-height: 370px;
+  min-width: 170px;
+  max-height: 170px;
 	opacity: 1;
 	display: block;
 	transition: .5s ease;
@@ -424,6 +428,8 @@ main {
 }
 
 .bookDetailBlock img{
+  min-height: 500px;
+  max-height: 500px;
   margin: 0 20px 0 0;
   float: left;
   display:block;

@@ -89,7 +89,7 @@ $categorys = $db->getCategorys();
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
-                    <p id="bookAvg"><?= $book['booScoreAverage'] ?> / 5</p>
+                    <p id="bookAvg"> / 5</p>
                 </div>  
             </div>
         <?php endforeach ?>

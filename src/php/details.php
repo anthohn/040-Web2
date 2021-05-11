@@ -21,6 +21,7 @@ if(isLogged())
         {
             $db->addVoteBook($idBook, $idUser, $note);
             $db->addAppreciationUser($idUser);
+            $db->addAppreciationBook($idBook);
             
             header("Location:details.php?idBook=$idBook");
         }
@@ -66,7 +67,7 @@ if(isLogged())
                         <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
                     </p>                    
                 </form>                
-                <a id="extractLink" href="#">Lien vers l'extrait</a>               
+                <a id="extractLink" href="<?= $book['booExtract'] ?>"target="_blank">Lien vers l'extrait</a>               
             </div>
         </div>
     <?php endforeach ?>
