@@ -45,6 +45,16 @@ li {
   max-width: 60%;;
 }
 
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; 
+  text-align: center;
+  background-color: var(--back-color);
+  border-top: 1px solid var(--selectColor-color);    
+}
+
 /*Header*/
 
 .headerContainer {
@@ -360,19 +370,6 @@ main {
 #bookAvg {
   font-size: 15px;
   color: var(--lightGreen-color);
-}
-
-footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  margin-left: 5%;
-  width: 90%;
-  background-color: var(--back-color);
-  border-top: 2px solid var(--backGrey-color);    
-  text-align: center;
-  background-color: var(--backGrey-color);
-  display: none;
 }
 
 /**************Detail**************/

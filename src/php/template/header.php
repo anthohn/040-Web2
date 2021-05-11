@@ -26,7 +26,7 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
         <header>
             <div class="headerContainer">
                 <div class="logo">
-                    <a href="home.php">Library</a>
+                    <a href="home.php">Librarotche</a>
                 </div>
 
                 <span class="separeLigne"></span>
