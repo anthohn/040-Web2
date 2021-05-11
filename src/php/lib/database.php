@@ -18,27 +18,43 @@
     private $connector;
 
     //connexion à la bdd en faisant essayant puis si erreur récupere le message et affiche le message d'erreur 
-    public function __construct($host = null, $username = null, $password = null, $database = null){
-        if($host != null){
+    public function __construct($host = null, $username = null, $password = null, $database = null)
+    {
+        if($host != null)
+        {
             $this->host = $host;
             $this->username = $username;
             $this->password = $password;
             $this->database = $database;
         }
-            try{
-            $this->connector = new PDO('mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8', $this->username, $this->password);
-            }
-            catch(PDOException $e)
-            {
-                die('<h1>Impossible de se connecter à la base de données</h1> erreur :'. $e->getMessage()); 
-            }
+        /**
+         * Try to open the connection on the database
+         * If catch a PDOException -> show the error
+         */
+        try
+        {
+        $this->connector = new PDO('mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8', $this->username, $this->password);
+        }
+        catch(PDOException $e)
+        {
+            die('<h1>Impossible de se connecter à la base de données</h1> erreur :'. $e->getMessage()); 
+        }
     }
 
+    /**
+     * Function querySimpleExecute to execute a SQL query without WHERE
+     * @param $query
+     */
     private function querySimpleExecute($query){
         $req = $this->connector->query($query);
         return $req;
     }
 
+    /**
+     * Function queryPrepareExecute to execute a SQL query with WHERE and avoid SQL injections
+     * @param $query
+     * @param $binds
+     */
     private function queryPrepareExecute($query, $binds){
         $req = $this->connector->prepare($query);
         foreach($binds as $bind){
@@ -48,17 +64,27 @@
         return $req;
     }
 
+    /**
+     * Function formatData to get the result of the SQL query in an associative array
+     * @param $req
+     */
     private function formatData($req){
         $results = $req->fetchALL(PDO::FETCH_ASSOC);
         return $results;
     }
 
-    //Vider le jeu d’enregistrements
+    /**
+     * Function unsetData to empty the record set
+     * @param $req
+     */
     private function unsetData($req){
         $req->closeCursor(); 
     }
 
-    //Fonction qui récupere tous les livres
+    /**
+     * Function get all books from the ddb
+     * @param $req
+     */
     public function getBooks(){
         $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -128,7 +154,7 @@
 
     //ajout d'un livre dans la bdd
     public function addBook($title, $pages, $extract , $summary, $publicationYear, $category){
-        $query = "INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category)";
+        $query = 'INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category)';
         $binds = array(
             0 => array(
                 'field' => ':title',
@@ -181,9 +207,7 @@
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
-    }
-
-    
+    }   
 
     //récupere tous les utilisateur
     public function getUsers(){
