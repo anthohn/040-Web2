@@ -23,7 +23,7 @@ CREATE TABLE t_book(
     booExtract VARCHAR(255) NOT NULL,
     booSumary TEXT NOT NULL,
     booPublicationYear DATE NOT NULL,
-    booScoreAverage INT UNSIGNED DEFAULT 0,
+    booNoteCount INT NOT NULL DEFAULT 0,
     idxCategory INT NOT NULL,
     CONSTRAINT fk_t_book_t_category_idCategory FOREIGN KEY (idxCategory) REFERENCES t_category(idCategory) 
 );
@@ -65,8 +65,8 @@ CREATE TABLE t_vote(
     idxUser INT NOT NULL,
     votNote INT NOT NULL,
     CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook),
-    CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser),
-    PRIMARY KEY (idxUser, idxBook)
+    CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser)
+    -- PRIMARY KEY (idxUser, idxBook)
 );
 
 INSERT INTO t_editor (ediName) VALUES

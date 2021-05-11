@@ -167,6 +167,8 @@
         return $results;
     }
 
+    
+
     //récupere tous les utilisateur
     public function getUsers(){
         $query = "SELECT * FROM t_user";

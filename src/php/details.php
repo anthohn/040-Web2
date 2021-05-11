@@ -5,7 +5,8 @@ $idBook = $_GET["idBook"];
 $books = $db->getBook($idBook); 
 $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
 
-if(isLogged()) {
+if(isLogged())
+{
     $idUser = $_SESSION['idUser'];
 }
 
@@ -13,18 +14,23 @@ if(isLogged()) {
 
 <?php if(isset($_POST['submit']))
 {
-    if(isLogged()) {
+    if(isLogged())
+    {
         $note = $_POST['note'];
-        if( $_POST["note"] != 0)
+        if($_POST["note"] != 0)
         {
             $db->addVoteBook($idBook, $idUser, $note);
             $db->addAppreciationUser($idUser);
+            
+            header("Location:details.php?idBook=$idBook");
         }
-        else{
+        else
+        {
             $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez sélectionner la note</h4></div>';
         }
     }
-    else {
+    else
+    {
         $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Connectez-vous pour pouvoir noter un livre !</h4></div>';
     }
 }
@@ -44,7 +50,7 @@ if(isLogged()) {
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
                 <p id="editorPubliYear"><?= $book['ediName'] ?> <?= $book['booPublicationYear'] ?></p>
                 <form method='POST'>
-                    <p>Moyenne d'appréciation : <span id="bookAvg"><?= $bddNotes ?></span> / 5
+                    <p>Moyenne d'appréciation : <span id="bookAvg"><?= $bddNotes ?></span> / 5 (sur <?= $book['booNoteCount'] ?> votes)
                         <select name='note' id='note'>
                             <option value='0'>Votre note</option>
                             <option value='1'>1</option>

@@ -51,9 +51,50 @@ footer{
   bottom: 0;
   width: 100%; 
   text-align: center;
+  color: var(--navBlack-color);
   background-color: var(--back-color);
   border-top: 1px solid var(--selectColor-color);    
 }
+
+footer a {
+  color: var(--navBlack-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  transition: all 0.3s ease-out;
+  color: var(--lightGreen-color);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  font-size: 20px;
+  visibility: hidden;
+  height: auto;
+  width: auto;
+  background-color: var(--lightGreen-color);
+  color:  var(--back-color);
+  text-align: center;
+  border-radius: 16px;
+  padding: 5px;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 72%;
+  left: 25%;
+}
+.tooltip:hover .tooltiptext {
+  /* transition: all 3s ease-out; */
+  /* transition */
+  visibility: visible;
+}
+
 
 /*Header*/
 

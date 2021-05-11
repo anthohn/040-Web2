@@ -26,7 +26,7 @@ if(isset($_POST["connexion"]))
                     $_SESSION['useSuggestBook'] = $user['useSuggestBook'];
                     $_SESSION['useAppreciationNumber'] = $user['useAppreciationNumber'];
                     $_SESSION['useIsAdmin'] = $user['useIsAdmin'];
-                    header("Location:home.php");
+                    header('Location:home.php');
                 }                
             }  
             else{
