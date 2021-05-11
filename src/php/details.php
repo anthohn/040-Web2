@@ -44,7 +44,7 @@ if(isLogged())
             <img src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
             <div class="bookContent">
                 <h2><?= $book['booTitle'] ?></h2>
-                <h3><?= $book['autFirstname'] ?></h3>
+                <h3><?= $book['autLastname'] ?> <?= $book['autFirstname'] ?></h3>
                 <h4>Résumé : </h4> 
                 <p><?= $book['booSumary'] ?></p> 
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
