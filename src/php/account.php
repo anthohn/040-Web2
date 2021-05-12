@@ -41,7 +41,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "deleteAcco
                             </svg>
                         </div>    
                         <p>Utilisateur : <?= $userInfo['useLogin'] ?></p>
-                        <p>Livres suggéré : <?= $userInfo['useSuggestBook'] ?></p>
+                        <p>Livres suggérés : <?= $userInfo['useSuggestBook'] ?></p>
                         <p>Appréciations : <?= $userInfo['useAppreciationNumber'] ?></p>
                         <p>Inscription : <?= $userInfo['useInscriptionDate'] ?></p>
                     </td>
