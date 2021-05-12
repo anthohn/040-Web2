@@ -1,10 +1,22 @@
 <?php 
-$title = 'Details du livre';
-require ('template/header.php');
-$idBook = $_GET["idBook"];
-$books = $db->getBook($idBook); 
-$bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
-$_SESSION['bookNoteAvg'] = $idBook;
+
+// Vérifie que le get n'est pas vite, vérifie si le get est bien numérqiue -> rejete le code html et php (+ sécurisé)
+if(!isset($_GET['idBook']) OR !is_numeric($_GET['idBook']))
+{
+    header('Location:404.php');
+}
+// Si tout est ok -> appelle les fonctions
+else
+{
+    $title = 'Details du livre';
+    require ('template/header.php');
+    $idBook = $_GET["idBook"];
+    $books = $db->getBook($idBook); 
+    $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
+    $_SESSION['bookNoteAvg'] = $idBook;    
+}
+
+
 
 if(isLogged())
 {

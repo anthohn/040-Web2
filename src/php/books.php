@@ -1,16 +1,16 @@
-<?php 
+<?php
 $title = 'Tous les livros';
 require ('template/header.php');
 $books = $db->getBooks();
 $categorys = $db->getCategorys();
-?>
-<?php 
-	$books = $db->getBooks();
+$books = $db->getBooks();
 
-	if(isset($_GET['search']) && !empty($_GET['search'])) {
-		$search = htmlspecialchars($_GET['search']);
-		$books = $db->getSearchedBooks($search);
-	}
+if(isset($_GET['search']) && !empty($_GET['search']))
+{
+    $search = htmlspecialchars($_GET['search']);
+    $books = $db->getSearchedBooks($search);
+}
+
 ?> 
 <div class="content">
     <h1 class="allBooksTitle" >Liste de tous les livres</h1>
