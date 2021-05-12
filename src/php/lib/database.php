@@ -301,7 +301,7 @@
             2 => array(
                 'field' => ':votNote',
                 'value' => $note,
-                'type' => PDO::PARAM_INT
+                'type' => PDO::PARAM_STR
             )
         );
         $reqExecuted = $this->queryPrepareExecute($query, $binds);
@@ -328,7 +328,7 @@
 
     //Récuperer la moyenne des livres
     public function getNotesBook($idBook){
-        $query = 'SELECT FORMAT(AVG(votNote) , 2) AS "votNote" FROM t_vote WHERE idxBook = :id';
+        $query = 'SELECT FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_vote WHERE idxBook = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',
