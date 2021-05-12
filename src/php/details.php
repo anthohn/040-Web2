@@ -51,6 +51,12 @@ if(isLogged())
                 <p class="booSummary"><?= $book['booSumary'] ?></p> 
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
                 <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
+                <p><?= $book['booSumary'] ?></p> 
+                <!-- <p id="catPages">Catégorie : //$book['catName'] </p>
+                <p id="catPages">Nombre de pages :  //$book['booPages'] ?></p> 
+                <p id="editorPubliYear">Maison d'éditon :  //$book['ediName'] ?></p>
+                <p id="editorPubliYear">Date de publication :  //$book['booPublicationYear'] ?></p>
+                <p><a id="extractLink" href //$book['booExtract'] ?>"target="_blank">Lien vers l'extrait</a> </p> -->
                 <form method='POST'>
                     <p>Moyenne d'appréciation : <span id="bookAvg">
                     <?php 
@@ -76,8 +82,7 @@ if(isLogged())
                         </select>
                         <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
                     </p>                    
-                </form>                
-                <a id="extractLink" href="<?= $book['booExtract'] ?>"target="_blank">Lien vers l'extrait</a>               
+                </form>                              
             </div>
         </div>
     <?php endforeach ?>

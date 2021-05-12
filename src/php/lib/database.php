@@ -241,7 +241,7 @@
 
     //Récuperer les infos d'UN utilisateur
     public function getOneUser($idUser){
-        $query = 'SELECT idUser, useLogin, useInscriptionDate, useSuggestBook, useAppreciationNumber FROM t_user WHERE idUser = :id';
+        $query = 'SELECT idUser, useLogin, DATE_FORMAT(useInscriptionDate, "%d/%m/%Y") AS useInscriptionDate , useSuggestBook, useAppreciationNumber FROM t_user WHERE idUser = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',
