@@ -51,8 +51,8 @@ if(isLogged())
                 <p class="booSummary"><?= $book['booSumary'] ?></p> 
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
                 <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
-                <p><?= $book['booSumary'] ?></p> 
-                <!-- <p id="catPages">Catégorie : //$book['catName'] </p>
+                <!-- <p>< //$book['booSumary'] </p> 
+                <p id="catPages">Catégorie : //$book['catName'] </p>
                 <p id="catPages">Nombre de pages :  //$book['booPages'] ?></p> 
                 <p id="editorPubliYear">Maison d'éditon :  //$book['ediName'] ?></p>
                 <p id="editorPubliYear">Date de publication :  //$book['booPublicationYear'] ?></p>
