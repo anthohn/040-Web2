@@ -4,6 +4,7 @@ require ('template/header.php');
 $idBook = $_GET["idBook"];
 $books = $db->getBook($idBook); 
 $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
+$_SESSION['bookNoteAvg'] = $idBook;
 
 if(isLogged())
 {
@@ -47,11 +48,20 @@ if(isLogged())
                 <h2><?= $book['booTitle'] ?></h2>
                 <h3><?= $book['autLastname'] ?> <?= $book['autFirstname'] ?></h3>
                 <h4>Résumé : </h4> 
-                <p><?= $book['booSumary'] ?></p> 
+                <p class="booSummary"><?= $book['booSumary'] ?></p> 
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
-                <p id="editorPubliYear"><?= $book['ediName'] ?> <?= $book['booPublicationYear'] ?></p>
+                <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
                 <form method='POST'>
-                    <p>Moyenne d'appréciation : <span id="bookAvg"><?= $bddNotes ?></span> / 5 (sur <?= $book['booNoteCount'] ?> votes)
+                    <p>Moyenne d'appréciation : <span id="bookAvg">
+                    <?php 
+                        if($bddNotes == 0) {
+                            echo '0';
+                        }
+                        else {
+                            echo $bddNotes;
+                        }
+                    ?>
+                    </span> / 5 (sur <?= $book['booNoteCount'] ?> votes)
                         <select name='note' id='note'>
                             <option value='0'>Votre note</option>
                             <option value='1'>1</option>

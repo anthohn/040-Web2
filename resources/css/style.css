@@ -434,6 +434,10 @@ main {
   display:block;
 }
 
+.bookContent {
+  display: flex;
+  flex-direction: column;
+}
 
 .bookContent p, .bookContent h2 , .bookContent h3, .bookContent h4{
   color :var(--greyTitle-color);
@@ -445,12 +449,26 @@ main {
   font-size: 16.7px;
 }
 
+.booSummary {
+  overflow-y: scroll;
+  max-height: 180px;
+}
+
 .bookContent h4 {
   margin: 10px 0 0 0;
 }
 
 p#catPages {
   margin: 20px 0 0 0;
+}
+
+#extractLink {
+  color: var(--lightGreen-color);
+}
+
+#extractLink:hover {
+  color: var(--green-color);
+  transition: all .3s ease-in-out;
 }
 
 p#editorPubliYear {
