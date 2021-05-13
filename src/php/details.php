@@ -15,26 +15,31 @@ else
     $_SESSION['bookNoteAvg'] = $idBook;    
 }
 
-
-
+// Si l'utilisateur est connecté récupere l'id de session dans $idUser
 if(isLogged())
 {
     $idUser = $_SESSION['idUser'];
 }
 
-?>
-
-<?php if(isset($_POST['submit']))
+if(isset($_POST['submit']))
 {
+    // Si connecté continue sinon message erreur
     if(isLogged())
     {
+        // met le post de note dans une variable
         $note = $_POST['note'];
-        if($_POST["note"] != 0)
+
+        // Si la note n'est pas égal à 0 continue si non message erreur
+        if($note != 0)
         {
+            // ajoute le vote au livre
             $db->addVoteBook($idBook, $idUser, $note);
+            // incrémente de 1 les appréciation de l'utilisateur 
             $db->addAppreciationUser($idUser);
+            // incrémente de 1 les appréciation du livre
             $db->addAppreciationBook($idBook);
             
+            // actualise la page 
             header("Location:details.php?idBook=$idBook");
         }
         else
