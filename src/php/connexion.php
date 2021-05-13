@@ -1,9 +1,6 @@
 <?php 
 $title = 'Connexion';
 require ('template/header.php');
-?>
-
-<?php
 
 if(isset($_POST["connexion"]))
 {

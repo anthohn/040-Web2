@@ -1,9 +1,9 @@
 <?php 
 $title = 'Création compte';
 require ('template/header.php');
-?>
 
-<?php if(isset($_POST['forminscription']))
+
+if(isset($_POST['forminscription']))
 {
     $login = htmlspecialchars($_POST['login']);
 

@@ -1,11 +1,21 @@
 <?php 
-$title = 'Connexion';
+$title = 'Compte';
 require ('template/header.php');
 
-if(isLogged()): 
 
-$idUser = $_SESSION['idUser'];
-$userInfos = $db->getOneUser($idUser);
+if(!isset($_SESSION['idUser']))
+{
+    header('Location:connexion.php');
+}
+else
+{
+    $idUser = $_SESSION['idUser'];
+    $userInfos = $db->getOneUser($idUser);
+}
+
+
+
+if(isLogged()): 
 
 //Déconnexion de l'utilisateur en détruisant sa session puis une redirection sur la page d'accueil
 if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout") 
