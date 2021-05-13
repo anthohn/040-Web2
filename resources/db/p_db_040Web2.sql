@@ -64,8 +64,8 @@ CREATE TABLE t_vote(
     idxBook INT NOT NULL,
     idxUser INT NOT NULL,
     votNote FLOAT NOT NULL,
-    CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook),
-    CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser)
+    CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook) ON DELETE CASCADE,
+    CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser) ON DELETE CASCADE
     -- PRIMARY KEY (idxUser, idxBook)
 );
 
