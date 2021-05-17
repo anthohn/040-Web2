@@ -22,7 +22,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "logout")
 {
 	session_unset();
 	session_destroy();
-	header("Location:home.php");
+	header("Location:connexion.php");
 }
 
 //Déconnexion de l'utilisateur en détruisant sa session puis une redirection sur la page d'accueil
@@ -33,7 +33,7 @@ if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == "deleteAcco
     $db->deleteUser($idUser);
 	session_unset();
 	session_destroy();
-	header("Location:home.php");
+	header("Location:cpnnexion.php");
 }
 ?>
 
