@@ -43,8 +43,11 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
                 <?php elseif(isLogged()) :?>
                     <div class="rest">
                         <div class="disconnectLinkContainer">
-                            <?php /*echo'<p>Bonjour ' . $_SESSION['username']. '</p>'; */?>
+
                             <a href="account.php">Mon compte</a>
+                        </div>
+                        <div class="CreateLinkContainer">
+                            <a href="account.php?auth=logout">Déconnexion</a>
                         </div>
                     </div>    
                 <?php endif; ?>

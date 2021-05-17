@@ -49,7 +49,7 @@ if(isset($_POST['submit']))
     }
     else
     {
-        $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Connectez-vous pour pouvoir noter un livre !</h4></div>';
+        header('Location:connexion.php');
     }
 }
 ?>
