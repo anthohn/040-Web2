@@ -135,7 +135,7 @@ footer a:hover {
   width: 100%;
 }
 
-.CreateLinkContainer, .loginLinkContainer  {
+.CreateLinkContainer, .loginLinkContainer, .myAccountLinkContainer, .disconnectLinkContainer {
   margin: 36px 10px 0 0;
 }
 
@@ -148,7 +148,7 @@ footer a:hover {
   font-size: 20px;
 }
 
-.CreateLinkContainer a {
+.CreateLinkContainer a, .myAccountLinkContainer a {
   border: 1px solid var(--lightGreen-color);
   border-radius: 25px;
   font-size: 20px;
@@ -157,7 +157,7 @@ footer a:hover {
   padding: 10px;
 }
 
-.loginLinkContainer a {
+.loginLinkContainer a, .disconnectLinkContainer a {
   border: 1px solid var(--lightGreen-color);
   border-radius: 25px;
   font-size: 20px;
@@ -175,10 +175,10 @@ footer a:hover {
   color: var(--back-color);
   text-decoration: none;
   padding: 10px;
-  height: 25px;
+  height: 22px;
 }
 
-.CreateLinkContainer a:hover {
+.CreateLinkContainer a:hover, .myAccountLinkContainer a:hover {
   border: 1px solid var(--green-color);
   color: var(--green-color);
   transition: all 0.3s ease-out;

@@ -207,7 +207,7 @@
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
-    }   
+    }
 
     //récupere tous les utilisateur
     public function getUsers(){
