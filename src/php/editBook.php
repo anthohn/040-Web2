@@ -14,6 +14,8 @@ else
     $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
     $_SESSION['bookNoteAvg'] = $idBook;    
     $authors = $db->getAuthor();
+    $categorys = $db->getCategorys();
+    $editors = $db->getEditors();
 }
 
 // Si l'utilisateur est connecté récupere l'id de session dans $idUser
@@ -73,9 +75,32 @@ if(isset($_POST['submit']))
                     </select></h3>
 
                 <h4>Résumé : </h4> 
-                <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSumary'] ?></textarea></p> 
-                <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
-                <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
+                <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
+
+
+
+                <p id="catPages">
+                    <select name="type" id="type">
+                    <option value='<?= $book["idxCategory"];?>'><?= $book["catName"];?></option>
+                        <?php foreach($categorys as $category) : ?>
+                            <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]?></option>
+                        <?php endforeach; ?>
+                    </select>
+                     - 
+                     <input type="number" value="<?= $book['booPages'] ?>"> pages
+                    
+                </p> 
+                <p id="editorPubliYear"><select name="type" id="type">
+                    <option value='<?= $book["idEditor"];?>'><?= $book['ediName']?></option>
+                        <?php foreach($editors as $editor) : ?>
+                            <option value="<?= $editor["idEditor"]; ?>"><?= $editor["ediName"]?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    
+                     - <?php $newDate = date("Y-m-d", strtotime($book["booPublicationYear"]));?>  
+                        <input type="date" name="date" value="<?= $newDate;?>">
+                    
+                </p>
                 <!-- <p>< //$book['booSumary'] </p> 
                 <p id="catPages">Catégorie : //$book['catName'] </p>
                 <p id="catPages">Nombre de pages :  //$book['booPages'] ?></p> 
