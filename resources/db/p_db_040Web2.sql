@@ -25,7 +25,7 @@ CREATE TABLE t_book(
     booPublicationYear DATE NOT NULL,
     booNoteCount INT NOT NULL DEFAULT 0,
     idxCategory INT NOT NULL,
-    CONSTRAINT fk_t_book_t_category_idCategory FOREIGN KEY (idxCategory) REFERENCES t_category(idCategory) 
+    CONSTRAINT fk_t_book_t_category_idCategory FOREIGN KEY (idxCategory) REFERENCES t_category(idCategory) ON DELETE CASCADE
 );
 
 CREATE TABLE t_editor(
@@ -55,7 +55,7 @@ CREATE TABLE t_user(
 CREATE TABLE t_write(
     idxBook INT NOT NULL,
     idxAuthor INT NOT NULL,
-    CONSTRAINT fk_t_write_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook),
+    CONSTRAINT fk_t_write_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook) ON DELETE CASCADE,
     CONSTRAINT fk_t_write_t_author_idAuthor FOREIGN KEY (idxAuthor) REFERENCES t_author(idAuthor),
     PRIMARY KEY (idxBook, idxAuthor)
 );
