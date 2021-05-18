@@ -21,7 +21,7 @@ CREATE TABLE t_book(
     booTitle VARCHAR(50) NOT NULL,
     booPages SMALLINT UNSIGNED NOT NULL,
     booExtract VARCHAR(255) NOT NULL,
-    booSumary TEXT NOT NULL,
+    booSummary TEXT NOT NULL,
     booPublicationYear DATE NOT NULL,
     booNoteCount INT NOT NULL DEFAULT 0,
     idxCategory INT NOT NULL,
@@ -103,7 +103,7 @@ INSERT INTO t_author (autFirstname, autLastname, autBirthday, idxEditor) VALUES
 ('Basseterre', 'Luce', '1957-03-17' , 8);
 
 
-INSERT INTO t_book (booTitle, booPages, booExtract, booSumary, booPublicationYear, idxCategory) VALUES
+INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory) VALUES
 ('Les Animaux fantastiques', 128, 'https://ebook.chapitre.com/ebook/9781781107263-les-animaux-fantastiques-le-texte-du-film-j-k-rowling/', 'Norbert Dragonneau, un magicien anglais, fait une escale à New York. Il transporte avec lui une valise dans laquelle il héberge une multitude d’animaux fantastiques capturés ou sauvés lors de ses voyages. Il a l’intention d’aller libérer l’un d’entre eux – Frank, un oiseau-tonnerre – en Arizona. Mais l’une des créatures parvient à fuir la valise et en tentant de la récupérer, Norbert échange malencontreusement ladite valise avec celle d’un ouvrier new-yorkais qui ignore tout du monde de la magie. Comment récupérer les créatures sans être repéré par le congrès magique des États-Unis d’Amérique ? Norbert Dragonneau peut-il empêcher l’ouvrier, Jacob Kowalski, de découvrir l’existence des magiciens ?', '2001-03-01', 5 ),
 ('Harry Potter à l''école des sorciers', 308, 'https://booknode.com/harry_potter_tome_1_harry_potter_a_l_ecole_des_sorciers_0983/extraits?offset=3', 'La famille Dursley mène une vie paisible au 4, Privet Drive, jusqu''au jour où deux mystérieux individus - des sorciers - rôdent aux abords du lotissement situé sur la commune de Little Whinging. Ils attendent avec impatience mais aussi fébrilité l''arrivée de Harry Potter, le survivant. Le jeune garçon, alors âgé de quinze mois, vient de perdre ses parents dans des circonstances étranges et est transporté en moto volante par le géant Hagrid jusqu''à la maison des Dursley, la seule famille qu''il lui reste désormais.Dix années passent...Harry Potter est élevé par l''oncle Vernon et la tante Pétunia qui ne l''aiment pas. Ces derniers l''obligent à dormir dans un placard à balais et à subir divers châtiments. Il subit de plein fouet l''agressivité de Dudley, le fils tyrannique des Dursley, et sa bande dont le "jeu" favori est la chasse au Harry.
 Harry pense être un garçon ordinaire, auquel il arrive parfois d''étranges phénomènes... jusqu''au jour de son onzième anniversaire où il voit littéralement son existence bouleversée. Harry reçoit la visite du géant Hagrid qui vient le récupérer pour l''emmener à l''école de sorcellerie Poudlard, un collège exclusivement réservé aux jeunes sorciers et sorcières britanniques, et où une place l''attend depuis sa naissance. Harry apprend qu''il est un sorcier, célèbre de surcroît, tout comme ses parents décédés, James et Lily Potter. On lui révèle également que ses parents ne sont pas morts dans un accident de voiture mais assassinés par un terrifiant mage noir dont personne n''ose prononcer le nom.', '1997-07-26', 5 ),
