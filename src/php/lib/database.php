@@ -93,6 +93,25 @@
         return $results;
     }
 
+    /**
+     * Function delete a book
+     * @param $idBook
+     */
+    public function deleteBook($idBook){
+        $query = 'DELETE FROM t_book WHERE idBook = :idBook';
+        $binds = array(
+            0 => array(
+                'field' => ':idBook',
+                'value' => $idBook,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }  
+
     //Fonction qui récupere un livre grace à son ID
     public function getBook($id){
         $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor WHERE idBook = :id';
@@ -211,7 +230,7 @@
 
     //récupere tous les utilisateur
     public function getUsers(){
-        $query = "SELECT idUser, useLogin, useInscriptionDate, useSuggestBook, useAppreciationNumber, usePassword FROM t_user";
+        $query = "SELECT idUser, useLogin, useIsAdmin, useInscriptionDate, useSuggestBook, useAppreciationNumber, usePassword FROM t_user";
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
