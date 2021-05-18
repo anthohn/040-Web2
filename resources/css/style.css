@@ -458,9 +458,18 @@ main {
   margin: 10px 0 0 0;
 }
 
-.bookContent svg {
+.bookContent a{
+  width: 100px
+}
+
+.MainDetailBookBlock svg{
+  color: var(--greyTitle-color);
+}
+
+.bookContent.right svg{
   position: absolute;
 }
+
 
 p#catPages {
   margin: 20px 0 0 0;
