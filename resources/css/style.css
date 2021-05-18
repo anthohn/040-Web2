@@ -1012,8 +1012,12 @@ input.confirm:hover {
 
 #fileChosen {
   font-size: 20px;
-  margin: 4px 0 0 20px;
+  margin: 4px 0 0 35px;
   color: var(--navBlack-color);
+}
+
+#imgLbl {
+  cursor: text;
 }
 
 .uploadContent {
@@ -1037,6 +1041,11 @@ input.confirm:hover {
 
 label {
   cursor: pointer;
+}
+
+#uploadLbl {
+  width: 335px;
+  position: absolute;
 }
 
 #secondHalf {

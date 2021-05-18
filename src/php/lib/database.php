@@ -209,7 +209,13 @@
         $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
-        return $results;
+        
+        //récupere le dernier ID (qui vient d'être inséré)
+        $query2 = "SELECT LAST_INSERT_ID()";
+        $results2 = $this->querySimpleExecute($query2);
+        $results2 = $this->formatData($results2);
+
+        return $results2[0]["LAST_INSERT_ID()"];
     }
 
     //ajout d'un "write" dans la bdd

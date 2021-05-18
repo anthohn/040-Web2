@@ -2,6 +2,8 @@
 $title = 'Accueil';
 require ('template/header.php');
 $fiveBooks = $db->LastFiveBooks();
+// $fiveBooksId = $db->LastFiveBooks()[0]['idBook'];
+// $noteAvg = getNotesBook($fiveBooksId);
 ?>
 
 <div class="content">
@@ -37,7 +39,7 @@ $fiveBooks = $db->LastFiveBooks();
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $fiveBook['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $fiveBook['autFirstname'] ?></p> 
-                    <p id="bookAvg"><?= $fiveBook['booNoteCount'] ?>/!\Marche pas mmh / 5</p>
+                    <p id="bookAvg"><?= $fiveBook['booNoteCount'] ?> / 5</p>
                 </div>
             </div>
         <?php endforeach ?>
