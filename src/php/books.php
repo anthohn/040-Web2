@@ -68,16 +68,7 @@ if(isset($_GET['search']) && !empty($_GET['search']))
                         </div>
                         <div class="bookInfo">
                             <p id="bookTitle"><?= $category['booTitle'] ?></p> 
-                            <p id="bookAuthor"><?= $category['autFirstname'] ?></p> 
-                            <p id="bookAvg">
-                                <?php 
-                                    if($category['booScoreAverage'] == 0) {
-                                        echo '0';
-                                    }
-                                    else {
-                                        echo $category['booScoreAverage'];
-                                    }
-                                ?> / 5</p>
+                            <p id="bookAuthor"><?= $category['autFirstname'] ?></p>         
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -97,15 +88,6 @@ if(isset($_GET['search']) && !empty($_GET['search']))
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
-                    <p id="bookAvg">
-                        <?php 
-                            if($book['booNoteCount'] == 0) {
-                                echo '0';
-                            }
-                            else {
-                                echo $book['booNoteCount'];
-                            }
-                        ?> / 5</p>
                 </div>  
             </div>
         <?php endforeach ?>
