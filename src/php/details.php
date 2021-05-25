@@ -70,8 +70,10 @@ if(isset($_POST['submit']))
                 <h3><?= $book['autLastname'] ?> <?= $book['autFirstname'] ?></h3>
                 <h4>Résumé : </h4> 
                 <p class="booSummary"><?= $book['booSummary'] ?></p> 
-                <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
-                <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
+                <p>Catégorie : <?= $book['catName'] ?></p>
+                <p>Nombres de page :  <?= $book['booPages'] ?> pages</p> 
+                <p>Éditeur : <?= $book['ediName'] ?></p>
+                <p>Date de publication : <?= $book['booPublicationYear'] ?></p>
                 <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
                 <form method='POST'>
                     <p>Moyenne d'appréciation : <span id="bookAvg">
