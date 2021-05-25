@@ -1,150 +1,113 @@
-<?php 
-// Vérifie que le get n'est pas vite, vérifie si le get est bien numérqiue -> rejete le code html et php (+ sécurisé)
-if(!isset($_GET['idBook']) OR !is_numeric($_GET['idBook']))
-{
-    header('Location:404.php');
-}
-// Si tout est ok -> appelle les fonctions
-else
-{
-    $title = 'Details du livre';
-    require ('template/header.php');
-    $idBook = $_GET["idBook"];
-    $books = $db->getBook($idBook);
-    $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
-    $_SESSION['bookNoteAvg'] = $idBook;    
-    $authors = $db->getAuthor();
-    $categorys = $db->getCategorys();
-    $editors = $db->getEditors();
-}
+<?php $title = 'Modification du livre';
+require "template/header.php";
 
-// Si l'utilisateur est connecté récupere l'id de session dans $idUser
-if(isLogged())
-{
-    $idUser = $_SESSION['idUser'];
-}
+// Vérifie si l'utilisateur est loggé ET admin
+if(isLogged() && (isAdmin())):
 
-if(isset($_POST['submit']))
-{
-    // Si connecté continue sinon message erreur
-    if(isLogged())
+    // Vérifie que le get n'est pas vite, vérifie si le get est bien numérqiue -> rejete le code html et php (+ sécurisé)
+    if(!isset($_GET['idBook']) OR !is_numeric($_GET['idBook']))
     {
-        // met le post de note dans une variable
-        $note = $_POST['note'];
-
-        // Si la note n'est pas égal à 0 continue si non message erreur
-        if($note != 0)
-        {
-            // ajoute le vote au livre
-            $db->addVoteBook($idBook, $idUser, $note);
-            // incrémente de 1 les appréciation de l'utilisateur 
-            $db->addAppreciationUser($idUser);
-            // incrémente de 1 les appréciation du livre
-            $db->addAppreciationBook($idBook);
-            
-            // actualise la page 
-            header("Location:details.php?idBook=$idBook");
-        }
-        else
-        {
-            $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez sélectionner la note</h4></div>';
-        }
+        header('Location:404.php');
     }
+    // Si tout est ok -> appelle les fonctions
     else
     {
-        header('Location:connexion.php');
+        $idBook = $_GET["idBook"];
+        $books = $db->getBook($idBook);
+        $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
+        $_SESSION['bookNoteAvg'] = $idBook;    
+        $authors = $db->getAuthor();
+        $categorys = $db->getCategorys();
+        $editors = $db->getEditors();
     }
-}
-?>
 
 
-<div class="MainDetailBookBlock">
-<?php foreach($books as $book): ?> 
-    <h1>Modification <?= $book['booTitle'] ?></h1>
-        <div class="bookDetailBlock">            
-            <img src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/>   
+    if(isset($_POST['btnSubmit']))
+    {
+        if(empty($_POST['name']))
+        {
+            $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez renseigner tous les champs !</h4></div>';  
+        } 
+        else
+        {   
+            $db->updateArtist($idArtist, $_POST['name'], $_POST['date'], $_POST['country']);
+            // $error = '<div class="succesLoginContainer"><h4 class="succesLogin">Modifications effectuées avec succès !</h4></div>'; 
+        }
+    }
+    ?>
 
-            <div class="bookContent">          
-                <h2><input type="text" value="<?= $book['booTitle'] ?>"></h2>
-                
-                <h3><select name="type" id="type">
-                        <option value='<?= $book["idAuthor"];?>'><?= $book["autLastname"] . ' ' . $book["autFirstname"];?></option>
-                        <?php foreach($authors as $author) : ?>
-                            <option value="<?= $author["idAuthor"]; ?>"><?= $author["autLastname"] . ' ' . $author["autFirstname"]; ?></option>
-                        <?php endforeach; ?>
-                    </select></h3>
+    <form method="POST" action="editBook.php?idBook=<?= $idBook ?>" enctype="multipart/form-data">
+        <div class="MainDetailBookBlock">
+        <?php foreach($books as $book): ?> 
+            <h1>Modification <?= $book['booTitle'] ?></h1>
+                <div class="bookDetailBlock">            
+                    <img src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/>   
 
-                <h4>Résumé : </h4> 
-                <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
+                    <div class="bookContent">          
+                        <h2><input type="text" name="name" value="<?= $book['booTitle'] ?>"></h2>
+                        
+                        <h3><select name="type" id="type">
+                                <option value='<?= $book["idAuthor"];?>'><?= $book["autLastname"] . ' ' . $book["autFirstname"];?></option>
+                                <?php foreach($authors as $author) : ?>
+                                    <option value="<?= $author["idAuthor"]; ?>"><?= $author["autLastname"] . ' ' . $author["autFirstname"]; ?></option>
+                                <?php endforeach; ?>
+                            </select></h3>
+
+                        <h4>Résumé : </h4> 
+                        <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
 
 
 
-                <p id="catPages">
-                    <select name="type" id="type">
-                    <option value='<?= $book["idxCategory"];?>'><?= $book["catName"];?></option>
-                        <?php foreach($categorys as $category) : ?>
-                            <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]?></option>
-                        <?php endforeach; ?>
-                    </select>
-                     - 
-                     <input type="number" value="<?= $book['booPages'] ?>"> pages
-                    
-                </p> 
-                <p id="editorPubliYear"><select name="type" id="type">
-                    <option value='<?= $book["idEditor"];?>'><?= $book['ediName']?></option>
-                        <?php foreach($editors as $editor) : ?>
-                            <option value="<?= $editor["idEditor"]; ?>"><?= $editor["ediName"]?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    
-                     - <?php $newDate = date("Y-m-d", strtotime($book["booPublicationYear"]));?>  
-                        <input type="date" name="date" value="<?= $newDate;?>">
-                    
-                </p>
-                <!-- <p>< //$book['booSumary'] </p> 
-                <p id="catPages">Catégorie : //$book['catName'] </p>
-                <p id="catPages">Nombre de pages :  //$book['booPages'] ?></p> 
-                <p id="editorPubliYear">Maison d'éditon :  //$book['ediName'] ?></p>
-                <p id="editorPubliYear">Date de publication :  //$book['booPublicationYear'] ?></p>
-                <p><a id="extractLink" href //$book['booExtract'] ?>"target="_blank">Lien vers l'extrait</a> </p> -->
-                <form method='POST'>
-                    <p>Moyenne d'appréciation : <span id="bookAvg">
-                    <?php 
-                        if($bddNotes == 0) {
-                            echo '0';
-                        }
-                        else {
-                            echo $bddNotes;
-                        }
-                    ?>
-                    </span> / 5 (sur <?= $book['booNoteCount'] ?> votes)
-                        <select name='note' id='note'>
-                            <option value='0'>Votre note</option>
-                            <option value='1'>1</option>
-                            <option value='1.5'>1.5</option>
-                            <option value='2'>2</option>
-                            <option value='2.5'>2.5</option>
-                            <option value='3'>3</option>
-                            <option value='3.5'>3.5</option>
-                            <option value='4'>4</option>
-                            <option value='4.5'>4.5</option>
-                            <option value='5'>5</option>
-                        </select>
-                        <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
-                    </p>                    
-                </form>                              
-            </div>
+                        <p id="catPages">
+                            <select name="type" id="type">
+                            <option value='<?= $book["idxCategory"];?>'><?= $book["catName"];?></option>
+                                <?php foreach($categorys as $category) : ?>
+                                    <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            - 
+                            <input type="number" value="<?= $book['booPages'] ?>"> pages
+                            
+                        </p> 
+                        <p id="editorPubliYear"><select name="type" id="type">
+                            <option value='<?= $book["idEditor"];?>'><?= $book['ediName']?></option>
+                                <?php foreach($editors as $editor) : ?>
+                                    <option value="<?= $editor["idEditor"]; ?>"><?= $editor["ediName"]?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            
+                            - <?php $newDate = date("Y-m-d", strtotime($book["booPublicationYear"]));?>  
+                                <input type="date" name="date" value="<?= $newDate;?>">
+                            
+                        </p>
+                        <div>
+                            <button type="submit" name="btnSubmit">Modifier</button>
+                        </div>
+                        <!-- <div class="test">
+                            <a href="allArtists.php"><img width="50px" src="../../userContent/icon/backArrow.svg"></img></a>
+                        </div> -->
+                    </div>
+                </div>
+            <?php endforeach ?>
         </div>
-    <?php endforeach ?>
-</div>
+    </form>
 
-<?php
+    <?php
+    if(isset($error))
+    {
+        echo $error;
+    }
+
+endif;  
+
 if(isset($error))
 {
     echo $error;
 }
-?>
+elseif(isset($succes))
+{
+    echo $succes;
+}
 
 
-
-<?php require ('template/footer.php'); ?>
+require ('template/footer.php'); ?>
