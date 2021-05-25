@@ -3,7 +3,7 @@
 -- Date: 26.04.2021
 -- Description: Base de données du projet 040-Web2
 
-DROP DATABASE if EXISTS p_db_040_Web2;
+DROP DATABASE IF EXISTS p_db_040_Web2;
 CREATE DATABASE p_db_040_Web2;
 USE p_db_040_Web2;
 
@@ -65,7 +65,7 @@ CREATE TABLE t_write(
 CREATE TABLE t_vote(
     idxBook INT NOT NULL,
     idxUser INT NOT NULL,
-    votNote FLOAT NOT NULL,
+    votNote FLOAT UNSIGNED NOT NULL DEFAULT 0,
     CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook) ON DELETE CASCADE,
     CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser) ON DELETE CASCADE
     -- PRIMARY KEY (idxUser, idxBook)
@@ -125,6 +125,19 @@ Créature comique, objet de moqueries et de vengeances, mais aussi nature monstr
 ('Coup de grâce', 248, 'https://books.google.ch/books/about/Coup_de_gr%C3%A2ce.html?id=DvrrDwAAQBAJ&printsec=frontcover&source=kp_read_button&redir_esc=y#v=onepage&q&f=false', 'Que faire quand on a tout perdu ? Renoncer ou tout recommencer ? Sydney Wells menait une vie idyllique jusqu''à la mort tragique de son mari dans un accident de la route. Absente du testament, elle est chassée de la propriété familiale par ses belles-filles, uniques héritières de la considérable fortune de son défunt époux. Alors qu''on lui offre l''opportunité de retourner à sa première passion, la mode, en tant que styliste, Sydney saisit sa chance. Naïve et manquant d''expérience, refusant d''écouter les mises en garde de ses propres filles, elle se laisse cependant vite piéger dans cet univers impitoyable... Humiliée et ruinée, la jeune veuve n''a plus d''autre choix que de repartir de zéro. Mais où trouver la force nécessaire pour cela ? Entre New York et Hong Kong, avec dignité et courage, Sydney s''efforce pourtant coûte que coûte de se réinventer. À la clé, un avenir plein de promesses en terre inconnue, dont elle pourra être fière...', '2020-08-13', 2, 2),
 ('La vallée', 528 , 'https://books.google.com/books/about/La_vall%C3%A9e.html?id=0tLPDwAAQBAJ&printsec=frontcover&source=kp_read_button', 'En pleine nuit, Martin Servaz reçoit un appel étrange mais urgent de Marianne, la femme qu''il aime depuis toujours… et disparue depuis huit ans. Il fonce donc vers l''endroit qu''elle lui a décrit, et arrive dans une sombre vallée où se sont produits récemment d''odieux crimes, d’autant plus odieux qu’ils ont été filmés par l''assassin. Outre une communauté de moines, le policier – pourtant suspendu – va y croiser une collègue déterminée, et une psychiatre singulière mais non moins dangereusement séduisante ... Pour son sixième polar, Bernard Minier conjugue enquête criminelle, politique et questions sociales, le tout avec une profondeur d''analyse à laquelle le thriller nous habitue peu.', '2020-05-01', 3, 2),
 ('Le Chant des Fenjicks', 490, 'https://books.google.com/books/about/Le_Chant_des_Fenjicks.html?id=-YjvDwAAQBAJ&printsec=frontcover&source=kp_read_button', 'Dans l’espace, seuls leurs chants résonnent. Les cybersquales sont des vaisseaux de transport vivant utilisés depuis des siècles. Leur nombre pourtant décroit et leur captivité ne permet pas une reproduction efficace. En cause, un collier cybernétique emprisonnant leurs consciences. Mais l’âme des Fenjicks demeure et le chant de la liberté va résonner de nouveau dans la galaxie.', '2020-09-18', 5, 2);
+
+INSERT INTO t_vote (idxBook, idxUser) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1)
+;
 
 INSERT INTO t_write (idxBook, idxAuthor) VALUES
 (1, 1),
