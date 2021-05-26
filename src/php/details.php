@@ -73,6 +73,7 @@ if(isset($_POST['submit']))
                 <p id="catPages"><?= $book['catName'] ?> - <?= $book['booPages'] ?> pages</p> 
                 <p id="editorPubliYear"><?= $book['ediName'] ?> - <?= $book['booPublicationYear'] ?></p>
                 <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
+                <p><a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a></p>
                 <form method='POST'>
                     <p>Moyenne d'appréciation : <span id="bookAvg">
                     <?php 
