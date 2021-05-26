@@ -147,10 +147,10 @@
     }
 
     //Fonction qui récupere les 5 derniers ouvrage de la table t_books
-    public function LastFiveBooks(){
+    public function lastFiveBooks(){
         
-        // $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory ORDER BY idBook DESC LIMIT 5';
-        $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_vote ON t_book.idBook = t_vote.idxBook ORDER BY idBook DESC LIMIT 5';
+        // $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor GROUP BY idxBook ORDER BY idxBook DESC LIMIT 5';
+        $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_vote.idxBook DESC LIMIT 5';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
@@ -158,7 +158,7 @@
     }
 
     //Fonction qui récupere les ouvrages de la table t_books par categorie
-    public function CategoryBooks($idCategory){
+    public function categoryBooks($idCategory){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE idCategory  = :idCategory';
         $binds = array(
             0 => array(
