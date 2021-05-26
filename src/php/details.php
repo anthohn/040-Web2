@@ -75,6 +75,7 @@ if(isset($_POST['submit']))
                 <p>Éditeur : <?= $book['ediName'] ?></p>
                 <p>Date de publication : <?= $book['booPublicationYear'] ?></p>
                 <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
+                <p><a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a></p>
                 <form method='POST'>
                     <p>Moyenne d'appréciation : <span id="bookAvg">
                     <?php 

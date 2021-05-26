@@ -83,11 +83,29 @@
 
     /**
      * Function get all books from the ddb
-     * @param $req
      */
     public function getBooks(){
         $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
         $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    /**
+     * Function get all books from the ddb
+     * @param $idUser
+     */
+    public function getBooksUser($idUser){
+        $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_user ON idxUser = idUser WHERE idUser = :idUser';
+        $binds = array(
+            0 => array(
+                'field' => ':idUser',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);        
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
@@ -114,7 +132,7 @@
 
     //Fonction qui récupere un livre grace à son ID
     public function getBook($id){
-        $query = 'SELECT idBook, booTitle, booPages, booExtract, autLastname, autFirstname, booSummary, catName, ediName, DATE_FORMAT(booPublicationYear, "%d/%m/%Y") AS booPublicationYear, booNoteCount FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor WHERE idBook = :id';
+        $query = 'SELECT idBook, booTitle, booPages, booExtract, autLastname, autFirstname, booSummary, catName, ediName, idUser, useLogin, DATE_FORMAT(booPublicationYear, "%d/%m/%Y") AS booPublicationYear, booNoteCount FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor JOIN t_user ON idxUser = idUser WHERE idBook = :id';
         $binds = array(
             0 => array(
                 'field' => ':id',
