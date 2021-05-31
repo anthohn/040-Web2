@@ -148,9 +148,7 @@
 
     //Fonction qui récupere les 5 derniers ouvrage de la table t_books
     public function lastFiveBooks(){
-        
-        // $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor GROUP BY idxBook ORDER BY idxBook DESC LIMIT 5';
-        $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_vote.idxBook DESC LIMIT 5';
+        $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_book.idBook DESC LIMIT 5';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
@@ -192,8 +190,8 @@
     }
 
     //ajout d'un livre dans la bdd
-    public function addBook($title, $pages, $extract , $summary, $publicationYear, $category){
-        $query = 'INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category)';
+    public function addBook($title, $pages, $extract , $summary, $publicationYear, $category, $user){
+        $query = 'INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory, idxUser) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category, :user)';
         $binds = array(
             0 => array(
                 'field' => ':title',
@@ -224,13 +222,18 @@
                 'field' => ':category',
                 'value' => $category,
                 'type' => PDO::PARAM_INT
+            ),
+            6 => array(
+                'field' => ':user',
+                'value' => $user,
+                'type' => PDO::PARAM_INT
             )
         );
         $reqExecuted = $this->queryPrepareExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         
-        //récupere le dernier ID (qui vient d'être inséré)
+        // Récupere le dernier ID (qui vient d'être inséré)
         $query2 = "SELECT LAST_INSERT_ID()";
         $results2 = $this->querySimpleExecute($query2);
         $results2 = $this->formatData($results2);
@@ -238,13 +241,34 @@
         return $results2[0]["LAST_INSERT_ID()"];
     }
 
-    //ajout d'un "write" dans la bdd
+    // Ajout d'un "write" dans la bdd
     public function addWrite($idxAuthor){
         $query = "INSERT INTO t_write (idxBook, idxAuthor) VALUES (LAST_INSERT_ID(), :idxAuthor)";
         $binds = array(  
             0 => array(
                 'field' => ':idxAuthor',
                 'value' => $idxAuthor,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    // Ajout d'un "write" dans la bdd
+    public function addVoteLastId($idxBook, $idxUser){
+        $query = "INSERT INTO t_vote (idxBook, idxUser) VALUES (:idxBook, :idxUser)";
+        $binds = array(  
+            0 => array(
+                'field' => ':idxBook',
+                'value' => $idxBook,
+                'type' => PDO::PARAM_INT
+            ),
+            1 => array(
+                'field' => ':idxUser',
+                'value' => $idxUser,
                 'type' => PDO::PARAM_INT
             )
         );
