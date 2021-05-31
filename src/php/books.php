@@ -1,5 +1,5 @@
 <?php
-$title = 'Tous les livros';
+$title = 'Tous les livres';
 require ('template/header.php');
 $books = $db->getBooks();
 $categorys = $db->getCategorys();
@@ -56,7 +56,7 @@ if(isset($_GET['search']) && !empty($_GET['search']))
             <?php $idCategory = $_POST['category']; 
                 $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblock">
-                <?= $categorys[0]['catName']; ?>
+                <p>Résultat(s) pour :<?= $categorys[0]['catName']; ?>
                 <?php foreach ($categorys as $category) : ?>
                     <div class='bookBlock'>
                             
@@ -76,7 +76,9 @@ if(isset($_GET['search']) && !empty($_GET['search']))
         <?php endif; ?>
     </div>
 
+    
     <div class='mainBookblock'>
+        <?php if(!(isset($_POST['submit']))) : ?>
         <?php foreach ($books as $book) : ?>
             <div class='bookBlock'>
                 <div class='bookImage'>
@@ -91,7 +93,8 @@ if(isset($_GET['search']) && !empty($_GET['search']))
                 </div>  
             </div>
         <?php endforeach ?>
-    </div>       
+    </div>   
+    <?php endif; ?>    
 </div>
 
 <?php require ('template/footer.php'); ?>
