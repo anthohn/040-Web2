@@ -128,7 +128,41 @@
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
-    }  
+    }
+
+    /**
+     * Function update a book
+     * @param
+     */
+    public function updateBook($idArtist, $name, $date, $country){
+        $query = 'UPDATE t_artist SET artName = :artName,  artBirth = :artBirth, idxCountry = :idxCountry WHERE idArtist = :idArtist';
+        $binds = array(
+            0 => array(
+                'field' => ':idArtist',
+                'value' => $idArtist,
+                'type' => PDO::PARAM_INT
+            ),
+            1 => array(
+                'field' => ':artName',
+                'value' => $name,
+                'type' => PDO::PARAM_STR
+            ),
+            2 => array(
+                'field' => ':artBirth',
+                'value' => $date,
+                'type' => PDO::PARAM_STR
+            ),
+            3 => array(
+                'field' => ':idxCountry',
+                'value' => $country,
+                'type' => PDO::PARAM_INT
+            )
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    } 
 
     //Fonction qui récupere un livre grace à son ID
     public function getBook($id){

@@ -109,28 +109,28 @@ $authors = $db->getAuthor();
                     </div>
                 </div>
         </form>
-        <?php 
-            if(isset($_POST['btnSubmitBooks'])) {
-                if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) /*|| !(isset($_POST['upload']))*/) {
-                    echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
-                }
-                else {
-                    $newID = $db->addBook($_POST['title'],  $_POST['pages'], $_POST['extract'], $_POST['resume'], $_POST['date'], $_POST['Category']);
-                    $db->addWrite($_POST['author']);
-
-                    if($newID >= 0) {
-                        $source = $_FILES["upload"]["tmp_name"];
-                        $destination = "../../resources/images/books/$newID.jpg";
-                        move_uploaded_file($source, $destination);
-                        echo '<h1 id="validationMessage">Le Livre a bien été ajouté.</h1>';
-                    }
-
-                    else {
-                        echo '<h2 id="errorMessage">Erreur d\'upload</h2>';
-                    }    
-                    
-                }
+        <?php
+        if(isset($_POST['btnSubmitBooks'])) {
+            if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) /*|| !(isset($_POST['upload']))*/) {
+                echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
             }
+            else {
+                $newID = $db->addBook($_POST['title'],  $_POST['pages'], $_POST['extract'], $_POST['resume'], $_POST['date'], $_POST['Category']);
+                $db->addWrite($_POST['author']);
+
+                if($newID >= 0) {
+                    $source = $_FILES["upload"]["tmp_name"];
+                    $destination = "../../resources/images/books/$newID.jpg";
+                    move_uploaded_file($source, $destination);
+                    echo '<h1 id="validationMessage">Le Livre a bien été ajouté.</h1>';
+                }
+
+                else {
+                    echo '<h2 id="errorMessage">Erreur d\'upload</h2>';
+                }    
+                
+            }
+        }
         ?>
     </div>
 </div>
