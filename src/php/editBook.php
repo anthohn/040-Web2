@@ -15,7 +15,6 @@ if(isLogged() && (isAdmin())):
         $idBook = $_GET["idBook"];
         $books = $db->getBook($idBook);
         $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
-        $_SESSION['bookNoteAvg'] = $idBook;    
         $authors = $db->getAuthor();
         $categorys = $db->getCategorys();
         $editors = $db->getEditors();
@@ -24,15 +23,15 @@ if(isLogged() && (isAdmin())):
 
     if(isset($_POST['btnSubmit']))
     {
-        if(empty($_POST['name']))
-        {
-            $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez renseigner tous les champs !</h4></div>';  
-        } 
-        else
-        {   
-            $db->updateArtist($idArtist, $_POST['name'], $_POST['date'], $_POST['country']);
-            // $error = '<div class="succesLoginContainer"><h4 class="succesLogin">Modifications effectuées avec succès !</h4></div>'; 
-        }
+        // if(empty($_POST['booTitle']), empty($_POST['booSummary']), empty($_POST['booPages']))
+        // {
+            // $error = '<div class="errorLoginContainer"><h4 class="errorLogin">Veuillez renseigner tous les champs !</h4></div>';  
+        // } 
+        // else
+        // {   
+            $db->updateBook($idBook, $_POST['booTitle'], $_POST['author'], $_POST['booSummary'], $_POST['country']);
+            $error = '<div class="succesLoginContainer"><h4 class="succesLogin">Modifications effectuées avec succès !</h4></div>'; 
+        // }
     }
     ?>
 
@@ -46,17 +45,17 @@ if(isLogged() && (isAdmin())):
                     <div class="bookContent">          
                         <h2><input type="text" name="name" value="<?= $book['booTitle'] ?>"></h2>
                         
-                        <h3><select name="type" id="type">
+                        <h3>
+                            <select name="author">
                                 <option value='<?= $book["idAuthor"];?>'><?= $book["autLastname"] . ' ' . $book["autFirstname"];?></option>
                                 <?php foreach($authors as $author) : ?>
                                     <option value="<?= $author["idAuthor"]; ?>"><?= $author["autLastname"] . ' ' . $author["autFirstname"]; ?></option>
                                 <?php endforeach; ?>
-                            </select></h3>
+                            </select>
+                        </h3>
 
                         <h4>Résumé : </h4> 
                         <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
-
-
 
                         <p id="catPages">
                             <select name="type" id="type">
