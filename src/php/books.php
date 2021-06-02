@@ -1,9 +1,9 @@
 <?php
 $title = 'Tous les livres';
 require ('template/header.php');
-$books = $db->getBooks();
 $categorys = $db->getCategorys();
 $books = $db->getBooks();
+$bookUsers = $db->getUserBooks();
 
 if(isset($_GET['search']) && !empty($_GET['search']))
 {
@@ -55,46 +55,60 @@ if(isset($_GET['search']) && !empty($_GET['search']))
         <?php if(isset($_POST['submit'])) : ?>
             <?php $idCategory = $_POST['category']; 
                 $categorys = $db->CategoryBooks($idCategory); ?>
-                <div class="mainBookblock">
-                <p>Résultat(s) pour :<?= $categorys[0]['catName']; ?>
-                <?php foreach ($categorys as $category) : ?>
-                    <div class='bookBlock'>
-                            
-                        <div class='bookImage'>
-                            <a href="details.php?idBook=<?= $category['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
+                <div class="mainBookblockSort">
+                    <p>Résultat(s) pour :<?= $categorys[0]['catName']; ?>
+                    <div class="bookBlockContainer">
+                    <?php foreach ($categorys as $category) : ?>
+                    
+                        <div class='bookBlock'>
+                            <div class='bookImage'>
+                                <a href="details.php?idBook=<?= $category['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $category['idBook'];?>.jpg" alt="première de couverture"/></a>
+                            </div>
+                            <div class="middle">
+                                <div class="zoom"><a href="details.php?idBook=<?= $category['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
+                            </div>
+                            <div class="bookInfo">
+                                <p id="bookTitle"><?= $category['booTitle'] ?></p> 
+                                <p id="bookAuthor"><?= $category['autFirstname'] ?></p>         
+                            </div>
                         </div>
-                        <div class="middle">
-                            <div class="zoom"><a href="details.php?idBook=<?= $category['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
-                        </div>
-                        <div class="bookInfo">
-                            <p id="bookTitle"><?= $category['booTitle'] ?></p> 
-                            <p id="bookAuthor"><?= $category['autFirstname'] ?></p>         
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>    
         <?php endif; ?>
     </div>
-
     
     <div class='mainBookblock'>
         <?php if(!(isset($_POST['submit']))) : ?>
         <?php foreach ($books as $book) : ?>
             <div class='bookBlock'>
                 <div class='bookImage'>
-                    <a href="details.php?idBook=<?= $book['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
+                    <?php if(isLogged()): ?>
+                        <a href="details.php?idBook=<?= $book['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
+                    <?php else: ?>
+                        <a href="connexion.php" ><img class="imageBook" src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
+                    <?php endif; ?>
                 </div>
                 <div class="middle">
-                    <div class="zoom"><a href="details.php?idBook=<?= $book['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
+                    <?php if(isLogged()): ?>
+                        <div class="zoom"><a href="details.php?idBook=<?= $book['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
+                    <?php else: ?>
+                        <div class="zoom"><a href="connexion.php"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
+                    <?php endif; ?>
+                    
                 </div>
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
-                </div>  
+                    <?php if(isLogged()): ?>
+                        <a id="extractLink" href="detailsUser.php?idUser=<?=$bookUsers[0]['idUser'] ?>"><?= $bookUsers[0]['useLogin'] ?></a>
+                    <?php else: ?>
+                        <a id="extractLink" href="connexion.php" ><?= $bookUsers[0]['useLogin'] ?></a>
+                    <?php endif; ?> 
+                </div>
             </div>
         <?php endforeach ?>
     </div>   
     <?php endif; ?>    
 </div>
-
 <?php require ('template/footer.php'); ?>

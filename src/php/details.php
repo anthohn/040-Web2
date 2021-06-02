@@ -26,7 +26,6 @@ if(isset($_POST['submit']))
     // Si connecté continue sinon message erreur
     if(isLogged())
     {
-        // met le post de note dans une variable
         $note = $_POST['note'];
 
         // Si la note n'est pas égal à 0 continue si non message erreur
@@ -68,15 +67,36 @@ if(isset($_POST['submit']))
             <img src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/>   
 			 
             <h2><?= $book['booTitle'] ?></h2>
-            
+
             <h3><?= $book['autLastname'] ?> <?= $book['autFirstname'] ?></h3>
-            <h4>Résumé : </h4> 
-            <p class="booSummary"><?= $book['booSummary'] ?></p> 
-            <p>Catégorie : <?= $book['catName'] ?></p>
-            <p>Nombres de page :  <?= $book['booPages'] ?> pages</p> 
-            <p>Éditeur : <?= $book['ediName'] ?></p>
-            <p>Date de publication : <?= $book['booPublicationYear'] ?></p>
+
+            <div class="detailTitleInfoSummary">
+                <h4>Résumé :</h4> 
+                <p class="booSummary"> <?= $book['booSummary'] ?></p> 
+            </div>
+
+            <div class="detailTitleInfo">
+                <h4>Catégorie :</h4> 
+                <p>&nbsp;<?= $book['catName'] ?></p>
+            </div>
+
+            <div class="detailTitleInfo">
+                <h4>Nombres de page :</h4> 
+                <p>&nbsp;<?= $book['booPages'] ?></p> 
+            </div>
+
+            <div class="detailTitleInfo">
+                <h4>Éditeur :</h4> 
+                <p>&nbsp;<?= $book['ediName'] ?></p>
+            </div>
+
+            <div class="detailTitleInfo">
+                <h4>Date de publication :</h4> 
+                <p>&nbsp;<?= $book['booPublicationYear'] ?></p>
+            </div>
+
             <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
+
             <p><a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a></p>
             <form method='POST'>
                 <p>Moyenne d'appréciation : <span id="bookAvg">

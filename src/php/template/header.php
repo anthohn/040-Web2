@@ -18,8 +18,7 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
 		-->
         <meta charset="UTF-8">
         <link href="../../resources/css/style.css" rel="stylesheet" type="text/css" />
-        <script src="../js/main.js" defer></script>
-        <script src="../js/button.js" defer></script>
+        <script src="../js/main.js" defer></script> 
         <title><?= $title ?></title>
     </head>
     <body>
