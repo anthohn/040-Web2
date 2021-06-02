@@ -2,7 +2,6 @@
 $title = 'Accueil';
 require ('template/header.php');
 $fiveBooksNotes = $db->lastFiveBooks();
-$bookNotes = $db->getNotesBook($idBook);
 ?>
 
 <div class="content">
@@ -40,14 +39,11 @@ $bookNotes = $db->getNotesBook($idBook);
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $fiveBooksNote['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $fiveBooksNote['autFirstname'] ?></p> 
-                    <?php 
-                    if($bddNotes == 0) {
-                        echo '0';
-                    }
-                    else {
-                        echo $bddNotes;
-                    }
-                ?>
+                    <?php if(empty($fiveBooksNote['votNote'])): ?>
+                        <p id="bookAvg">0 / 5</p>
+                    <?php else: ?>
+                        <p id="bookAvg"><?= $fiveBooksNote['votNote'] ?> / 5</p>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>

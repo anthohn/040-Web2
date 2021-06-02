@@ -190,7 +190,7 @@
 
     //Fonction qui récupere les 5 derniers ouvrage de la table t_books
     public function lastFiveBooks(){
-        $query = 'SELECT idBook, booTitle, booPages, booExtract, autLastname, autFirstname, booSummary, catName, ediName, idUser, useLogin, DATE_FORMAT(booPublicationYear, "%d/%m/%Y") AS booPublicationYear, booNoteCount FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor JOIN t_user ON idxUser = idUser ORDER BY idBook DESC LIMIT 5';
+        $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_book.idBook DESC LIMIT 5';
         $reqExecuted = $this->querySimpleExecute($query);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);

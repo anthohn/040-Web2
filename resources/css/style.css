@@ -652,11 +652,6 @@ color: var(--greenAlert-color);
   display: flex;
 }
 
-.titleOpinion{
-  width: 400px;
-  background-color: #dddddd;
-  position: fixed;
-}
 
 /* .tileButton {
   display: flex;
@@ -921,7 +916,7 @@ input.confirm:hover {
 
 .connexionFormcontent form {
   text-align: center;
-  margin: 100px 0 0 0;
+  margin: 200px 0 0 0;
   height: 500px;
   width: 400px;
   background-color: var(--backGrey-color);
