@@ -8,7 +8,7 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html id="html" lang="fr">
     <head>
         <!--
         ETML

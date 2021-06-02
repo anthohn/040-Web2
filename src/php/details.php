@@ -100,21 +100,30 @@ if(isset($_POST['submit']))
                 <p>&nbsp;<?= $book['booPublicationYear'] ?></p>
             </div>
 
-            <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
+            <div class="detailTitleInfo">
+                <h4>Suggérer par : </h4>
+                &nbsp;<a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a>
+            </div>
 
-            <p><a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a></p>
+            <div class="detailExtract">
+                <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
+            </div>
 
-            <p>Moyenne d'appréciation : <span id="bookAvg">
-            <?php 
-                if($bddNotes == 0) {
-                    echo '0';
-                }
-                else {
-                    echo $bddNotes;
-                }
-            ?>
-            </span> / 5 (sur <?= $book['booNoteCount'] ?> <button onclick="openForm2()">Notes</button>)
-            <button class="open-button" onclick="openForm1()">Ajouter une note</button>
+            <div class="detailAvg">
+                <p>Moyenne d'appréciation : <span id="bookAvg">
+                <?php 
+                    if($bddNotes == 0) {
+                        echo '0';
+                    }
+                    else {
+                        echo $bddNotes;
+                    }
+                ?>
+                </span> / 5 (sur <?= $book['booNoteCount'] ?> 
+            
+                <button class="btnOpenForm" onclick="openForm2()">Notes</button>)
+                <button class="open-button" onclick="openForm1()">Ajouter une note</button>
+            </div>
 
                    
             </div>
@@ -130,20 +139,33 @@ if(isset($_POST['submit']))
             <button type="button" id="btncancel" onclick="closeForm1()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
         </div>
         <div class="comment">
-            <select name='note' id='note'>
-                <option value='0'>Votre note</option>
-                <option value='1'>1</option>
-                <option value='1.5'>1.5</option>
-                <option value='2'>2</option>
-                <option value='2.5'>2.5</option>
-                <option value='3'>3</option>
-                <option value='3.5'>3.5</option>
-                <option value='4'>4</option>
-                <option value='4.5'>4.5</option>
-                <option value='5'>5</option>
-            </select>
-            <textarea id="text" name="text" rows="4" cols="50"></textarea>
-            <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
+            <div class="addNotePopUp">
+                <div class="addNotePopUpTitle">
+                    <h3>Votre Note : </h3>
+                </div>
+                <select name='note' id='note'>
+                    <option value='0'>Votre note</option>
+                    <option value='1'>1</option>
+                    <option value='1.5'>1.5</option>
+                    <option value='2'>2</option>
+                    <option value='2.5'>2.5</option>
+                    <option value='3'>3</option>
+                    <option value='3.5'>3.5</option>
+                    <option value='4'>4</option>
+                    <option value='4.5'>4.5</option>
+                    <option value='5'>5</option>
+                </select>
+            </div>
+            <div class="commentPopUp">
+                <div class="commentPopUpTitle">
+                    <h3>Votre Avis : </h3>
+                </div>
+                <textarea id="text" name="text"></textarea>
+                <div class="btnCommentPopUp">
+                    <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
+                    <button type="reset" id="resetDetail">Effacer</button>
+                </div>
+            </div>
         </div>   
             
               
@@ -154,7 +176,7 @@ if(isset($_POST['submit']))
 
 <div class="form-popup" id="myFormResult">
     <div class="tileButton">
-        <h1>Avis <?= $books[0]['booTitle']; ?></h1>
+        <h1>Avis sur : <?= $books[0]['booTitle']; ?></h1>
         <button type="button" id="btncancel" onclick="closeForm2()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
     </div>
     <?php foreach($bookNotes as $bookNote): ?>
@@ -170,18 +192,22 @@ if(isset($_POST['submit']))
 <script>
 function openForm1() {
   document.getElementById("myForm").style.display = "block";
+  document.getElementById("html").style.overflow = "hidden";
 }
 
 function closeForm1() {
   document.getElementById("myForm").style.display = "none";
+  document.getElementById("html").style.overflow = "scroll";
 }
 
 function openForm2() {
   document.getElementById("myFormResult").style.display = "block";
+  document.getElementById("html").style.overflow = "hidden";
 }
 
 function closeForm2() {
   document.getElementById("myFormResult").style.display = "none";
+  document.getElementById("html").style.overflow = "scroll";
 }
 </script>
 

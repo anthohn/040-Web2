@@ -112,12 +112,6 @@ $authors = $db->getAuthor();
                 </div>
             </div>
         </form>
-<<<<<<< HEAD
-        <?php 
-            if(isset($_POST['btnSubmitBooks'])) {
-                if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) || !file_exists($_FILES['upload']['tmp_name']) || !is_uploaded_file($_FILES['upload']['tmp_name'])) {
-                    echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
-=======
         <?php
         if(isset($_POST['btnSubmitBooks'])) {
             if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) /*|| !(isset($_POST['upload']))*/) {
@@ -132,7 +126,6 @@ $authors = $db->getAuthor();
                     $destination = "../../resources/images/books/$newID.jpg";
                     move_uploaded_file($source, $destination);
                     echo '<h1 id="validationMessage">Le Livre a bien été ajouté.</h1>';
->>>>>>> 6be19196c2c9a730a76f9b2904302b8f613c8e1f
                 }
 
                 else {

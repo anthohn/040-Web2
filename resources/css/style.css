@@ -424,6 +424,14 @@ main {
   margin: 18px 0 0 0;
 }
 
+.detailAvg p {
+  margin: 0;
+}
+
+.detailExtract p {
+  margin: 10px 0 5px 0;
+}
+
 .detailTitleInfo {
   display: flex;
   margin: 18px 0 0 0;
@@ -442,11 +450,15 @@ main {
 }
 
 .bookDetailBlock button {
-  /* background-color: var(--lightGreen-color); */
+  background-color: var(--lightGreen-color);
   cursor: pointer;
-	/* color: inherit; */
 	border: none;
 	outline: inherit;
+}
+
+.bookDetailBlock button:hover {
+  background-color: var(--green-color);
+  transition: all .3s ease-in-out;
 }
 
 .bookContent {
@@ -467,6 +479,7 @@ main {
 .booSummary {
   overflow-y: scroll;
   max-height: 143px;
+  width: 800px;
 }
 
 .bookContent h4 {
@@ -506,14 +519,22 @@ p#editorPubliYear {
 #note{
   width: 110px;
   padding: 5px;
-  margin: 0 10px 0 10px;
   height: 35px;
+  border: 1px solid var(--darkGrey-color);
+  border-radius: 5px;
 }
 
 #submit {
   width: 110px;
   padding: 5px;
   height: 36px;
+  margin: 0;
+  border-radius: 25px;
+}
+
+.commentPopUp {
+  display: flex;
+  flex-direction: column;
 }
 
 /*Login*/
@@ -523,7 +544,7 @@ p#editorPubliYear {
 }
 
 #validationMessage{
-color: var(--greenAlert-color);
+  color: var(--greenAlert-color);
 }
 
 .notlog a{
@@ -537,7 +558,16 @@ color: var(--greenAlert-color);
 
 
 
+.btnOpenForm {
+  color: var(--lightGreen-color);
+  font-size: 15px;
+  background-color: transparent !important;
+}
 
+.btnOpenForm:hover {
+  color: var(--green-color);
+  transition: all .3s ease-in-out;
+}
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
@@ -566,34 +596,78 @@ color: var(--greenAlert-color);
   border-radius: 20px;
   height: 500px;
   width: 800px;
-  background-color: #dddddd;
+  background-color: var(--back-color);
   display: none;
   position: fixed;
   top: 20%;
   left: 33%;
-  border: 3px solid #a5a5a5;
+  border: 1px solid var(--darkGrey-color);
   z-index: 9;
+}
+
+.form-popup h1, .form-popup h3 {
+  color: var(--greyTitle-color);
 }
 
  .comment {
   border: 1px solid var(--darkGrey-color);
   border-radius: 10px;
   margin: 10px;
-  padding: 10px;
-  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  background-color: var(--backGrey-color);
+}
+
+#text {
+  max-width: 732px;
+  min-width: 732px;
+  min-height: 225px;
+  max-height: 225px;
+  font-size: 20px;
+  border: 1px solid var(--darkGrey-color);
+  border-radius: 5px;
+}
+
+#resetDetail {
+  border: 1px solid var(--lightGreen-color);
+  color: var(--lightGreen-color);
+  background-color: transparent;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  height: 36px;
+  margin: 0 0 0 10px;
+  width: 110px;
+}
+
+#resetDetail:hover {
+  border: 1px solid var(--green-color);
+  color: var(--green-color);
+  transition: all .3s ease-in-out;
+}
+
+.btnCommentPopUp {
+  display: flex;
+  margin: 10px 0 0 0;
+}
+
+.addNotePopUpTitle h3 {
+  margin: 0 0 10px 0;
+}
+
+.commentPopUpTitle h3 {
+  margin: 20px 0 10px 0;
 }
 
 .form-popup h1{
   margin: 0 0 0 12px;
   width: 100%;
-  color:  var(--navBlack-color);
 }
 
 /* Add styles to the form container */
 .form-container {
   width: 100%;
-  padding: 10px;
-  /* background-color: white; */
+  /* padding: 10px; */
 }
 
 /* Full-width input fields */
@@ -632,10 +706,9 @@ color: var(--greenAlert-color);
   border: none;
   color: white;
   padding: 5px 7px 3px 7px;
-  text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 0 9px 0 0;
 }
 
 #btncancel:hover {
