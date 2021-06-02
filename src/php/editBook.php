@@ -29,7 +29,7 @@ if(isLogged() && (isAdmin())):
         // } 
         // else
         // {   
-            $db->updateBook($idBook, $_POST['booTitle'], $_POST['author'], $_POST['booSummary'], $_POST['country']);
+            $db->updateBook($idBook, $_POST['name'], $_POST['author'], $_POST['summary'], $_POST['category'], $_POST['pageNumber'], $_POST['editor'], $_POST['date']);
             $error = '<div class="succesLoginContainer"><h4 class="succesLogin">Modifications effectuées avec succès !</h4></div>'; 
         // }
     }
@@ -55,20 +55,20 @@ if(isLogged() && (isAdmin())):
                         </h3>
 
                         <h4>Résumé : </h4> 
-                        <p class="booSummary"><textarea id="w3review" name="w3review" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
+                        <p class="booSummary"><textarea id="summary" name="summary" rows="3" cols="137"><?= $book['booSummary'] ?></textarea></p> 
 
                         <p id="catPages">
-                            <select name="type" id="type">
+                            <select name="category" id="type">
                             <option value='<?= $book["idxCategory"];?>'><?= $book["catName"];?></option>
                                 <?php foreach($categorys as $category) : ?>
                                     <option value="<?= $category["idCategory"]; ?>"><?= $category["catName"]?></option>
                                 <?php endforeach; ?>
                             </select>
                             - 
-                            <input type="number" value="<?= $book['booPages'] ?>"> pages
+                            <input type="number" name="pageNumber" value="<?= $book['booPages'] ?>"> pages
                             
                         </p> 
-                        <p id="editorPubliYear"><select name="type" id="type">
+                        <p id="editorPubliYear"><select name="editor" id="type">
                             <option value='<?= $book["idEditor"];?>'><?= $book['ediName']?></option>
                                 <?php foreach($editors as $editor) : ?>
                                     <option value="<?= $editor["idEditor"]; ?>"><?= $editor["ediName"]?></option>
@@ -79,6 +79,7 @@ if(isLogged() && (isAdmin())):
                                 <input type="date" name="date" value="<?= $newDate;?>">
                             
                         </p>
+                            <p><input minlength="40" type="text" value="<?= $book["booExtract"];?>"></p>
                         <div>
                             <button type="submit" name="btnSubmit">Modifier</button>
                         </div>

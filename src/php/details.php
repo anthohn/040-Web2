@@ -11,7 +11,11 @@ else
     require ('template/header.php');
     $idBook = $_GET["idBook"];
     $books = $db->getBook($idBook);
-    $bddNotes = $db->getNotesBook($idBook)[0]['votNote'];
+    $bookNotes = $db->getNotesBook($idBook);
+    // echo '<pre>';
+    // print_r($bookNotes);
+    // echo '</pre>';
+    $bddNotes = $db->getNoteBook($idBook)[0]['votNote'];
     $_SESSION['bookNoteAvg'] = $idBook;    
 }
 
@@ -28,12 +32,13 @@ if(isset($_POST['submit']))
     {
         // met le post de note dans une variable
         $note = $_POST['note'];
+        $text = $_POST['text'];
 
         // Si la note n'est pas égal à 0 continue si non message erreur
         if($note != 0)
         {
             // ajoute le vote au livre
-            $db->addVoteBook($idBook, $idUser, $note);
+            $db->addVoteBook($idBook, $idUser, $note, $text);
             // incrémente de 1 les appréciation de l'utilisateur 
             $db->addAppreciationUser($idUser);
             // incrémente de 1 les appréciation du livre
@@ -78,36 +83,88 @@ if(isset($_POST['submit']))
             <p>Date de publication : <?= $book['booPublicationYear'] ?></p>
             <p><a id="extractLink" href="<?= $book['booExtract'] ?>" target="_blank">Lien vers l'extrait</a> </p>
             <p><a id="extractLink" href="detailsUser.php?idUser=<?=$book['idUser'] ?>"><?= $book['useLogin']?></a></p>
-            <form method='POST'>
-                <p>Moyenne d'appréciation : <span id="bookAvg">
-                <?php 
-                    if($bddNotes == 0) {
-                        echo '0';
-                    }
-                    else {
-                        echo $bddNotes;
-                    }
-                ?>
-                </span> / 5 (sur <?= $book['booNoteCount'] ?> votes)
-                    <select name='note' id='note'>
-                        <option value='0'>Votre note</option>
-                        <option value='1'>1</option>
-                        <option value='1.5'>1.5</option>
-                        <option value='2'>2</option>
-                        <option value='2.5'>2.5</option>
-                        <option value='3'>3</option>
-                        <option value='3.5'>3.5</option>
-                        <option value='4'>4</option>
-                        <option value='4.5'>4.5</option>
-                        <option value='5'>5</option>
-                    </select>
-                    <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
-                </p>                    
-            </form>                              
+
+            <p>Moyenne d'appréciation : <span id="bookAvg">
+            <?php 
+                if($bddNotes == 0) {
+                    echo '0';
+                }
+                else {
+                    echo $bddNotes;
+                }
+            ?>
+            </span> / 5 (sur <?= $book['booNoteCount'] ?> <button onclick="openForm2()">Notes</button>)
+            <button class="open-button" onclick="openForm1()">Ajouter une note</button>
+
+                   
             </div>
         </div>
     <?php endforeach ?>
 </div>
+
+
+<div class="form-popup" id="myForm">
+    <form method='POST' action="" class="form-container">
+        <div class="tileButton">
+            <h1>Ajouter une note</h1>
+            <button type="button" id="btncancel" onclick="closeForm1()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
+        </div>
+        <div class="comment">
+            <select name='note' id='note'>
+                <option value='0'>Votre note</option>
+                <option value='1'>1</option>
+                <option value='1.5'>1.5</option>
+                <option value='2'>2</option>
+                <option value='2.5'>2.5</option>
+                <option value='3'>3</option>
+                <option value='3.5'>3.5</option>
+                <option value='4'>4</option>
+                <option value='4.5'>4.5</option>
+                <option value='5'>5</option>
+            </select>
+            <textarea id="text" name="text" rows="4" cols="50"></textarea>
+            <input id="submit" class='confirm'type='submit' name='submit' value='Ajouter'> 
+        </div>   
+            
+              
+    </form>    
+</div>
+
+
+
+<div class="form-popup" id="myFormResult">
+    <div class="tileButton">
+        <h1 class="titleOpinion">Avis <?= $books[0]['booTitle']; ?></h1>
+        <button type="button" id="btncancel" onclick="closeForm2()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
+    </div>
+    <?php foreach($bookNotes as $bookNote): ?>
+        <div class="comment">
+            <h4><?= $bookNote['useLogin']; ?></h4>
+            <p><?= $bookNote['votNote']; ?> / 5</p>
+            <p><?= $bookNote['votText']; ?></p>
+        </div>
+        
+    <?php endforeach; ?>
+</div>
+
+<script>
+function openForm1() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm1() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+function openForm2() {
+  document.getElementById("myFormResult").style.display = "block";
+}
+
+function closeForm2() {
+  document.getElementById("myFormResult").style.display = "none";
+}
+</script>
+
 
 <?php
 if(isset($error))

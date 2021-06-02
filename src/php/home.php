@@ -2,6 +2,7 @@
 $title = 'Accueil';
 require ('template/header.php');
 $fiveBooksNotes = $db->lastFiveBooks();
+$bookNotes = $db->getNotesBook($idBook);
 ?>
 
 <div class="content">
@@ -13,7 +14,7 @@ $fiveBooksNotes = $db->lastFiveBooks();
         </div>
         <div class="explicationText">
             <p>
-                Ce petit site, développés par trois élèves de deuxième année en apprentissage d'informatique à l'ETML, sert à répertorier de nombreux livre grâce à une base de donnée.
+                Ce petit site, développés par trois élèves de deuxième année en apprentissage d'informatique à l'ETML, sert à répertorier de nombreux livre grâce à une base de données.
                 <br>Après vous être connecté, vous aurez la possibilité de créer et modifier des livres, ainsi que de leur donner une note d'appréciation.
             </p>
         </div>
@@ -31,11 +32,14 @@ $fiveBooksNotes = $db->lastFiveBooks();
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $fiveBooksNote['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $fiveBooksNote['autFirstname'] ?></p> 
-                    <?php if(empty($fiveBooksNote['votNote'])): ?>
-                        <p id="bookAvg">0 / 5</p>
-                    <?php else: ?>
-                        <p id="bookAvg"><?= $fiveBooksNote['votNote'] ?> / 5</p>
-                    <?php endif; ?>
+                    <?php 
+                    if($bddNotes == 0) {
+                        echo '0';
+                    }
+                    else {
+                        echo $bddNotes;
+                    }
+                ?>
                 </div>
             </div>
         <?php endforeach; ?>

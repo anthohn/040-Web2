@@ -63,16 +63,16 @@ CREATE TABLE t_write(
 );
 
 CREATE TABLE t_vote(
+    idVote INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     idxBook INT NOT NULL,
     idxUser INT NOT NULL,
     votNote FLOAT UNSIGNED,
+    votText TEXT,
     CONSTRAINT fk_t_vote_t_book_idBook FOREIGN KEY (idxBook) REFERENCES t_book(idBook) ON DELETE CASCADE,
     CONSTRAINT fk_t_vote_t_user_idUser FOREIGN KEY (idxUser) REFERENCES t_user(idUser) ON DELETE CASCADE
     -- PRIMARY KEY (idxUser, idxBook)
 );
 
--- INSERT INTO t_vote (idxBook, idxUser, votNote) VALUES
--- (8, 1, 1);
 
 INSERT INTO t_editor (ediName) VALUES
 ('Hachette Livre'),
@@ -136,8 +136,7 @@ INSERT INTO t_vote (idxBook, idxUser) VALUES
 (7, 1),
 (8, 1),
 (9, 1),
-(10, 1)
-;
+(10, 1);
 
 INSERT INTO t_write (idxBook, idxAuthor) VALUES
 (1, 1),

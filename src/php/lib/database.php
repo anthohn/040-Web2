@@ -134,21 +134,21 @@
      * Function update a book
      * @param
      */
-    public function updateBook($idArtist, $name, $date, $country){
-        $query = 'UPDATE t_artist SET artName = :artName,  artBirth = :artBirth, idxCountry = :idxCountry WHERE idArtist = :idArtist';
+    public function updateBook($idBook, $author, $summary, $category, $pageNumber, $editor, $date){
+        $query = 'UPDATE t_book SET booTitle = :booTitle,  booPages = :booPages, booExtract = :booExtract WHERE idBook = :idBook';
         $binds = array(
             0 => array(
-                'field' => ':idArtist',
-                'value' => $idArtist,
+                'field' => ':booTitle',
+                'value' => $idBook,
                 'type' => PDO::PARAM_INT
             ),
             1 => array(
-                'field' => ':artName',
-                'value' => $name,
+                'field' => ':booPages',
+                'value' => $pageNumber,
                 'type' => PDO::PARAM_STR
             ),
             2 => array(
-                'field' => ':artBirth',
+                'field' => ':booExtract',
                 'value' => $date,
                 'type' => PDO::PARAM_STR
             ),
@@ -182,8 +182,17 @@
 
     //Fonction qui récupere les 5 derniers ouvrage de la table t_books
     public function lastFiveBooks(){
-        $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_book.idBook DESC LIMIT 5';
+        $query = 'SELECT idBook, booTitle, booPages, booExtract, autLastname, autFirstname, booSummary, catName, ediName, idUser, useLogin, DATE_FORMAT(booPublicationYear, "%d/%m/%Y") AS booPublicationYear, booNoteCount FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor JOIN t_user ON idxUser = idUser ORDER BY idBook DESC LIMIT 5';
         $reqExecuted = $this->querySimpleExecute($query);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Récuperer la moyenne des livres
+    public function getNoteslastFiveBooks(){
+        $query = 'SELECT votNote, votText, idxUser, useLogin FROM t_vote JOIN t_user ON idxUser = idUser ORDER BY idVote DESC';
+        $reqExecuted = $this->querySimpleExecute($query, $binds);
         $results = $this->formatData($reqExecuted);
         $this->unsetData($reqExecuted);
         return $results;
@@ -385,11 +394,11 @@
     }
 
     //ajout d'un vote dans la bdd
-    public function addVoteBook($idBook, $idUser, $note){
+    public function addVoteBook($idBook, $idUser, $note, $text){
         //Probleme au niveau de la note (s'arrondie seule ??)
         // print_r($note);
         // die();
-        $query = 'INSERT INTO t_vote (idxBook, idxUser, votNote) VALUES (:idxBook, :idxUser, :votNote)';
+        $query = 'INSERT INTO t_vote (idxBook, idxUser, votNote, votText) VALUES (:idxBook, :idxUser, :votNote, :votText)';
         $binds = array(
             0 => array(
                 'field' => ':idxBook',
@@ -404,6 +413,11 @@
             2 => array(
                 'field' => ':votNote',
                 'value' => $note,
+                'type' => PDO::PARAM_STR
+            ),
+            3 => array(
+                'field' => ':votText',
+                'value' => $text,
                 'type' => PDO::PARAM_STR
             )
         );
@@ -430,8 +444,24 @@
     }
 
     //Récuperer la moyenne des livres
-    public function getNotesBook($idBook){
+    public function getNoteBook($idBook){
         $query = 'SELECT FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_vote WHERE idxBook = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idBook,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
+    //Récuperer la moyenne des livres
+    public function getNotesBook($idBook){
+        $query = 'SELECT votNote, votText, idxUser, useLogin FROM t_vote JOIN t_user ON idxUser = idUser WHERE idxBook = :id ORDER BY idVote DESC';
         $binds = array(
             0 => array(
                 'field' => ':id',
