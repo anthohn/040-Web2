@@ -1,4 +1,11 @@
-<?php $title = 'Erreur 404';
+<?php
+
+/**
+ * Auteur : Anthony Höhn
+ * Date : 26.04.2021
+ * Description : page 404
+ */
+$title = 'Erreur 404';
 require "template/header.php"; ?>
   
 <div class="error404">

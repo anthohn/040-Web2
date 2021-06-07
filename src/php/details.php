@@ -13,6 +13,8 @@ if(isLogged()) :?>
     // Si tout est ok -> appelle les fonctions
     else
     {
+        // put the session id in $ id User
+
         $idBook = $_GET["idBook"];
         $books = $db->getBook($idBook);
         $bookNotes = $db->getNotesBook($idBook);
@@ -20,11 +22,8 @@ if(isLogged()) :?>
         $_SESSION['bookNoteAvg'] = $idBook;    
     }
 
-    // Si l'utilisateur est connecté récupere l'id de session dans $idUser
 
-    
-
-
+    // if the user clikc submit
     if(isset($_POST['submit']))
     {
         // Si connecté continue sinon message erreur

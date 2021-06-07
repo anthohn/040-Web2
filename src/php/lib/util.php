@@ -13,7 +13,7 @@ function isLogged()
 }
 
 /**
- * Check if the user is admin or not
+ * Check if the user is log and admin or not
  */
 function isAdmin()
 {

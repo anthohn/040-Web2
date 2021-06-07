@@ -2,7 +2,7 @@
 /**
  * Auteur : Anthony Höhn
  * Date : 26.04.2021
- * Description : 
+ * Description : All functions
  */
 
 
@@ -17,7 +17,6 @@
     private $database;
     private $connector;
 
-    //connexion à la bdd en faisant essayant puis si erreur récupere le message et affiche le message d'erreur 
     public function __construct($host = null, $username = null, $password = null, $database = null)
     {
         if($host != null)
@@ -82,7 +81,7 @@
     }
 
     /**
-     * Function get all books from the ddb
+     * Function to get all books from the ddb
      */
     public function getBooks(){
         $query = 'SELECT * FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory ORDER BY idBook';
@@ -93,7 +92,7 @@
     }
 
     /**
-     * Function get all books from the ddb
+     * Function get all books from one user
      * @param $idUser
      */
     public function getBooksUser($idUser){
@@ -132,7 +131,13 @@
 
     /**
      * Function update a book
-     * @param
+     * @param $idBook
+     * @param $author
+     * @param $summary
+     * @param $category
+     * @param $pageNumber
+     * @param $editor
+     * @param $date
      */
     public function updateBook($idBook, $author, $summary, $category, $pageNumber, $editor, $date){
         $query = 'UPDATE t_book SET booTitle = :booTitle,  booPages = :booPages, booExtract = :booExtract WHERE idBook = :idBook';
@@ -164,7 +169,10 @@
         return $results;
     } 
 
-    //Fonction qui récupere un livre grace à son ID
+    /** 
+     * Function get one book (détails book)
+     * @param $id
+     */ 
     public function getBook($id){
         $query = 'SELECT idBook, booTitle, booPages, booExtract, autLastname, autFirstname, booSummary, catName, ediName, idUser, useLogin, DATE_FORMAT(booPublicationYear, "%d/%m/%Y") AS booPublicationYear, booNoteCount FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor JOIN t_user ON idxUser = idUser WHERE idBook = :id';
         $binds = array(
@@ -180,6 +188,9 @@
         return $results;
     }
 
+    /** 
+     * Function get user books
+     */ 
     public function getUserBooks() {
         $query = 'SELECT idBook, idUser, useLogin FROM t_book JOIN t_write ON idBook = idxBook JOIN t_author ON idxAuthor = idAuthor JOIN t_category ON idxCategory = idCategory JOIN t_editor ON idxEditor = idEditor JOIN t_user ON idxUser = idUser';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -188,7 +199,9 @@
         return $results;
     }
 
-    //Fonction qui récupere les 5 derniers ouvrage de la table t_books
+    /** 
+     * Function get last five books from table t_books
+     */ 
     public function lastFiveBooks(){
         $query = 'SELECT idBook, booTitle, autFirstname, FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_book JOIN t_vote ON t_book.idBook = t_vote.idxBook JOIN t_write ON t_write.idxBook = idBook JOIN t_author ON idxAuthor = idAuthor GROUP BY t_vote.idxBook ORDER BY t_book.idBook DESC LIMIT 5';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -197,7 +210,9 @@
         return $results;
     }
 
-    //Récuperer la moyenne des livres
+    /** 
+     * Function get notes from last five books
+     */ 
     public function getNoteslastFiveBooks(){
         $query = 'SELECT votNote, votText, idxUser, useLogin FROM t_vote JOIN t_user ON idxUser = idUser ORDER BY idVote DESC';
         $reqExecuted = $this->querySimpleExecute($query, $binds);
@@ -206,7 +221,10 @@
         return $results;
     }
 
-    //Fonction qui récupere les ouvrages de la table t_books par categorie
+    /** 
+     * Function get books form a categories
+     * @param $idCategory
+     */ 
     public function categoryBooks($idCategory){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE idCategory  = :idCategory';
         $binds = array(
@@ -222,7 +240,9 @@
         return $results;
     }
 
-    //Fonction qui récupere toutes les catégorie
+    /** 
+     * Function get all categories
+     */ 
     public function getCategorys(){
         $query = 'SELECT * FROM t_category';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -231,7 +251,9 @@
         return $results;
     }
 
-    //Fonction qui récupere les éditeurs
+    /** 
+     * Function get all editors
+     */ 
     public function getEditors(){
         $query = 'SELECT * FROM t_editor';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -240,8 +262,17 @@
         return $results;
     }
 
-    //ajout d'un livre dans la bdd
-    public function addBook($title, $pages, $extract , $summary, $publicationYear, $category, $user){
+    /**
+     * Function add book in db
+     * @param $title
+     * @param $pages
+     * @param $extract
+     * @param $summary
+     * @param $publicationYear
+     * @param $category
+     * @param $user
+     */
+    public function addBook($title, $pages, $extract, $summary, $publicationYear, $category, $user){
         $query = 'INSERT INTO t_book (booTitle, booPages, booExtract, booSummary, booPublicationYear, idxCategory, idxUser) VALUES (:title, :pages, :extract, :summary, :publicationYear, :category, :user)';
         $binds = array(
             0 => array(
@@ -292,7 +323,10 @@
         return $results2[0]["LAST_INSERT_ID()"];
     }
 
-    // Ajout d'un "write" dans la bdd
+    /**
+     * Function ??
+     * @param $??
+     */
     public function addWrite($idxAuthor){
         $query = "INSERT INTO t_write (idxBook, idxAuthor) VALUES (LAST_INSERT_ID(), :idxAuthor)";
         $binds = array(  
@@ -308,7 +342,11 @@
         return $results;
     }
 
-    // Ajout d'un "write" dans la bdd
+    /**
+     * Function add vote last ID
+     * @param $idxBook
+     * @param $idxUser
+     */
     public function addVoteLastId($idxBook, $idxUser){
         $query = "INSERT INTO t_vote (idxBook, idxUser) VALUES (:idxBook, :idxUser)";
         $binds = array(  
@@ -329,7 +367,9 @@
         return $results;
     }
 
-    //récupere tous les utilisateur
+    /**
+     * Function get users
+     */
     public function getUsers(){
         $query = "SELECT idUser, useLogin, useIsAdmin, useInscriptionDate, useSuggestBook, useAppreciationNumber, usePassword FROM t_user";
         $reqExecuted = $this->querySimpleExecute($query);
@@ -338,7 +378,11 @@
         return $results;
     }
 
-    //ajout d'un utilisateur dans la bdd 
+    /**
+     * Function add user in db
+     * @param $login
+     * @param $psw
+     */
     public function addUser($login, $psw){
         $query = "INSERT INTO t_user (useLogin, usePassword, useInscriptionDate) VALUES (:useLogin, :usePassword, now())";
         $binds = array(
@@ -359,7 +403,10 @@
         return $results;
     }
 
-    //Récuperer les infos d'UN utilisateur
+    /**
+     * Function get one user
+     * @param $idUser
+     */
     public function getOneUser($idUser){
         $query = 'SELECT idUser, useLogin, DATE_FORMAT(useInscriptionDate, "%d/%m/%Y") AS useInscriptionDate , useSuggestBook, useAppreciationNumber FROM t_user WHERE idUser = :id';
         $binds = array(
@@ -375,7 +422,10 @@
         return $results;
     }
 
-    // Suppression d'untilisateur
+    /**
+     * Function delete one user from db
+     * @param $idUser
+     */
     public function deleteUser($idUser){
         $query = "DELETE FROM t_user WHERE idUser = :id";
         $binds = array(
@@ -391,7 +441,10 @@
         return $results;
     }
 
-    //va chercher les livres selon ce qui est entré par l'utilisateur 
+    /**
+     * Function search bar 
+     * @param $search
+     */ 
     public function getSearchedBooks($search){
         $query = 'SELECT * FROM t_book JOIN t_category ON idxCategory = idCategory JOIN t_write ON idxBook = idBook JOIN t_author ON idxAuthor = idAuthor WHERE booTitle LIKE "%'.$search.'%"';
         $reqExecuted = $this->querySimpleExecute($query);
@@ -401,11 +454,14 @@
         return $results;
     }
 
-    //ajout d'un vote dans la bdd
+    /**
+     * Function search bar 
+     * @param $idBook
+     * @param $idUser
+     * @param $note
+     * @param $text
+     */
     public function addVoteBook($idBook, $idUser, $note, $text){
-        //Probleme au niveau de la note (s'arrondie seule ??)
-        // print_r($note);
-        // die();
         $query = 'INSERT INTO t_vote (idxBook, idxUser, votNote, votText) VALUES (:idxBook, :idxUser, :votNote, :votText)';
         $binds = array(
             0 => array(
@@ -435,7 +491,10 @@
         return $results;
     }
 
-    //Incrémente de 1 le nombre de vote d'un livre
+    /**
+     * Function increments by one the numbers of appreciation for one book
+     * @param $idBook
+     */
     public function addAppreciationBook($idBook){
         $query = 'UPDATE t_book SET booNoteCount = booNoteCount + 1  WHERE idBook = :id';
         $binds = array(
@@ -451,7 +510,10 @@
         return $results;
     }
 
-    //Récuperer la moyenne des livres
+    /**
+     * Function get avg not from one book
+     * @param $idBook
+     */
     public function getNoteBook($idBook){
         $query = 'SELECT FORMAT(AVG(votNote) , 1) AS "votNote" FROM t_vote WHERE idxBook = :id';
         $binds = array(
@@ -467,7 +529,10 @@
         return $results;
     }
 
-    //Récuperer la moyenne des livres
+    /**
+     * Function get all notes from one book
+     * @param $idBook
+     */
     public function getNotesBook($idBook){
         $query = 'SELECT votNote, votText, idxUser, useLogin FROM t_vote JOIN t_user ON idxUser = idUser WHERE idxBook = :id ORDER BY idVote DESC';
         $binds = array(
@@ -483,7 +548,10 @@
         return $results;
     }
 
-    // Incrémente de 1 un utilisateur lors de son vote
+    /**
+     * Function increments by one the number of appreciations of a user
+     * @param $idUser
+     */
     public function addAppreciationUser($idUser){
         $query = 'UPDATE t_user SET useAppreciationNumber = useAppreciationNumber + 1  WHERE idUser = :id';
         $binds = array(
@@ -499,7 +567,9 @@
         return $results;
     }
 
-    // Liste les auteurs
+    /**
+     * Function get all authors
+     */
     public function getAuthor(){
         $query = 'SELECT * FROM t_author';
         $reqExecuted = $this->querySimpleExecute($query);

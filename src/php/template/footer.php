@@ -1,4 +1,4 @@
-                </main>    
+                </main>
                 <footer>
                         <div class="tooltip">
                                 <p>Copyright © 

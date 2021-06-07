@@ -7,7 +7,7 @@
 * Description : Manage the connected user's page
 */
 
-
+// tab
 $title = 'Compte';
 require ('template/header.php');
 
@@ -29,7 +29,9 @@ if(isLogged()):
     // Disconnect the user, destroy the session and redirect him to the connexion page
     if(isset($_GET['auth']) && !empty($_GET['auth']) && $_GET['auth'] == 'logout') 
     {
+        // frees all session variables currently registered.
         session_unset();
+        // destroys all of the data associated with the current session
         session_destroy();
         header("Location:connexion.php");
     }
@@ -39,7 +41,9 @@ if(isLogged()):
     {
         $idUser = $_SESSION['idUser'];
         $db->deleteUser($idUser);
+        // frees all session variables currently registered
         session_unset();
+        // destroys all of the data associated with the current session
         session_destroy();
         header('Location:connexion.php');
     }
@@ -47,6 +51,7 @@ if(isLogged()):
 
 <div class="accountFormcontent">
     <form>
+        <!-- title -->
         <h2>Compte</h2>
         <table>
             <tr>
@@ -57,14 +62,19 @@ if(isLogged()):
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                         </svg>
                     </div>
+                    <!-- User name -->
                     <p>Utilisateur : <?= $userInfos[0]['useLogin'] ?></p>
+                    <!-- number of suggest book -->
                     <p>Livres suggérés : <?= $userInfos[0]['useSuggestBook'] ?></p>
+                    <!-- number of appreciation -->
                     <p>Appréciations : <?= $userInfos[0]['useAppreciationNumber'] ?></p>
+                    <!-- inscription date -->
                     <p>Inscription : <?= $userInfos[0]['useInscriptionDate'] ?></p>
                 </td>
             </tr>
             <tr>
                 <td>
+                    <!-- logout button -->
                     <div class="logout">
                         <a href="account.php?auth=logout">Déconnexion</a>
                     </div>
@@ -72,6 +82,7 @@ if(isLogged()):
             </tr>
             <tr>
                 <td>
+                    <!-- delete account button (confirm pop-up) -->
                     <div class="deleteAccount">
                         <a href="account.php?auth=deleteAccount" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')">Supprimer mon compte</a>
                     </div>  
