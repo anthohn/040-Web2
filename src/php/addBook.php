@@ -27,8 +27,7 @@ $authors = $db->getAuthor();
                     <div class="inputNumberPages input">
                         <label for="pages">Nombre de pages</label>
                         <input type="number" id="pages" name="pages" placeholder="Nombre de pages">
-                    </div>
-                    
+                    </div>   
                 </div>
 
                 <div class="iptExtractCategory">
