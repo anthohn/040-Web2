@@ -103,7 +103,7 @@ $authors = $db->getAuthor();
         // Check if the button is clicked
         if(isset($_POST['btnSubmitBooks'])) {
             // Check for the user's input
-            if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) || !file_exists($_FILES['upload']['tmp_name']) || !is_uploaded_file($_FILES['upload']['tmp_name'])) {
+            if(!(isset($_POST['title']))  || empty($_POST['pages']) || $_POST['pages'] > 32767 || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) || !file_exists($_FILES['upload']['tmp_name']) || !is_uploaded_file($_FILES['upload']['tmp_name'])) {
                 echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
             }
             // Add the book, the image and all other information needed

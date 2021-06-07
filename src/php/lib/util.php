@@ -1,4 +1,9 @@
 <?php
+/**
+ * Auteur : Anthony Höhn, Younes Sayeh
+ * Date : 26.04.2021
+ * Description : Utils function
+ */
 
 /**
  * Check if the user log or not

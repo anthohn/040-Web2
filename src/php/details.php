@@ -7,7 +7,9 @@
 */
 $title = 'Details du livre';
 require ('template/header.php');
-if(isLogged()):?>
+
+if(isLogged()):
+?>
 <?php
 // Check the GET content, if is numeric (more secure) and if it's ok call all the utils function
 if(!isset($_GET['idBook']) OR !is_numeric($_GET['idBook']))
@@ -32,22 +34,20 @@ if(isLogged())
 // Check the button submit
 if(isset($_POST['submit']))
 {
-    if(isLogged())
+    if(!isLogged())
     {
         header('Location:404.php');
     }
-    // Si tout est ok -> appelle les fonctions
     else
     {
-        // put the session id in $ id User
+        $note = $_POST['note'];
+        $text = $_POST['text'];
 
         $idBook = $_GET["idBook"];
         $books = $db->getBook($idBook);
         $bookNotes = $db->getNotesBook($idBook);
         $bddNotes = $db->getNoteBook($idBook)[0]['votNote'];
         $_SESSION['bookNoteAvg'] = $idBook;    
-    }
-
 
         // If the note is different to 0 then continue, if not -> error message
         if($note != 0)
@@ -66,8 +66,9 @@ if(isset($_POST['submit']))
         {
             header('Location:connexion.php');
         }
-    }
-    ?>
+    } 
+}
+?>
 
 
     <div class="MainDetailBookBlock">
@@ -150,9 +151,23 @@ if(isset($_POST['submit']))
                 <h1>Ajouter une note</h1>
                 <button type="button" id="btncancel" onclick="closeForm1()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
             </div>
-            <div class="commentPopUp">
-                <div class="commentPopUpTitle">
-                    <h3>Votre Avis : (Facultatif)</h3>
+            <div class="comment">
+                <div class="addNotePopUp">
+                    <div class="addNotePopUpTitle">
+                        <h3>Votre Note : </h3>
+                    </div>
+                    <select name='note' id='note'>
+                        <option value='0'>Votre note</option>
+                        <option value='1'>1</option>
+                        <option value='1.5'>1.5</option>
+                        <option value='2'>2</option>
+                        <option value='2.5'>2.5</option>
+                        <option value='3'>3</option>
+                        <option value='3.5'>3.5</option>
+                        <option value='4'>4</option>
+                        <option value='4.5'>4.5</option>
+                        <option value='5'>5</option>
+                    </select>
                 </div>
                 <div class="commentPopUp">
                     <div class="commentPopUpTitle">
@@ -164,13 +179,9 @@ if(isset($_POST['submit']))
                         <button type="reset" id="resetDetail">Effacer</button>
                     </div>
                 </div>
-            </div>   
-                
-                
+            </div>
         </form>    
     </div>
-
-
 
     <div class="form-popup" id="myFormResult">
         <div class="tileButton">
@@ -183,49 +194,30 @@ if(isset($_POST['submit']))
                 <p><?= $bookNote['votNote']; ?> / 5</p>
                 <p><?= $bookNote['votText']; ?></p>
             </div>
-            
         <?php endforeach; ?>
     </div>
 
-    <script>
+<!-- Script for the pop-up -->
+<script>
     function openForm1() {
-    document.getElementById("myForm").style.display = "block";
-    document.getElementById("html").style.overflow = "hidden";
+        document.getElementById("myForm").style.display = "block";
+        document.getElementById("html").style.overflow = "hidden";
     }
 
     function closeForm1() {
-    document.getElementById("myForm").style.display = "none";
-    document.getElementById("html").style.overflow = "scroll";
+        document.getElementById("myForm").style.display = "none";
+        document.getElementById("html").style.overflow = "auto";
     }
 
     function openForm2() {
-    document.getElementById("myFormResult").style.display = "block";
-    document.getElementById("html").style.overflow = "hidden";
+        document.getElementById("myFormResult").style.display = "block";
+        document.getElementById("html").style.overflow = "hidden";
     }
 
     function closeForm2() {
-    document.getElementById("myFormResult").style.display = "none";
-    document.getElementById("html").style.overflow = "scroll";
+        document.getElementById("myFormResult").style.display = "none";
+        document.getElementById("html").style.overflow = "auto";
     }
-    </script>
-
-<!-- Script for the pop-up -->
-<script>
-function openForm1() {
-  document.getElementById("myForm").style.display = "block";
-  document.getElementById("html").style.overflow = "hidden";
-}
-
-function closeForm1() {
-  document.getElementById("myForm").style.display = "none";
-  document.getElementById("html").style.overflow = "auto";
-}
-
-
-function closeForm2() {
-  document.getElementById("myFormResult").style.display = "none";
-  document.getElementById("html").style.overflow = "auto";
-}
 </script>
 
     <?php require ('template/footer.php'); ?>
