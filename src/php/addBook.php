@@ -19,13 +19,11 @@ $authors = $db->getAuthor();
         <form method="POST" action="addBook.php" enctype="multipart/form-data">
             <div class="halfFormContainer">
                 <div class="iptNamePages">
-                    <!-- Titre -->
                     <div class="inputName input" id="titleContainer">
                         <label for="title">Titre</label>
                         <input type="text" id="title" name="title" placeholder="Titre du livre">
                     </div>
 
-                    <!-- Nombre de pages  -->
                     <div class="inputNumberPages input">
                         <label for="pages">Nombre de pages</label>
                         <input type="number" id="pages" name="pages" placeholder="Nombre de pages">
@@ -34,14 +32,11 @@ $authors = $db->getAuthor();
                 </div>
 
                 <div class="iptExtractCategory">
-
-                    <!-- Extrait (Lien relatif vers un fichier pdf d'une page de l'ouvrage -> cdc)  -->
                     <div class="extract input">
                         <label for="extract">Lien de l'extrait</label>
                         <input type="url" id="extract" name="extract" placeholder="Lien de l'extrait">
                     </div>
 
-                    <!-- Category  -->
                     <div class="selectCategoryAdd input">
                         <label for="Category">Categorie</label>
                         <select name="Category" id="Category">
@@ -57,7 +52,6 @@ $authors = $db->getAuthor();
             <div class="halfFormContentContainer">
                 <div class="authorYearDateImgContainer">
                     <div class="iptAuthorYear">
-                        <!-- Auteur -->
                         <div class="inputAuthor input">
                             <label for="author">Auteur</label>
                             <select name="author" id="author">
@@ -68,7 +62,6 @@ $authors = $db->getAuthor();
                             </select>
                         </div>
 
-                        <!-- Année d'édition -->
                         <div class="inputDate input">
                             <label for="date">Année d'édition</label>
                             <input type="date" name="date" id="date">
@@ -77,7 +70,6 @@ $authors = $db->getAuthor();
 
                     
                     <div class="imgResumeBtn">
-                        <!-- Image de couverture -->
                         <div class="inputImg input">
                             <label for="img" id="imgLbl">Image de couverture</label>
                             <div class="uploadContent">
@@ -89,19 +81,15 @@ $authors = $db->getAuthor();
 
                         <div class="resumeBtnContainer">
                             <div class="btnAndResume">
-                                <!-- Résumé  -->
                                 <div class="resume input">
                                     <label for="resume">Résumé</label>
                                     <textarea id="resume" name="resume" placeholder="Résumé du livre"></textarea>
                                 </div>
 
-                                <!-- Boutton Ajouter -->
                                 <div class="button">
                                     <div class="btnAdding">
                                         <input type="submit" id="btnSubmitBooks" name="btnSubmitBooks" value="Ajouter" />
                                     </div>
-
-                                    <!-- Boutton pour supprimer ce qui est acctuellement entré -->
                                     <div class="btnDeleting">
                                         <button type="reset" id="btnDelete" name="btnDelete">Effacer</button>
                                     </div>
@@ -113,37 +101,28 @@ $authors = $db->getAuthor();
             </div>
         </form>
         <?php
+        // Check if the button is clicked
         if(isset($_POST['btnSubmitBooks'])) {
-            if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) /*|| !(isset($_POST['upload']))*/) {
+            // Check for the user's input
+            if(!(isset($_POST['title']))  || empty($_POST['pages']) || empty($_POST['extract']) || empty($_POST['resume']) || empty($_POST['date']) || !(isset($_POST['Category'])) || !(isset($_POST['author'])) || !file_exists($_FILES['upload']['tmp_name']) || !is_uploaded_file($_FILES['upload']['tmp_name'])) {
                 echo '<h2 id="errorMessage">Veuillez renseignez tout les champs.</h2>';
             }
+            // Add the book, the image and all other information needed
             else {
-                $newID = $db->addBook($_POST['title'],  $_POST['pages'], $_POST['extract'], $_POST['resume'], $_POST['date'], $_POST['Category']);
-                $db->addWrite($_POST['author']);
-
+                $newID = $db->addBook($_POST['title'],  $_POST['pages'], $_POST['extract'], $_POST['resume'], $_POST['date'], $_POST['Category'], $_SESSION['idUser']);
+                
                 if($newID >= 0) {
+                    $db->addWrite($_POST['author']);
+                    $db->addVoteLastId($newID, $_SESSION['idUser']);
+                    $db->addSuggestUser($_SESSION['idUser']);
+
                     $source = $_FILES["upload"]["tmp_name"];
                     $destination = "../../resources/images/books/$newID.jpg";
                     move_uploaded_file($source, $destination);
                     echo '<h1 id="validationMessage">Le Livre a bien été ajouté.</h1>';
                 }
-
                 else {
-                    $newID = $db->addBook($_POST['title'],  $_POST['pages'], $_POST['extract'], $_POST['resume'], $_POST['date'], $_POST['Category'], $_SESSION['idUser']);
-                    $db->addWrite($_POST['author']);
-
-                    if($newID >= 0) {
-                        $db->addVoteLastId($newID, $_SESSION['idUser']);
-                        $source = $_FILES["upload"]["tmp_name"];
-                        $destination = "../../resources/images/books/$newID.jpg";
-                        move_uploaded_file($source, $destination);
-                        echo '<h1 id="validationMessage">Le Livre a bien été ajouté.</h1>';
-                    }
-
-                    else {
-                        echo '<h2 id="errorMessage">Erreur d\'upload</h2>';
-                    }    
-                    
+                    echo '<h2 id="errorMessage">Erreur d\'upload</h2>';
                 }
             }
         }

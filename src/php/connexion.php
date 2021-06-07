@@ -1,16 +1,22 @@
 <?php 
+/**
+* ETML 
+* Author : Anthony Höhn
+* Date : 04.05.2021
+* Description : connexion page 
+*/
 $title = 'Connexion';
 require ('template/header.php');
 
 if(isset($_POST["connexion"]))
 {
+    // Check the user's input
     if(!empty($_POST["login"]) && (!empty($_POST["psw"])))
     {	
         $users = $db->getUsers();
         foreach($users as $user)
-        // print_r($user['idUser']);
-        // die();
         {
+            // Verify the username and the password and create the SESSION variable if it's correct
             if($user['useLogin'] == $_POST['login'])
             {
                 if(password_verify($_POST['psw'], $user['usePassword']))

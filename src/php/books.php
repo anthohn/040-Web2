@@ -1,10 +1,17 @@
 <?php
+/**
+* ETML 
+* Author : Anthony Höhn, Julien Cartier, Younes Sayeh
+* Date : 04.05.2021
+* Description : Listing page 
+*/
 $title = 'Tous les livres';
 require ('template/header.php');
 $categorys = $db->getCategorys();
 $books = $db->getBooks();
 $bookUsers = $db->getUserBooks();
 
+// Check if the user makes a research and check the content (security with htmlspecialchars)
 if(isset($_GET['search']) && !empty($_GET['search']))
 {
     $search = htmlspecialchars($_GET['search']);
@@ -30,6 +37,7 @@ if(isset($_GET['search']) && !empty($_GET['search']))
             <div class='selectCategory input' id="selectBookList">
                 <select name='category' id='category'>
                     <option value='0'>Séléctionnez</option>
+                    <!-- Listing all the category in a select input -->
                     <?php foreach($categorys as $category) : ?>
                         <option value='<?= $category['idCategory']; ?>'><?= $category['catName']; ?></option>
                     <?php endforeach; ?>
@@ -39,6 +47,7 @@ if(isset($_GET['search']) && !empty($_GET['search']))
         </form>
         <div class="result">
             <?php 
+                // Check and display the research 
                 if(isset($_GET['search']) && !empty($_GET['search'])) {
                     if(count($books) > 0) {
                         foreach($books as $book) {    
@@ -51,13 +60,23 @@ if(isset($_GET['search']) && !empty($_GET['search']))
                 }
             ?>
         </div>
-
+        
+        <!-- Check the submit button for category -->
         <?php if(isset($_POST['submit'])) : ?>
             <?php $idCategory = $_POST['category']; 
                 $categorys = $db->CategoryBooks($idCategory); ?>
                 <div class="mainBookblockSort">
-                    <p>Résultat(s) pour :<?= $categorys[0]['catName']; ?>
+                    <?php
+                        // Check for the correct category
+                        if($_POST['category'] == 0) {
+                            echo '<h2 id="errorMessage">Veuillez séléctionner une catégorie valide</h2>';
+                        }
+                        else {
+                            echo '<p>Résultat(s) pour : ' . $categorys[0]['catName'] . '</p>'; 
+                        }
+                    ?>
                     <div class="bookBlockContainer">
+                    <!-- Listing the books -->
                     <?php foreach ($categorys as $category) : ?>
                     
                         <div class='bookBlock'>
@@ -79,10 +98,12 @@ if(isset($_GET['search']) && !empty($_GET['search']))
     </div>
     
     <div class='mainBookblock'>
+        <!-- Check the submit button for category -->
         <?php if(!(isset($_POST['submit']))) : ?>
         <?php foreach ($books as $book) : ?>
             <div class='bookBlock'>
                 <div class='bookImage'>
+                    <!-- Allows the user to the detail page if is connected -->
                     <?php if(isLogged()): ?>
                         <a href="details.php?idBook=<?= $book['idBook'];?>"><img class="imageBook" src="../../resources/images/books/<?= $book['idBook'];?>.jpg" alt="première de couverture"/></a>
                     <?php else: ?>
@@ -100,6 +121,7 @@ if(isset($_GET['search']) && !empty($_GET['search']))
                 <div class="bookInfo">
                     <p id="bookTitle"><?= $book['booTitle'] ?></p> 
                     <p id="bookAuthor"><?= $book['autFirstname'] ?></p> 
+                    <!-- Allows the user to the detail page if is connected -->
                     <?php if(isLogged()): ?>
                         <a id="extractLink" href="detailsUser.php?idUser=<?=$bookUsers[0]['idUser'] ?>"><?= $bookUsers[0]['useLogin'] ?></a>
                     <?php else: ?>

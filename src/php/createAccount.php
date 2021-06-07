@@ -1,8 +1,14 @@
 <?php 
+/**
+* ETML 
+* Author : Anthony Höhn
+* Date : 04.05.2021
+* Description : Create an account page 
+*/
 $title = 'Création compte';
 require ('template/header.php');
 
-
+// Verify if the button is checked
 if(isset($_POST['forminscription']))
 {
     $login = htmlspecialchars($_POST['login']);
@@ -10,11 +16,14 @@ if(isset($_POST['forminscription']))
     $psw = $_POST['psw'];
     $psw2 = $_POST['psw2'];
 
+    // Check the user's input
     if(!empty($_POST['login']) && !empty($_POST['psw']) && !empty($_POST['psw2']))
     {   
         $loginlength = strlen($login);
+        // Check the lenght of the login
         if($loginlength <= 255)
         {
+            // Check if the 2 user's input password match and add the new user
             if($psw == $psw2)
             {
                 $psw = password_hash($_POST['psw'], PASSWORD_DEFAULT);

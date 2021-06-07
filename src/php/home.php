@@ -1,4 +1,10 @@
 <?php 
+/**
+* ETML 
+* Author : Anthony Höhn, Julien Cartier, Younes Sayeh
+* Date : 04.05.2021
+* Description : Home page
+*/
 $title = 'Accueil';
 require ('template/header.php');
 $fiveBooksNotes = $db->lastFiveBooks();
@@ -23,6 +29,7 @@ $fiveBooksNotes = $db->lastFiveBooks();
         <?php foreach($fiveBooksNotes as $fiveBooksNote) : ?>
             <div class="bookBlock">
                 <div class="bookImage">
+                    <!-- Allows the user to the detail page if is connected -->
                     <?php if(isLogged()): ?>
                         <a href="details.php?idBook=<?= $fiveBooksNote['idBook'];?>"><img class="imageBook"  src="../../resources/images/books/<?= $fiveBooksNote['idBook']; ?>.jpg" alt="première de couverture"/></a>
                     <?php else: ?>
@@ -30,6 +37,7 @@ $fiveBooksNotes = $db->lastFiveBooks();
                     <?php endif; ?>
                 </div>
                 <div class="middle">
+                    <!-- Allows the user to the detail page if is connected -->
                     <?php if(isLogged()): ?>
                         <div class="zoom"><a href="details.php?idBook=<?= $fiveBooksNote['idBook'];?>"><svg class="zoomIcon" width="30" height="30" fill="currentColor" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a></div>
                     <?php else: ?>

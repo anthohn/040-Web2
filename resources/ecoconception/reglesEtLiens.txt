@@ -2,56 +2,60 @@ REGLES ECOCONCEPTION:
 ---------------------
 
 
-1.
+1. OUI
 Règle n° 90 - Le copier coller est possible dans les champs de formulaire.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/le-copier-coller-est-possible-dans-les-champs-de-formulaire
 
 
-2.
+2. OUI
 Règle n° 98 - Le titre de chaque page permet d'identifier son contenu.
 Lien : https://checklists.opquast.com/fr/assurance-qualite-web/le-titre-de-chaque-page-permet-didentifier-son-contenu
 
 
-3.
+3. OUI
 Règle n° 113 - Chaque image porteuse d'information est dotée d'une alternative textuelle appropriée.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/chaque-image-porteuse-dinformation-est-dotee-dune-alternative-textuelle-appropriee
 
 
-4.
+4. 
 Règle n° 161 - Le site est intégralement utilisable au clavier.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/le-site-est-integralement-utilisable-au-clavier
 
 
-5.
+5. OUI
 Règle n° 165 - Il est possible de relancer une recherche depuis sa page de résultats.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/il-est-possible-de-relancer-une-recherche-depuis-sa-page-de-resultats
 
 
-6.
+6. OUI
 Règle n° 175 - La charte graphique est cohérente sur l'ensemble du site.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/la-charte-graphique-est-coherente-sur-lensemble-du-site
 
 
-7.
+7. OUI
 Règle n° 216 - Le serveur envoie une page d'erreur 404 personnalisée.
 Lien: https://checklists.opquast.com/fr/assurance-qualite-web/le-serveur-envoie-une-page-derreur-404-personnalisee
 
 
-8.
-Règle n° 205 - Le serveur envoie les informations d'activation de protection cross site scripting.
-https://checklists.opquast.com/fr/assurance-qualite-web/le-serveur-envoie-les-informations-dactivation-de-protection-cross-site-scripting
-
-
-9.
+8. OUI
 Règle n° 164 - Chaque page de résultats de recherche peut être atteint via une adresse Web.
 Liens: https://checklists.opquast.com/fr/assurance-qualite-web/chaque-page-de-resultats-de-recherche-peut-etre-atteint-via-une-adresse-web
 
 
-10.
+9. OUI
 Règle n° 94 - La page d'accueil expose la nature des contenus et services proposés.
 Liens: https://checklists.opquast.com/fr/assurance-qualite-web/la-page-daccueil-expose-la-nature-des-contenus-et-services-proposes
 
 
-11.
+10. OUI
 Règle n° 4 - Les dates sont présentées dans des formats explicites.
 Liens: https://checklists.opquast.com/fr/assurance-qualite-web/les-dates-sont-presentees-dans-des-formats-explicites
+
+
+
+
+
+
+/* 8. 
+Règle n° 205 - Le serveur envoie les informations d'activation de protection cross site scripting.
+https://checklists.opquast.com/fr/assurance-qualite-web/le-serveur-envoie-les-informations-dactivation-de-protection-cross-site-scripting */

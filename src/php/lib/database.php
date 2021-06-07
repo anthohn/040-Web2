@@ -499,6 +499,22 @@
         return $results;
     }
 
+    // Incrémente de 1 un utilisateur lors de son vote
+    public function addSuggestUser($idUser){
+        $query = 'UPDATE t_user SET useSuggestBook = useSuggestBook + 1  WHERE idUser = :id';
+        $binds = array(
+            0 => array(
+                'field' => ':id',
+                'value' => $idUser,
+                'type' => PDO::PARAM_INT
+            )    
+        );
+        $reqExecuted = $this->queryPrepareExecute($query, $binds);
+        $results = $this->formatData($reqExecuted);
+        $this->unsetData($reqExecuted);
+        return $results;
+    }
+
     // Liste les auteurs
     public function getAuthor(){
         $query = 'SELECT * FROM t_author';

@@ -1,10 +1,16 @@
 <?php 
-// Vérifie que le get n'est pas vite, vérifie si le get est bien numérqiue -> rejete le code html et php (+ sécurisé)
+/**
+* ETML 
+* Author : Anthony Höhn, Julien Cartier, Younes Sayeh
+* Date : 04.05.2021
+* Description : Listing page 
+*/
+
+// Check the GET content, if is numeric (more secure) and if it's ok call all the utils function
 if(!isset($_GET['idBook']) OR !is_numeric($_GET['idBook']))
 {
     header('Location:404.php');
 }
-// Si tout est ok -> appelle les fonctions
 else
 {
     $title = 'Details du livre';
@@ -12,38 +18,35 @@ else
     $idBook = $_GET["idBook"];
     $books = $db->getBook($idBook);
     $bookNotes = $db->getNotesBook($idBook);
-    // echo '<pre>';
-    // print_r($bookNotes);
-    // echo '</pre>';
     $bddNotes = $db->getNoteBook($idBook)[0]['votNote'];
     $_SESSION['bookNoteAvg'] = $idBook;    
 }
 
-// Si l'utilisateur est connecté récupere l'id de session dans $idUser
+// If the user is logged, recover the SESSION information in a variable
 if(isLogged())
 {
     $idUser = $_SESSION['idUser'];
 }
 
+// Check the button submit
 if(isset($_POST['submit']))
 {
-    // Si connecté continue sinon message erreur
     if(isLogged())
     {
         $note = $_POST['note'];
         $text = $_POST['text'];
 
-        // Si la note n'est pas égal à 0 continue si non message erreur
+        // If the note is different to 0 then continue, if not -> error message
         if($note != 0)
         {
-            // ajoute le vote au livre
+            // Add the vote to the book
             $db->addVoteBook($idBook, $idUser, $note, $text);
-            // incrémente de 1 les appréciation de l'utilisateur 
+            // increments 1 the user's reviews
             $db->addAppreciationUser($idUser);
-            // incrémente de 1 les appréciation du livre
+            // increments 1 the book's reviews
             $db->addAppreciationBook($idBook);
             
-            // actualise la page 
+            // Refresh the page
             header("Location:details.php?idBook=$idBook");
         }
         else
@@ -57,7 +60,6 @@ if(isset($_POST['submit']))
     }
 }
 ?>
-
 
 <div class="MainDetailBookBlock">
     <?php foreach($books as $book): ?> 
@@ -112,6 +114,7 @@ if(isset($_POST['submit']))
             <div class="detailAvg">
                 <p>Moyenne d'appréciation : <span id="bookAvg">
                 <?php 
+                    // Diplay 0 if the note is equal to 0, if note display the book's note
                     if($bddNotes == 0) {
                         echo '0';
                     }
@@ -158,7 +161,7 @@ if(isset($_POST['submit']))
             </div>
             <div class="commentPopUp">
                 <div class="commentPopUpTitle">
-                    <h3>Votre Avis : </h3>
+                    <h3>Votre Avis : (Facultatif)</h3>
                 </div>
                 <textarea id="text" name="text"></textarea>
                 <div class="btnCommentPopUp">
@@ -189,6 +192,7 @@ if(isset($_POST['submit']))
     <?php endforeach; ?>
 </div>
 
+<!-- Script for the pop-up -->
 <script>
 function openForm1() {
   document.getElementById("myForm").style.display = "block";
@@ -197,7 +201,7 @@ function openForm1() {
 
 function closeForm1() {
   document.getElementById("myForm").style.display = "none";
-  document.getElementById("html").style.overflow = "scroll";
+  document.getElementById("html").style.overflow = "auto";
 }
 
 function openForm2() {
@@ -207,7 +211,7 @@ function openForm2() {
 
 function closeForm2() {
   document.getElementById("myFormResult").style.display = "none";
-  document.getElementById("html").style.overflow = "scroll";
+  document.getElementById("html").style.overflow = "auto";
 }
 </script>
 
@@ -218,7 +222,5 @@ if(isset($error))
     echo $error;
 }
 ?>
-
-
 
 <?php require ('template/footer.php'); ?>

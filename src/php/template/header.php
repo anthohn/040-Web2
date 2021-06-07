@@ -12,9 +12,9 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
     <head>
         <!--
         ETML
-        Auteur      : Anthony Höhn
+        Auteur      : Anthony Höhn, Younes Sayeh
         Date        : 26.04.2021
-        Description : 
+        Description : Header and navBar
 		-->
         <meta charset="UTF-8">
         <link href="../../resources/css/style.css" rel="stylesheet" type="text/css" />
@@ -29,7 +29,7 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
                 </div>
 
                 <span class="separeLigne"></span>
-
+                <!-- change the header's link if the user is logged -->
                 <?php if(!isLogged()): ?>
                     <div class="rest">
                         <div class="CreateLinkContainer">
@@ -49,9 +49,9 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
                         </div>
                     </div>    
                 <?php endif; ?>
-                <!-- ?auth=logout -->
             </div>
         </header>
+        <!-- Hide the navBar in the connexion page -->
         <?php if($activePage != 'connexion.php') : ?>
             <nav class="navBar">
                 <a href="#" class="toggleButton" id="toggleButtonID">
@@ -61,6 +61,7 @@ $activePage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/"
                 </a>
                 
                 <div class="leftnav">
+                    <!-- add a active class when the user is on the page -->
                     <ul class="navBarLinks">
                         <?php if($activePage == 'home.php') : ?>
                             <li id="homeLinkContainer" class="activeLink"><a href="home.php" ><svg class="homeIcon" width="20" height="20" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>

@@ -1,10 +1,17 @@
 <?php 
-// Vérifie que le get n'est pas vite, vérifie si le get est bien numérqiue -> rejete le code html et php (+ sécurisé)
+/**
+* ETML 
+* Author : Anthony Höhn
+* Date : 04.05.2021
+* Description : Detail user
+*/
+
+// Check the GET content, if is numeric (more secure) and if it's ok call all the utils function
 if(!isset($_GET['idUser']) OR !is_numeric($_GET['idUser']))
 {
     header('Location:404.php');
 }
-// Si tout est ok -> appelle les fonctions
+// If it's ok the call the function
 else
 {
     $title = 'Details du utilisateur';
@@ -12,10 +19,6 @@ else
     $idUser = $_GET['idUser'];
     $userInfos = $db->getOneUser($idUser);
     $books = $db->getBooksUser($idUser);
-
-    // echo '<pre>';
-    // print_r($userInfos);
-    // echo '</pre>'; 
 }
 ?>
 <div class="content">
@@ -53,6 +56,7 @@ else
         <h1>Livre suggéré</h1>
 
         <div class='mainBookblock'>
+        <!-- Display all the suggest book by the user -->
         <?php foreach ($books as $book) : ?>
             <div class='bookBlock'>
                 <div class='bookImage'>

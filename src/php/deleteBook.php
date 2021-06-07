@@ -1,4 +1,11 @@
-<?php require "template/header.php";
+<?php 
+/**
+* ETML 
+* Author : Anthony Höhn
+* Date : 04.05.2021
+* Description : Delete book page 
+*/
+require "template/header.php";
 
 if(isLogged() && (isAdmin()))
 {     
